@@ -10,8 +10,8 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white">
       <header className="fixed top-0 left-0 w-full bg-black/50 backdrop-blur-md border-b border-white/10 z-50">
-        <div className="max-w-6xl mx-auto flex justify-between items-center py-4 px-6">
-          <h1 className="text-lg font-bold text-white">{portfolio.name}</h1>
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-center md:justify-between items-center py-4 px-6 text-center md:text-left">
+          <h1 className="hidden md:block text-lg font-bold text-white">{portfolio.name}</h1>
           <nav className="flex gap-6 text-gray-300">
             <a href="#projects" className="hover:text-white transition">Projects</a>
             <a href="#experience" className="hover:text-white transition">Experience</a>
