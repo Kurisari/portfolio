@@ -101,20 +101,25 @@ export default function Home() {
                 background: `
                   linear-gradient(
                     135deg,
-                    ${tech.name === "Python" ? "#3776AB" :
-                    tech.name === "C++" ? "#00599C" :
+                    ${
+                      tech.name === "Next.js" ? "#000000" :
+                      tech.name === "TailwindCSS" ? "#38BDF8" :
+                      tech.name === "Framer Motion" ? "#E10098" :
+                      tech.name === "Shadcn/UI" ? "#9333EA" :
+                      tech.name === "Python" ? "#3776AB" :
+                      tech.name === "C++" ? "#00599C" :
                       tech.name === "Java" ? "#007396" :
-                        tech.name === "JavaScript" ? "#F7DF1E" :
-                          tech.name === "React" ? "#61DAFB" :
-                            tech.name === "Material UI" ? "#007FFF" :
-                              tech.name === "Firebase" ? "#FFCA28" :
-                                tech.name === "PyTorch" ? "#EE4C2C" :
-                                  tech.name === "HTML" ? "#E34F26" :
-                                    tech.name === "CSS" ? "#1572B6" :
-                                      tech.name === "GitHub" ? "#181717" :
-                                        tech.name === "Reflex" ? "#06B6D4" :
-                                          "#444"
-                  }80,
+                      tech.name === "JavaScript" ? "#F7DF1E" :
+                      tech.name === "React" ? "#61DAFB" :
+                      tech.name === "Material UI" ? "#007FFF" :
+                      tech.name === "Firebase" ? "#FFCA28" :
+                      tech.name === "PyTorch" ? "#EE4C2C" :
+                      tech.name === "HTML" ? "#E34F26" :
+                      tech.name === "CSS" ? "#1572B6" :
+                      tech.name === "GitHub" ? "#181717" :
+                      tech.name === "Reflex" ? "#06B6D4" :
+                      "#444"
+                    }80,
                     rgba(255,255,255,0.1)
                   )
                 `,
