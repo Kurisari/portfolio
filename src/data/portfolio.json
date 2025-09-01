@@ -1,0 +1,301 @@
+{
+    "title": "Cristian Aragón Salazar | Portfolio",
+    "description": "Artificial Intelligence Engineer",
+    "image": "/avatar.jpg",
+    "avatar": "/avatar.jpg",
+    "name": "Cristian Aragón Salazar",
+    "skill": "Artificial Intelligence Engineer",
+    "location": "Aguascalientes, Mexico",
+    "media": {
+        "email": "crisarag8.sal@gmail.com",
+        "cv": "/data/cv.pdf",
+        "github": "https://github.com/Kurisari",
+        "likedin": "https://www.linkedin.com/in/cristian-aragon-salazar/"
+    },
+    "about": "I am an Artificial Intelligence Engineer with experience in software development and web applications. Passionate about technology and programming, I am committed to continuous learning and enjoy tackling new challenges. I am proactive, responsible, and dedicated to my work.",
+    "technologies": [
+        {
+            "icon": "devicon-python-plain",
+            "name": "Python"
+        },
+        {
+            "icon": "devicon-cplusplus-plain",
+            "name": "C++"
+        },
+        {
+            "icon": "devicon-java-plain",
+            "name": "Java"
+        },
+        {
+            "icon": "devicon-javascript-plain",
+            "name": "JavaScript"
+        },
+        {
+            "icon": "devicon-react-original",
+            "name": "React"
+        },
+        {
+            "icon": "devicon-materialui-plain",
+            "name": "Material UI"
+        },
+        {
+            "icon": "devicon-firebase-plain",
+            "name": "Firebase"
+        },
+        {
+            "icon": "devicon-pytorch-plain",
+            "name": "PyTorch"
+        },
+        {
+            "icon": "devicon-html5-plain",
+            "name": "HTML"
+        },
+        {
+            "icon": "devicon-css3-plain",
+            "name": "CSS"
+        },
+        {
+            "icon": "devicon-github-original",
+            "name": "GitHub"
+        },
+        {
+            "icon": "devicon-reflex-plain",
+            "name": "Reflex"
+        }
+    ],
+    "experience": [
+        {
+            "icon": "user",
+            "title": "Foráneos UP",
+            "subtitle": "President",
+            "description": "Guided and supervised team operations, promoted collaboration, and fostered an efficient work environment aligned with objectives.",
+            "date": "Jan 2025 - Present"
+        },
+        {
+            "icon": "user",
+            "title": "Burkle Exterminadores",
+            "subtitle": "Web Developer",
+            "description": "Developed and deployed the company website to attract clients, designed a blog and Q&A forum to increase interaction, and optimized structure for better navigation.",
+            "date": "Aug 2024 - Dec 2024"
+        },
+        {
+            "icon": "user",
+            "title": "Integra CEF (Foreign Students Commission)",
+            "subtitle": "Vice President",
+            "description": "Supervised strategic functions of team members, ensured completion of responsibilities, and developed the organization’s website.",
+            "date": "Aug 2023 - Dec 2024"
+        }
+    ],
+    "projects": [
+        {
+            "icon": "book",
+            "title": "Foráneos UP Dashboard",
+            "subtitle": "Management and Analytics Platform for Foreign Students",
+            "description": "Developed a web platform to manage students, bulk upload data, track changes, and visualize real-time interactive analytics. Integrated Firebase for authentication and scalability.",
+            "technologies": [
+                {
+                    "icon": "devicon-react-original",
+                    "name": "React"
+                },
+                {
+                    "icon": "devicon-firebase-plain",
+                    "name": "Firebase"
+                },
+                {
+                    "icon": "devicon-materialui-plain",
+                    "name": "Material UI"
+                },
+                {
+                    "icon": "devicon-javascript-plain",
+                    "name": "JavaScript"
+                }
+            ],
+            "image": "/fup.png"
+        },
+        {
+            "icon": "swords",
+            "title": "Quixo Bot",
+            "subtitle": "Data Structures and Algorithms Software",
+            "description": "Developed a competitive Quixo bot using minimax with alpha-beta pruning, improved heuristics, and tested across scenarios for optimal strategy.",
+            "technologies": [
+                {
+                    "icon": "devicon-python-plain",
+                    "name": "Python"
+                }
+            ],
+            "github": "https://github.com/Kurisari/quixo-bot"
+        },
+        {
+            "icon": "brain",
+            "title": "Kvasir-AI",
+            "subtitle": "Deep Learning · Medical Imaging",
+            "description": "Built a deep learning system for endoscopic image classification using ResNet18 and DenseNet121. Applied preprocessing (CLAHE, data augmentation) and Grad-CAM visualizations for interpretability. Achieved 88.75% accuracy with DenseNet121.",
+            "technologies": [
+                {
+                    "icon": "devicon-python-plain",
+                    "name": "Python"
+                },
+                {
+                    "icon": "devicon-pytorch-plain",
+                    "name": "PyTorch"
+                }
+            ],
+            "github": "https://github.com/Kurisari/Kvasir-AI"
+        },
+        {
+            "icon": "box",
+            "title": "Rubik's Cube Solver",
+            "subtitle": "Data Structures and Algorithms Software",
+            "description": "Implemented a 3x3x3 Rubik’s Cube solver using BFS, A*, and IDA*. Optimized efficiency to reduce moves and added visualization for usability.",
+            "technologies": [
+                {
+                    "icon": "devicon-python-plain",
+                    "name": "Python"
+                }
+            ],
+            "github": "https://github.com/Kurisari/Rubik-s-Cube-Solver"
+        },
+        {
+            "icon": "file-diff",
+            "title": "File Compressor",
+            "subtitle": "Data Structures and Algorithms Software",
+            "description": "Built a Huffman coding-based tool to compress and decompress files, reducing file size by up to 20%, with a simple interface.",
+            "technologies": [
+                {
+                    "icon": "devicon-python-plain",
+                    "name": "Python"
+                }
+            ],
+            "github": "https://github.com/Kurisari/Compresor_Archivos"
+        },
+        {
+            "icon": "gamepad-2",
+            "title": "Mastermind",
+            "subtitle": "Game",
+            "description": "Developed a color-combination logic game with feedback hints to enhance the user experience.",
+            "technologies": [
+                {
+                    "icon": "devicon-cplusplus-plain",
+                    "name": "C++"
+                }
+            ],
+            "github": "https://github.com/Kurisari/Mastermind_CPP"
+        },
+        {
+            "icon": "regex",
+            "title": "Modified RegEx",
+            "subtitle": "Data Structures and Algorithms Software",
+            "description": "Developed software to create and test regular expressions, optimized processing, and designed an interactive interface for real-time validation.",
+            "technologies": [
+                {
+                    "icon": "devicon-python-plain",
+                    "name": "Python"
+                }
+            ],
+            "github": "https://github.com/Kurisari/RegEx-Modificado"
+        },
+        {
+            "icon": "navigation",
+            "title": "Foreigner's Corner",
+            "subtitle": "Website",
+            "description": "Designed a support website with FAQs for international students, improving accessibility and usability.",
+            "technologies": [
+                {
+                    "icon": "devicon-html5-plain",
+                    "name": "Web"
+                }
+            ],
+            "image": "/foreigners-corner.png",
+            "url": "https://foreigners-corner-up-ags.odoo.com/"
+        },
+        {
+            "icon": "navigation",
+            "title": "Portfolio",
+            "subtitle": "Website",
+            "description": "Developed and manage a personal portfolio using Python and the Reflex framework to showcase projects and achievements.",
+            "technologies": [
+                {
+                    "icon": "devicon-reflex-plain",
+                    "name": "Reflex"
+                }
+            ],
+            "image": "/portafolio.png",
+            "github": "https://github.com/Kurisari/portafolio",
+            "url": "https://cristian-aragon-salazar.vercel.app"
+        }
+    ],
+    "training": [
+        {
+            "icon": "backpack",
+            "title": "Artificial Intelligence Engineer",
+            "subtitle": "Universidad Panamericana",
+            "description": "Study of artificial intelligence techniques and algorithms for building intelligent systems.",
+            "date": "Aug 2022 - Present"
+        },
+        {
+            "icon": "graduation-cap",
+            "title": "Agricultural Technician",
+            "subtitle": "Escuela El Peñón",
+            "description": "Management of agricultural projects.",
+            "date": "Aug 2019 - Aug 2022"
+        }
+    ],
+    "extras": [
+        {
+            "image": "/extra1.png",
+            "title": "Storytelling in Digital Marketing",
+            "description": "Santander Open Academy",
+            "url": "https://media.licdn.com/dms/image/D562DAQFRqP4zw5dW4A/profile-treasury-document-images_1280/1/1716179645544?e=1718841600&v=beta&t=KUr5knK8TFAcklna50PdQHdx-K1kyKvXG8RY48vpKF8"
+        },
+        {
+            "image": "/extra2.png",
+            "title": "Digital Transformation",
+            "description": "Santander Open Academy",
+            "url": "https://media.licdn.com/dms/image/D562DAQHT63NiserMnQ/profile-treasury-document-images_1280/1/1716780699918?e=1718841600&v=beta&t=bUaNGLv7t0n2fdFARMd_8zYpmeOEDkw7Jo3obvySEdE"
+        },
+        {
+            "image": "/extra3.png",
+            "title": "AWS Discovery Day: Introduction to Cloud and AWS Services",
+            "description": "Fast Lane LATAM",
+            "url": "https://media.licdn.com/dms/image/D562DAQF1XSpF1CVD6g/profile-treasury-document-images_1280/1/1717778293926?e=1718841600&v=beta&t=6IhYSuHkTHVGNqmyURSjzyFPTE2nbcGhuBNQ9NTziDM"
+        },
+        {
+            "image": "/extra4.png",
+            "title": "Recognition for Commitment and Leadership",
+            "description": "Awarded by UNETE: Universitarios en toda su expresión · May 2023",
+            "url": ""
+        },
+        {
+            "image": "/extra5.jpg",
+            "title": "Recognition for Highest GPA in Class",
+            "description": "Awarded by the Faculty of Engineering at Universidad Panamericana Campus Aguascalientes · May 2023",
+            "url": ""
+        },
+        {
+            "image": "/extra6.png",
+            "title": "Introduction to Emerging Technologies: 2024 Edition",
+            "description": "Awarded by Emtech · Feb 2024",
+            "url": ""
+        }
+    ],
+    "gallery": [
+        {
+            "image": "https://picsum.photos/200/300"
+        },
+        {
+            "image": "https://picsum.photos/300/300"
+        },
+        {
+            "image": "https://picsum.photos/400/200"
+        },
+        {
+            "image": "https://picsum.photos/500/500"
+        },
+        {
+            "image": "https://picsum.photos/400/300"
+        },
+        {
+            "image": "https://picsum.photos/300/200"
+        }
+    ]
+}
