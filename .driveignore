@@ -1,1 +1,42 @@
+# 📦 Dependencias
 node_modules/
+**/node_modules/
+
+# 🛠️ Builds y artefactos
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.angular/
+.storybook-out/
+
+# ⚡ Herramientas de bundling / cache
+.parcel-cache/
+.vite/
+.cache/
+webpack-cache/
+.rspack-cache/
+
+# 🧪 Testing / coverage
+coverage/
+.nyc_output/
+
+# ⚙️ Configuración temporal
+.tmp/
+temp/
+.DS_Store
+Thumbs.db
+
+# 📝 Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 🔒 Archivos de entorno
+.env
+.env.*
+*.env
