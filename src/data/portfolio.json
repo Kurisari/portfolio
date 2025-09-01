@@ -196,6 +196,37 @@
         },
         {
             "icon": "navigation",
+            "title": "Portfolio",
+            "subtitle": "Website",
+            "description": "Developed and manage a personal portfolio using Next.js, TailwindCSS, Framer Motion, and Shadcn/UI to showcase projects, experience, and achievements. Integrated responsive design and animations for a modern professional presentation.",
+            "technologies": [
+                {
+                    "icon": "devicon-react-original",
+                    "name": "Next.js"
+                },
+                {
+                    "icon": "devicon-tailwindcss-original",
+                    "name": "TailwindCSS"
+                },
+                {
+                    "icon": "devicon-javascript-plain",
+                    "name": "JavaScript"
+                },
+                {
+                    "icon": "devicon-react-original",
+                    "name": "Framer Motion"
+                },
+                {
+                    "icon": "devicon-react-original",
+                    "name": "Shadcn/UI"
+                }
+            ],
+            "image": "/portfolio-new.png",
+            "github": "https://github.com/Kurisari/portfolio",
+            "url": "https://cristian-aragon-salazar.vercel.app"
+        },
+        {
+            "icon": "navigation",
             "title": "Foreigner's Corner",
             "subtitle": "Website",
             "description": "Designed a support website with FAQs for international students, improving accessibility and usability.",
@@ -210,7 +241,7 @@
         },
         {
             "icon": "navigation",
-            "title": "Portfolio",
+            "title": "Portfolio - OLD VERSION",
             "subtitle": "Website",
             "description": "Developed and manage a personal portfolio using Python and the Reflex framework to showcase projects and achievements.",
             "technologies": [
@@ -220,8 +251,8 @@
                 }
             ],
             "image": "/portafolio.png",
-            "github": "https://github.com/Kurisari/portafolio",
-            "url": "https://cristian-aragon-salazar.vercel.app"
+            "github": "https://github.com/Kurisari/portafolio-old",
+            "url": "https://cristian-old-version.vercel.app"
         }
     ],
     "training": [
