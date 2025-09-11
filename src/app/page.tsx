@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Linkedin, FileText, Mail } from "lucide-react";
+import CalWidget from "@/components/CalWidget";
 
 export default function Home() {
   return (
@@ -310,6 +311,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      <CalWidget />
     </main>
   );
 }
