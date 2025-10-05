@@ -3,16 +3,16 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
-      // Force canonical domain
+      // Force canonical domain at www.kurisari.dev
       {
         source: "/:path*",
         has: [
           {
             type: "host",
-            value: "www.kurisari.dev",
+            value: "kurisari.dev",
           },
         ],
-        destination: "https://kurisari.dev/:path*",
+        destination: "https://www.kurisari.dev/:path*",
         permanent: true,
       },
       {
@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
             value: "cristian-aragon-salazar.vercel.app",
           },
         ],
-        destination: "https://kurisari.dev/:path*",
+        destination: "https://www.kurisari.dev/:path*",
         permanent: true,
       },
     ];

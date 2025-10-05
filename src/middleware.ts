@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-const CANONICAL_HOST = "kurisari.dev";
+const CANONICAL_HOST = "www.kurisari.dev";
 
 export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
@@ -11,7 +11,11 @@ export function middleware(req: NextRequest) {
   if (isLocal) return NextResponse.next();
 
   // Redirect known alt hosts to the canonical host
-  if (host === `www.${CANONICAL_HOST}` || host === "cristian-aragon-salazar.vercel.app") {
+  if (host === CANONICAL_HOST) {
+    return NextResponse.next();
+  }
+
+  if (host === CANONICAL_HOST.replace(/^www\./, "") || host === "cristian-aragon-salazar.vercel.app") {
     url.host = CANONICAL_HOST;
     url.protocol = "https";
     return NextResponse.redirect(url, 308);
