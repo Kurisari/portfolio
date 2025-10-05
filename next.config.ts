@@ -1,6 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "foreigners-corner-up-ags.odoo.com",
+      },
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+      },
+    ],
+  },
   async redirects() {
     return [
       // Force canonical domain at www.kurisari.dev
