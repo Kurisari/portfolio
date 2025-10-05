@@ -51,7 +51,7 @@ export default function Home() {
         </div>
         <div className="flex gap-4 mt-6">
           <Button asChild>
-            <a href={portfolio.media.github} target="_blank" className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-purple-400/50 bg-purple-600/20 hover:bg-purple-600/30 transition">
+            <a href={portfolio.media.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-purple-400/50 bg-purple-600/20 hover:bg-purple-600/30 transition">
               <Github className="w-4 h-4" /> GitHub
             </a>
           </Button>
@@ -59,6 +59,7 @@ export default function Home() {
             <a
               href={portfolio.media.likedin}
               target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-blue-400/50 bg-blue-600/20 hover:bg-blue-600/30 transition"
             >
               <Linkedin className="w-4 h-4" /> LinkedIn
@@ -68,6 +69,7 @@ export default function Home() {
             <a
               href={portfolio.media.cv}
               target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-green-400/50 bg-green-600/20 hover:bg-green-600/30 transition"
             >
               <FileText className="w-4 h-4" /> CV
@@ -207,6 +209,7 @@ export default function Home() {
                     <a
                       href={project.github}
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-purple-400/50 bg-purple-600/20 hover:bg-purple-600/30 transition"
                     >
                       <i className="devicon-github-original text-lg"></i> Code
@@ -216,6 +219,7 @@ export default function Home() {
                     <a
                       href={project.url}
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-pink-400/50 bg-pink-600/20 hover:bg-pink-600/30 transition"
                     >
                       <ExternalLink className="w-4 h-4" /> Preview
@@ -288,6 +292,7 @@ export default function Home() {
               key={i}
               href={extra.url || "#"}
               target="_blank"
+              rel={extra.url ? "noopener noreferrer" : undefined}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
@@ -305,8 +310,8 @@ export default function Home() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center px-6 text-gray-400">
           <p>© {new Date().getFullYear()} {portfolio.name}. All rights reserved.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
-            <a href={portfolio.media.github} target="_blank" className="hover:text-pink-400 transition">GitHub</a>
-            <a href={portfolio.media.likedin} target="_blank" className="hover:text-pink-400 transition">LinkedIn</a>
+            <a href={portfolio.media.github} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition">GitHub</a>
+            <a href={portfolio.media.likedin} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition">LinkedIn</a>
             <a href={`mailto:${portfolio.media.email}`} className="hover:text-pink-400 transition">Email</a>
           </div>
         </div>

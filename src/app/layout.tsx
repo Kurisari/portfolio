@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "devicon/devicon.min.css";
 import "./globals.css";
@@ -13,25 +14,43 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://kurisari.dev";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Cristian Aragón Salazar | Portfolio",
   description: "Artificial Intelligence Engineer",
+  keywords: [
+    "Cristian Aragón Salazar",
+    "Kurisari",
+    "Artificial Intelligence Engineer",
+    "AI Engineer",
+    "Software Developer",
+    "Portfolio",
+    "Next.js",
+  ],
+  authors: [{ name: "Cristian Aragón Salazar", url: siteUrl }],
+  creator: "Cristian Aragón Salazar",
+  publisher: "Cristian Aragón Salazar",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
+  alternates: {
+    canonical: "/",
   },
   openGraph: {
     title: "Cristian Aragón Salazar | Portfolio",
     description: "Artificial Intelligence Engineer",
-    url: "https://cristian-aragon-salazar.vercel.app",
+    url: siteUrl,
     siteName: "Cristian Aragón Salazar",
     images: [
       {
-        url: "/avatar.jpg",
-        width: 800,
-        height: 600,
-        alt: "Cristian Aragón Salazar",
+        url: "/portfolio-new.png",
+        width: 1200,
+        height: 630,
+        alt: "Cristian Aragón Salazar Portfolio",
       },
     ],
     locale: "en_US",
@@ -55,6 +74,22 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* JSON-LD Structured Data */}
+        <Script id="ld-json-person" type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Cristian Aragón Salazar",
+            jobTitle: "Artificial Intelligence Engineer",
+            url: siteUrl,
+            image: new URL("/avatar.jpg", siteUrl).toString(),
+            email: "mailto:crisarag8.sal@gmail.com",
+            sameAs: [
+              "https://github.com/Kurisari",
+              "https://www.linkedin.com/in/cristian-aragon-salazar/",
+            ],
+          })}
+        </Script>
         {children}
       </body>
     </html>
