@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "devicon/devicon.min.css";
 import "./globals.css";
+import { I18nProvider } from "@/lib/i18n";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -78,42 +79,42 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* Optional: Google Analytics (GA4) */}
-        {process.env.NEXT_PUBLIC_GA_ID ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga4" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);} gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-              `}
-            </Script>
-          </>
-        ) : null}
-        {/* JSON-LD Structured Data */}
-        <Script id="ld-json-person" type="application/ld+json" strategy="afterInteractive">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            name: "Cristian Aragón Salazar",
-            jobTitle: "Artificial Intelligence Engineer",
-            url: siteUrl,
-            image: new URL("/avatar.jpg", siteUrl).toString(),
-            email: "mailto:crisarag8.sal@gmail.com",
-            sameAs: [
-              "https://github.com/Kurisari",
-              "https://www.linkedin.com/in/cristian-aragon-salazar/",
-            ],
-          })}
-        </Script>
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <I18nProvider>
+          {/* Optional: Google Analytics (GA4) */}
+          {process.env.NEXT_PUBLIC_GA_ID ? (
+            <>
+              <Script
+                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+                strategy="afterInteractive"
+              />
+              <Script id="ga4" strategy="afterInteractive">
+                {`
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);} gtag('js', new Date());
+                  gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+                `}
+              </Script>
+            </>
+          ) : null}
+          {/* JSON-LD Structured Data */}
+          <Script id="ld-json-person" type="application/ld+json" strategy="afterInteractive">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Cristian Aragón Salazar",
+              jobTitle: "Artificial Intelligence Engineer",
+              url: siteUrl,
+              image: new URL("/avatar.jpg", siteUrl).toString(),
+              email: "mailto:crisarag8.sal@gmail.com",
+              sameAs: [
+                "https://github.com/Kurisari",
+                "https://www.linkedin.com/in/cristian-aragon-salazar/",
+              ],
+            })}
+          </Script>
+          {children}
+        </I18nProvider>
       </body>
     </html>
   );

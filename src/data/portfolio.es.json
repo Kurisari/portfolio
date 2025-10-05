@@ -1,0 +1,230 @@
+{
+  "title": "Cristian Aragón Salazar | Portafolio",
+  "description": "Ingeniero en Inteligencia Artificial",
+  "image": "/avatar.jpg",
+  "avatar": "/avatar.jpg",
+  "name": "Cristian Aragón Salazar",
+  "skill": "Ingeniero en Inteligencia Artificial",
+  "location": "Aguascalientes, México",
+  "media": {
+    "email": "crisarag8.sal@gmail.com",
+    "cv": "/data/cv.pdf",
+    "github": "https://github.com/Kurisari",
+    "likedin": "https://www.linkedin.com/in/cristian-aragon-salazar/"
+  },
+  "about": "Soy un Ingeniero en Inteligencia Artificial con experiencia en desarrollo de software y aplicaciones web. Apasionado por la tecnología y la programación, comprometido con el aprendizaje continuo y los nuevos retos. Soy proactivo, responsable y dedicado a mi trabajo.",
+  "technologies": [
+    { "icon": "devicon-python-plain", "name": "Python" },
+    { "icon": "devicon-cplusplus-plain", "name": "C++" },
+    { "icon": "devicon-java-plain", "name": "Java" },
+    { "icon": "devicon-javascript-plain", "name": "JavaScript" },
+    { "icon": "devicon-react-original", "name": "React" },
+    { "icon": "devicon-materialui-plain", "name": "Material UI" },
+    { "icon": "devicon-firebase-plain", "name": "Firebase" },
+    { "icon": "devicon-pytorch-plain", "name": "PyTorch" },
+    { "icon": "devicon-html5-plain", "name": "HTML" },
+    { "icon": "devicon-css3-plain", "name": "CSS" },
+    { "icon": "devicon-github-original", "name": "GitHub" },
+    { "icon": "devicon-reflex-plain", "name": "Reflex" }
+  ],
+  "experience": [
+    {
+      "icon": "user",
+      "title": "Foráneos UP",
+      "subtitle": "Presidente",
+      "description": "Guié y supervisé las operaciones del equipo, promoví la colaboración y fomenté un entorno de trabajo eficiente alineado con los objetivos.",
+      "date": "Ene 2025 - Presente"
+    },
+    {
+      "icon": "user",
+      "title": "Burkle Exterminadores",
+      "subtitle": "Desarrollador Web",
+      "description": "Desarrollé y publiqué el sitio web de la empresa para atraer clientes, diseñé un blog y un foro de preguntas y respuestas para aumentar la interacción, y optimicé la estructura para una mejor navegación.",
+      "date": "Ago 2024 - Dic 2024"
+    },
+    {
+      "icon": "user",
+      "title": "Integra CEF (Comisión de Estudiantes Foráneos)",
+      "subtitle": "Vicepresidente",
+      "description": "Supervisé funciones estratégicas de los miembros del equipo, aseguré el cumplimiento de responsabilidades y desarrollé el sitio web de la organización.",
+      "date": "Ago 2023 - Dic 2024"
+    }
+  ],
+  "projects": [
+    {
+      "icon": "book",
+      "title": "Foráneos UP Dashboard",
+      "subtitle": "Plataforma de Gestión y Analítica para Estudiantes Foráneos",
+      "description": "Desarrollé una plataforma web para gestionar estudiantes, cargar datos en lote, rastrear cambios y visualizar analíticas interactivas en tiempo real. Integré Firebase para autenticación y escalabilidad.",
+      "technologies": [
+        { "icon": "devicon-react-original", "name": "React" },
+        { "icon": "devicon-firebase-plain", "name": "Firebase" },
+        { "icon": "devicon-materialui-plain", "name": "Material UI" },
+        { "icon": "devicon-javascript-plain", "name": "JavaScript" }
+      ],
+      "image": "/fup.png"
+    },
+    {
+      "icon": "swords",
+      "title": "Quixo Bot",
+      "subtitle": "Software de Estructuras de Datos y Algoritmos",
+      "description": "Desarrollé un bot competitivo de Quixo usando minimax con poda alfa-beta, mejoré heurísticas y lo probé en distintos escenarios para una estrategia óptima.",
+      "technologies": [
+        { "icon": "devicon-python-plain", "name": "Python" }
+      ],
+      "github": "https://github.com/Kurisari/quixo-bot"
+    },
+    {
+      "icon": "brain",
+      "title": "Kvasir-AI",
+      "subtitle": "Deep Learning · Imagen Médica",
+      "description": "Construí un sistema de deep learning para clasificación de imágenes endoscópicas usando ResNet18 y DenseNet121. Apliqué preprocesamiento (CLAHE, aumento de datos) y visualizaciones Grad-CAM para interpretabilidad. Alcancé 88.75% de exactitud con DenseNet121.",
+      "technologies": [
+        { "icon": "devicon-python-plain", "name": "Python" },
+        { "icon": "devicon-pytorch-plain", "name": "PyTorch" }
+      ],
+      "github": "https://github.com/Kurisari/Kvasir-AI"
+    },
+    {
+      "icon": "box",
+      "title": "Solucionador de Cubo de Rubik",
+      "subtitle": "Software de Estructuras de Datos y Algoritmos",
+      "description": "Implementé un solucionador de cubo de Rubik 3x3x3 usando BFS, A* e IDA*. Optimicé la eficiencia para reducir movimientos y añadí visualización para mejorar la usabilidad.",
+      "technologies": [
+        { "icon": "devicon-python-plain", "name": "Python" }
+      ],
+      "github": "https://github.com/Kurisari/Rubik-s-Cube-Solver"
+    },
+    {
+      "icon": "file-diff",
+      "title": "Compresor de Archivos",
+      "subtitle": "Software de Estructuras de Datos y Algoritmos",
+      "description": "Construí una herramienta basada en codificación de Huffman para comprimir y descomprimir archivos, reduciendo el tamaño hasta un 20%, con una interfaz simple.",
+      "technologies": [
+        { "icon": "devicon-python-plain", "name": "Python" }
+      ],
+      "github": "https://github.com/Kurisari/Compresor_Archivos"
+    },
+    {
+      "icon": "gamepad-2",
+      "title": "Mastermind",
+      "subtitle": "Juego",
+      "description": "Desarrollé un juego de lógica de combinaciones de colores con pistas de retroalimentación para mejorar la experiencia del usuario.",
+      "technologies": [
+        { "icon": "devicon-cplusplus-plain", "name": "C++" }
+      ],
+      "github": "https://github.com/Kurisari/Mastermind_CPP"
+    },
+    {
+      "icon": "regex",
+      "title": "Expresiones Regulares Modificadas",
+      "subtitle": "Software de Estructuras de Datos y Algoritmos",
+      "description": "Desarrollé software para crear y probar expresiones regulares, optimicé el procesamiento y diseñé una interfaz interactiva para validación en tiempo real.",
+      "technologies": [
+        { "icon": "devicon-python-plain", "name": "Python" }
+      ],
+      "github": "https://github.com/Kurisari/RegEx-Modificado"
+    },
+    {
+      "icon": "navigation",
+      "title": "Portafolio",
+      "subtitle": "Sitio Web",
+      "description": "Desarrollé y mantengo un portafolio personal usando Next.js, TailwindCSS, Framer Motion y Shadcn/UI para mostrar proyectos, experiencia y logros. Integré diseño responsivo y animaciones para una presentación moderna y profesional.",
+      "technologies": [
+        { "icon": "devicon-react-original", "name": "Next.js" },
+        { "icon": "devicon-tailwindcss-original", "name": "TailwindCSS" },
+        { "icon": "devicon-javascript-plain", "name": "JavaScript" },
+        { "icon": "devicon-react-original", "name": "Framer Motion" },
+        { "icon": "devicon-react-original", "name": "Shadcn/UI" }
+      ],
+      "image": "/portfolio-new.png",
+      "github": "https://github.com/Kurisari/portfolio",
+      "url": "https://www.kurisari.dev"
+    },
+    {
+      "icon": "navigation",
+      "title": "Foreigner's Corner",
+      "subtitle": "Sitio Web",
+      "description": "Diseñé un sitio de apoyo con preguntas frecuentes para estudiantes internacionales, mejorando la accesibilidad y usabilidad.",
+      "technologies": [
+        { "icon": "devicon-html5-plain", "name": "Web" }
+      ],
+      "image": "/foreigners-corner.png",
+      "url": "https://foreigners-corner-up-ags.odoo.com/"
+    },
+    {
+      "icon": "navigation",
+      "title": "Portafolio - VERSIÓN ANTIGUA",
+      "subtitle": "Sitio Web",
+      "description": "Desarrollé y mantengo un portafolio personal usando Python y el framework Reflex para mostrar proyectos y logros.",
+      "technologies": [
+        { "icon": "devicon-reflex-plain", "name": "Reflex" }
+      ],
+      "image": "/portafolio.png",
+      "github": "https://github.com/Kurisari/portafolio-old",
+      "url": "https://cristian-old-version.vercel.app"
+    }
+  ],
+  "training": [
+    {
+      "icon": "backpack",
+      "title": "Ingeniero en Inteligencia Artificial",
+      "subtitle": "Universidad Panamericana",
+      "description": "Estudio de técnicas y algoritmos de inteligencia artificial para construir sistemas inteligentes.",
+      "date": "Ago 2022 - Presente"
+    },
+    {
+      "icon": "graduation-cap",
+      "title": "Técnico Agropecuario",
+      "subtitle": "Escuela El Peñón",
+      "description": "Gestión de proyectos agropecuarios.",
+      "date": "Ago 2019 - Ago 2022"
+    }
+  ],
+  "extras": [
+    {
+      "image": "/extra1.png",
+      "title": "Storytelling en Marketing Digital",
+      "description": "Santander Open Academy",
+      "url": "https://media.licdn.com/dms/image/D562DAQFRqP4zw5dW4A/profile-treasury-document-images_1280/1/1716179645544?e=1718841600&v=beta&t=KUr5knK8TFAcklna50PdQHdx-K1kyKvXG8RY48vpKF8"
+    },
+    {
+      "image": "/extra2.png",
+      "title": "Transformación Digital",
+      "description": "Santander Open Academy",
+      "url": "https://media.licdn.com/dms/image/D562DAQHT63NiserMnQ/profile-treasury-document-images_1280/1/1716780699918?e=1718841600&v=beta&t=bUaNGLv7t0n2fdFARMd_8zYpmeOEDkw7Jo3obvySEdE"
+    },
+    {
+      "image": "/extra3.png",
+      "title": "AWS Discovery Day: Introducción a la Nube y Servicios de AWS",
+      "description": "Fast Lane LATAM",
+      "url": "https://media.licdn.com/dms/image/D562DAQF1XSpF1CVD6g/profile-treasury-document-images_1280/1/1717778293926?e=1718841600&v=beta&t=6IhYSuHkTHVGNqmyURSjzyFPTE2nbcGhuBNQ9NTziDM"
+    },
+    {
+      "image": "/extra4.png",
+      "title": "Reconocimiento por Compromiso y Liderazgo",
+      "description": "Otorgado por UNETE: Universitarios en toda su expresión · Mayo 2023",
+      "url": ""
+    },
+    {
+      "image": "/extra5.jpg",
+      "title": "Reconocimiento por Mayor Promedio del Grupo",
+      "description": "Otorgado por la Facultad de Ingeniería de la Universidad Panamericana Campus Aguascalientes · Mayo 2023",
+      "url": ""
+    },
+    {
+      "image": "/extra6.png",
+      "title": "Introducción a Tecnologías Emergentes: Edición 2024",
+      "description": "Otorgado por Emtech · Feb 2024",
+      "url": ""
+    }
+  ],
+  "gallery": [
+    { "image": "https://picsum.photos/200/300" },
+    { "image": "https://picsum.photos/300/300" },
+    { "image": "https://picsum.photos/400/200" },
+    { "image": "https://picsum.photos/500/500" },
+    { "image": "https://picsum.photos/400/300" },
+    { "image": "https://picsum.photos/300/200" }
+  ]
+}

@@ -1,24 +1,43 @@
 "use client";
 import { motion } from "framer-motion";
-import portfolio from "@/data/portfolio.json";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Linkedin, FileText, Mail } from "lucide-react";
 import CalWidget from "@/components/CalWidget";
+import { useI18n } from "@/lib/i18n";
+import LanguageToggle from "@/components/LanguageToggle";
+import { useEffect, useState } from "react";
+
+type Portfolio = typeof import("@/data/portfolio.en.json");
 
 export default function Home() {
+  const { t, lang } = useI18n();
+  const [portfolio, setPortfolio] = useState<Portfolio | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      const data = lang === "es"
+        ? (await import("@/data/portfolio.es.json")).default
+        : (await import("@/data/portfolio.en.json")).default;
+      if (active) setPortfolio(data);
+    })();
+    return () => { active = false; };
+  }, [lang]);
+  if (!portfolio) return null;
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white">
       <header className="fixed top-0 left-0 w-full bg-black/50 backdrop-blur-md border-b border-white/10 z-50">
         <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6 md:px-8 flex flex-col md:flex-row justify-center md:justify-between items-center py-4 text-center md:text-left">
           <h1 className="hidden md:block text-lg font-bold text-white">{portfolio.name}</h1>
           <nav className="flex gap-6 text-gray-300">
-            <a href="#projects" className="hover:text-white transition">Projects</a>
-            <a href="#experience" className="hover:text-white transition">Experience</a>
-            <a href="#training" className="hover:text-white transition">Training</a>
-            <a href="#extras" className="hover:text-white transition">Extras</a>
+            <a href="#projects" className="hover:text-white transition">{t("projects")}</a>
+            <a href="#experience" className="hover:text-white transition">{t("experience")}</a>
+            <a href="#training" className="hover:text-white transition">{t("training")}</a>
+            <a href="#extras" className="hover:text-white transition">{t("extras")}</a>
           </nav>
+          <LanguageToggle />
         </div>
       </header>
 
@@ -35,7 +54,7 @@ export default function Home() {
         </motion.div>
         <div className="mt-6 flex flex-col items-center gap-3">
           <span className="px-4 py-1 rounded-full border border-green-400/50 bg-green-600/20 text-green-300 text-sm font-medium">
-            Available for work
+            {t("available")}
           </span>
           <motion.h1
             className="text-5xl font-extrabold text-white"
@@ -46,13 +65,13 @@ export default function Home() {
             {portfolio.name}
           </motion.h1>
           <p className="text-lg text-gray-300 hover:text-gray-200 transition-colors">
-            {portfolio.skill}
+            {t("skill")}
           </p>
         </div>
         <div className="flex gap-4 mt-6">
           <Button asChild>
             <a href={portfolio.media.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-purple-400/50 bg-purple-600/20 hover:bg-purple-600/30 transition">
-              <Github className="w-4 h-4" /> GitHub
+              <Github className="w-4 h-4" /> {t("github")}
             </a>
           </Button>
           <Button asChild>
@@ -62,7 +81,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-blue-400/50 bg-blue-600/20 hover:bg-blue-600/30 transition"
             >
-              <Linkedin className="w-4 h-4" /> LinkedIn
+              <Linkedin className="w-4 h-4" /> {t("linkedin")}
             </a>
           </Button>
           <Button asChild>
@@ -72,7 +91,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-green-400/50 bg-green-600/20 hover:bg-green-600/30 transition"
             >
-              <FileText className="w-4 h-4" /> CV
+              <FileText className="w-4 h-4" /> {t("cv")}
             </a>
           </Button>
           <Button asChild>
@@ -80,16 +99,14 @@ export default function Home() {
               href={`mailto:${portfolio.media.email}`}
               className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-yellow-400/50 bg-yellow-600/20 hover:bg-yellow-600/30 transition"
             >
-              <Mail className="w-4 h-4" /> Email
+              <Mail className="w-4 h-4" /> {t("email")}
             </a>
           </Button>
         </div>
 
         {/* About Section */}
   <section id="about" className="mx-auto w-full max-w-[900px] py-12 px-4 sm:px-6 md:px-8 text-center">
-          <p className="text-lg leading-relaxed text-gray-300">
-            I am an <span className="text-blue-400 font-semibold">Artificial Intelligence Engineer</span> with experience in software development and web applications. Passionate about <span className="text-blue-400 font-semibold">technology</span> and <span className="text-blue-400 font-semibold">programming</span>, I am committed to continuous learning and enjoy tackling new challenges. I am <span className="text-blue-400 font-semibold">proactive</span>, <span className="text-blue-400 font-semibold">responsible</span>, and dedicated to my work.
-          </p>
+          <p className="text-lg leading-relaxed text-gray-300" dangerouslySetInnerHTML={{ __html: t("about") }} />
         </section>
 
         <div className="flex flex-wrap justify-center gap-4 mt-4">
@@ -142,7 +159,7 @@ export default function Home() {
 
       {/* Projects Section */}
   <section id="projects" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
-        <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">Projects</h2>
+  <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("projects")}</h2>
         <div className="space-y-12">
           {portfolio.projects.map((project, i) => (
             <motion.div
@@ -212,7 +229,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-purple-400/50 bg-purple-600/20 hover:bg-purple-600/30 transition"
                     >
-                      <i className="devicon-github-original text-lg"></i> Code
+                      <i className="devicon-github-original text-lg"></i> {t("code")}
                     </a>
                   )}
                   {project.url && (
@@ -222,7 +239,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-pink-400/50 bg-pink-600/20 hover:bg-pink-600/30 transition"
                     >
-                      <ExternalLink className="w-4 h-4" /> Preview
+                      <ExternalLink className="w-4 h-4" /> {t("preview")}
                     </a>
                   )}
                 </div>
@@ -234,7 +251,7 @@ export default function Home() {
 
       {/* Experience Section */}
   <section id="experience" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
-        <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">Experience</h2>
+  <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("experience")}</h2>
         <div className="relative border-l border-gray-700 pl-6">
           {portfolio.experience.map((exp, i) => (
             <motion.div
@@ -257,7 +274,7 @@ export default function Home() {
 
       {/* Training Section */}
   <section id="training" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
-        <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">Training</h2>
+  <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("training")}</h2>
         <div className="space-y-8">
           {portfolio.training.map((train, i) => (
             <motion.div
@@ -285,7 +302,7 @@ export default function Home() {
 
       {/* Extras Section */}
   <section id="extras" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
-        <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">Extras</h2>
+  <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("extras")}</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {portfolio.extras.map((extra, i) => (
             <motion.a
@@ -308,11 +325,11 @@ export default function Home() {
 
       <footer className="bg-gradient-to-r from-gray-950 via-gray-900 to-black border-t border-white/10 py-6 mt-12">
         <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6 md:px-8 flex flex-col md:flex-row justify-between items-center text-gray-400">
-          <p>© {new Date().getFullYear()} {portfolio.name}. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {portfolio.name}. {t("all_rights")}</p>
           <div className="flex gap-4 mt-4 md:mt-0">
-            <a href={portfolio.media.github} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition">GitHub</a>
-            <a href={portfolio.media.likedin} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition">LinkedIn</a>
-            <a href={`mailto:${portfolio.media.email}`} className="hover:text-pink-400 transition">Email</a>
+            <a href={portfolio.media.github} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition">{t("github")}</a>
+            <a href={portfolio.media.likedin} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition">{t("linkedin")}</a>
+            <a href={`mailto:${portfolio.media.email}`} className="hover:text-pink-400 transition">{t("email")}</a>
           </div>
         </div>
       </footer>
