@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type React from "react";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "devicon/devicon.min.css";
@@ -38,9 +39,9 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
     other: {
-      "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION,
+      "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION || "",
     },
   },
   alternates: {

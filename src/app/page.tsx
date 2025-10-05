@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white">
       <header className="fixed top-0 left-0 w-full bg-black/50 backdrop-blur-md border-b border-white/10 z-50">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-center md:justify-between items-center py-4 px-6 text-center md:text-left">
+        <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6 md:px-8 flex flex-col md:flex-row justify-center md:justify-between items-center py-4 text-center md:text-left">
           <h1 className="hidden md:block text-lg font-bold text-white">{portfolio.name}</h1>
           <nav className="flex gap-6 text-gray-300">
             <a href="#projects" className="hover:text-white transition">Projects</a>
@@ -23,7 +23,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center py-32">
+  <section className="flex flex-col items-center justify-center text-center py-32 mx-auto w-full max-w-[900px] px-4 sm:px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ export default function Home() {
         </div>
 
         {/* About Section */}
-        <section id="about" className="max-w-4xl mx-auto py-12 px-6 text-center">
+  <section id="about" className="mx-auto w-full max-w-[900px] py-12 px-4 sm:px-6 md:px-8 text-center">
           <p className="text-lg leading-relaxed text-gray-300">
             I am an <span className="text-blue-400 font-semibold">Artificial Intelligence Engineer</span> with experience in software development and web applications. Passionate about <span className="text-blue-400 font-semibold">technology</span> and <span className="text-blue-400 font-semibold">programming</span>, I am committed to continuous learning and enjoy tackling new challenges. I am <span className="text-blue-400 font-semibold">proactive</span>, <span className="text-blue-400 font-semibold">responsible</span>, and dedicated to my work.
           </p>
@@ -141,7 +141,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="max-w-5xl mx-auto py-16 px-6">
+  <section id="projects" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
         <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">Projects</h2>
         <div className="space-y-12">
           {portfolio.projects.map((project, i) => (
@@ -233,7 +233,7 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="max-w-5xl mx-auto py-16 px-6">
+  <section id="experience" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
         <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">Experience</h2>
         <div className="relative border-l border-gray-700 pl-6">
           {portfolio.experience.map((exp, i) => (
@@ -256,7 +256,7 @@ export default function Home() {
       </section>
 
       {/* Training Section */}
-      <section id="training" className="max-w-5xl mx-auto py-16 px-6">
+  <section id="training" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
         <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">Training</h2>
         <div className="space-y-8">
           {portfolio.training.map((train, i) => (
@@ -284,7 +284,7 @@ export default function Home() {
       </section>
 
       {/* Extras Section */}
-      <section id="extras" className="max-w-5xl mx-auto py-16 px-6">
+  <section id="extras" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
         <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">Extras</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {portfolio.extras.map((extra, i) => (
@@ -307,7 +307,7 @@ export default function Home() {
       </section>
 
       <footer className="bg-gradient-to-r from-gray-950 via-gray-900 to-black border-t border-white/10 py-6 mt-12">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center px-6 text-gray-400">
+        <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6 md:px-8 flex flex-col md:flex-row justify-between items-center text-gray-400">
           <p>© {new Date().getFullYear()} {portfolio.name}. All rights reserved.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
             <a href={portfolio.media.github} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition">GitHub</a>

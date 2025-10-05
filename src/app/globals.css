@@ -120,3 +120,5 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* width utility removed; using inline classes per-section */
