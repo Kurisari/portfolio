@@ -77,9 +77,13 @@ export default function Home() {
   if (!portfolio) return null;
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white">
+      {/* Semantic H1 for SEO at top of main */}
+      <h1 className="sr-only">
+        {portfolio.name} — {t("skill")}
+      </h1>
       <header className="fixed top-0 left-0 w-full bg-black/50 backdrop-blur-md border-b border-white/10 z-50">
         <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6 md:px-8 flex flex-col md:flex-row justify-center md:justify-between items-center py-4 text-center md:text-left">
-          <h1 className="hidden md:block text-lg font-bold text-white">{portfolio.name}</h1>
+          <p className="hidden md:block text-lg font-bold text-white" aria-hidden="true">{portfolio.name}</p>
           <nav className="flex gap-6 text-gray-300">
             <a href="#projects" className="hover:text-white transition">{t("projects")}</a>
             <a href="#experience" className="hover:text-white transition">{t("experience")}</a>

@@ -21,7 +21,8 @@ const siteUrl = "https://www.kurisari.dev";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Cristian Aragón Salazar | Portfolio",
-  description: "Artificial Intelligence Engineer",
+  description:
+    "Artificial Intelligence Engineer specialized in building modern web applications, data-driven systems, and user-centric experiences. Explore projects, professional experience, training, and recognitions.",
   keywords: [
     "Cristian Aragón Salazar",
     "Kurisari",
@@ -50,7 +51,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Cristian Aragón Salazar | Portfolio",
-    description: "Artificial Intelligence Engineer",
+    description:
+      "Artificial Intelligence Engineer specialized in building modern web applications, data-driven systems, and user-centric experiences. Explore projects, professional experience, training, and recognitions.",
     url: siteUrl,
     siteName: "Cristian Aragón Salazar",
     images: [
@@ -67,7 +69,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Cristian Aragón Salazar | Portfolio",
-    description: "Artificial Intelligence Engineer",
+    description:
+      "Artificial Intelligence Engineer specialized in building modern web applications, data-driven systems, and user-centric experiences.",
     images: ["/avatar.jpg"],
   },
 };

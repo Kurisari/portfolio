@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
+import enDict from "../i18n/en.json";
 
 const LANGS = ["en", "es"] as const;
 type Lang = typeof LANGS[number];
@@ -25,7 +26,7 @@ const I18nContext = createContext<{
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLang] = useState<Lang>("en");
-  const [dict, setDict] = useState<Dict>({});
+  const [dict, setDict] = useState<Dict>(enDict);
 
   useEffect(() => {
     // Initialize language from localStorage or navigator
@@ -50,6 +51,9 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     loadDict(lang).then(setDict);
     if (typeof window !== "undefined") {
       window.localStorage.setItem("lang", lang);
+    }
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = lang;
     }
   }, [lang]);
 
