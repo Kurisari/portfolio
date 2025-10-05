@@ -1,16 +1,16 @@
+"use client";
 // Declaración para evitar error de TypeScript con window.Cal
 declare global {
     interface Window {
         Cal?: {
             init: () => void;
-                    open?: (options: {
-                        calLink: string;
-                        config?: Record<string, unknown>;
-                    }) => void;
+            open?: (options: {
+                calLink: string;
+                config?: Record<string, unknown>;
+            }) => void;
         };
     }
 }
-"use client";
 import { useEffect, useState } from "react";
 import { Calendar } from "lucide-react";
 

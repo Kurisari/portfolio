@@ -69,7 +69,7 @@ export default function Home() {
       const mod = lang === "es"
         ? await import("@/data/portfolio.es.json")
         : await import("@/data/portfolio.en.json");
-      const data = ((mod as any).default ?? mod) as Portfolio;
+      const data = mod.default as Portfolio;
       if (active) setPortfolio(data);
     })();
     return () => { active = false; };
@@ -348,11 +348,13 @@ export default function Home() {
               }}
             >
               <div className="w-full overflow-hidden rounded-lg border border-white/10 bg-white/5">
-                <div className="aspect-[16/9] w-full flex items-center justify-center">
-                  <img
+                <div className="relative aspect-[16/9] w-full">
+                  <Image
                     src={extra.image}
                     alt={extra.title}
-                    className="max-w-full max-h-full object-contain"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px"
                   />
                 </div>
               </div>

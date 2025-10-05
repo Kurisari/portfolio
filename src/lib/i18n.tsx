@@ -7,11 +7,6 @@ type Lang = typeof LANGS[number];
 
 type Dict = Record<string, string>;
 
-const dicts: Record<Lang, Dict> = {
-  en: {},
-  es: {},
-};
-
 async function loadDict(lang: Lang): Promise<Dict> {
   switch (lang) {
     case "es":
