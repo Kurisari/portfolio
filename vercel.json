@@ -1,8 +1,25 @@
 {
     "redirects": [
         {
-            "source": "/(.*)",
-            "destination": "https://www.kurisari.dev/$1",
+            "source": "/:path*",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "cristian-aragon-salazar.vercel.app"
+                }
+            ],
+            "destination": "https://www.kurisari.dev/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/:path*",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "kurisari.dev"
+                }
+            ],
+            "destination": "https://www.kurisari.dev/:path*",
             "permanent": true
         }
     ]
