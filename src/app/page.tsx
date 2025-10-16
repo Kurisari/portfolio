@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
 import LanguageToggle from "@/components/LanguageToggle";
 import { useEffect, useState } from "react";
+import GitHubCalendar from 'react-github-calendar';
 
 type Portfolio = typeof import("@/data/portfolio.en.json");
 type Technology = Portfolio["technologies"][number];
@@ -95,7 +96,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-  <section className="flex flex-col items-center justify-center text-center py-32 mx-auto w-full max-w-[900px] px-4 sm:px-6 md:px-8">
+      <section className="flex flex-col items-center justify-center text-center py-32 mx-auto w-full max-w-[900px] px-4 sm:px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -158,7 +159,7 @@ export default function Home() {
         </div>
 
         {/* About Section */}
-  <section id="about" className="mx-auto w-full max-w-[900px] py-12 px-4 sm:px-6 md:px-8 text-center">
+        <section id="about" className="mx-auto w-full max-w-[900px] py-12 px-4 sm:px-6 md:px-8 text-center">
           <p className="text-lg leading-relaxed text-gray-300" dangerouslySetInnerHTML={{ __html: t("about") }} />
         </section>
 
@@ -194,8 +195,8 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-  <section id="projects" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
-  <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("projects")}</h2>
+      <section id="projects" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
+        <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("projects")}</h2>
         <div className="space-y-12">
           {portfolio.projects.map((project: Project, i: number) => (
             <motion.div
@@ -279,8 +280,8 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-  <section id="experience" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
-  <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("experience")}</h2>
+      <section id="experience" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
+        <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("experience")}</h2>
         <div className="relative border-l border-gray-700 pl-6">
           {portfolio.experience.map((exp: Experience, i: number) => (
             <motion.div
@@ -302,8 +303,8 @@ export default function Home() {
       </section>
 
       {/* Training Section */}
-  <section id="training" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
-  <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("training")}</h2>
+      <section id="training" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
+        <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("training")}</h2>
         <div className="space-y-8">
           {portfolio.training.map((train: Training, i: number) => (
             <motion.div
@@ -330,8 +331,8 @@ export default function Home() {
       </section>
 
       {/* Extras Section */}
-  <section id="extras" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
-  <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("extras")}</h2>
+      <section id="extras" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
+        <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("extras")}</h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
           {portfolio.extras.map((extra: Extra, i: number) => (
             <motion.a
