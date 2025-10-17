@@ -126,6 +126,41 @@
       "github": "https://github.com/Kurisari/RegEx-Modificado"
     },
     {
+      "icon": "scan",
+      "title": "Detección de Billetes MX",
+      "subtitle": "Visión por Computadora · Machine Learning",
+      "description": "Entrené y evalué una pipeline con CNN para detectar y clasificar billetes mexicanos usando PyTorch y OpenCV. Incluye preprocesamiento, aumento de datos y reporte de métricas.",
+      "technologies": [
+        { "icon": "devicon-python-plain", "name": "Python" },
+        { "icon": "devicon-pytorch-plain", "name": "PyTorch" },
+        { "icon": "devicon-opencv-plain", "name": "OpenCV" }
+      ],
+      "github": "https://github.com/Kurisari/MX-Banknote-Detection"
+    },
+    {
+      "icon": "cpu",
+      "title": "Osciloscopio STM32F401RE",
+      "subtitle": "Sistemas Embebidos · STM32",
+      "description": "Construí un osciloscopio digital simple en la STM32F401RE para adquisición y visualización de señales. Implementé muestreo con ADC, buffering y graficado serial en tiempo real.",
+      "technologies": [
+        { "icon": "devicon-c-plain", "name": "C" },
+        { "icon": "devicon-cplusplus-plain", "name": "C++" },
+        { "icon": "devicon-python-plain", "name": "Python" }
+      ],
+      "github": "https://github.com/Kurisari/oscilloscope-stm32f401re"
+    },
+    {
+      "icon": "calendar",
+      "title": "fupCalendar",
+      "subtitle": "Aplicación Web · Calendario",
+      "description": "Calendario ligero para organizar actividades y eventos de Foráneos UP con una interfaz responsiva.",
+      "technologies": [
+        { "icon": "devicon-react-original", "name": "React" },
+        { "icon": "devicon-firebase-plain", "name": "Firebase" },
+        { "icon": "devicon-javascript-plain", "name": "JavaScript" }
+      ]
+    },
+    {
       "icon": "navigation",
       "title": "Portafolio",
       "subtitle": "Sitio Web",

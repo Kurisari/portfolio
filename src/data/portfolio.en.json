@@ -126,6 +126,41 @@
       "github": "https://github.com/Kurisari/RegEx-Modificado"
     },
     {
+      "icon": "scan",
+      "title": "MX Banknote Detection",
+      "subtitle": "Computer Vision · Deep Learning",
+      "description": "Trained and evaluated a CNN pipeline to detect and classify Mexican banknotes using PyTorch and OpenCV. Includes preprocessing, data augmentation, and metrics reporting.",
+      "technologies": [
+        { "icon": "devicon-python-plain", "name": "Python" },
+        { "icon": "devicon-pytorch-plain", "name": "PyTorch" },
+        { "icon": "devicon-opencv-plain", "name": "OpenCV" }
+      ],
+      "github": "https://github.com/Kurisari/MX-Banknote-Detection"
+    },
+    {
+      "icon": "cpu",
+      "title": "STM32F401RE Oscilloscope",
+      "subtitle": "Embedded Systems · STM32",
+      "description": "Built a simple digital oscilloscope on the STM32F401RE for signal acquisition and visualization. Implemented ADC sampling, buffering, and serial plotting for real-time inspection.",
+      "technologies": [
+        { "icon": "devicon-c-plain", "name": "C" },
+        { "icon": "devicon-cplusplus-plain", "name": "C++" }
+      ],
+      "github": "https://github.com/Kurisari/oscilloscope-stm32f401re"
+    },
+    {
+      "icon": "calendar",
+      "title": "fupCalendar",
+      "subtitle": "Web App · Calendar",
+      "description": "Lightweight calendar to organize Foráneos UP activities and events with a responsive UI.",
+      "technologies": [
+        { "icon": "devicon-react-original", "name": "React" },
+        { "icon": "devicon-firebase-plain", "name": "Firebase" },
+        { "icon": "devicon-javascript-plain", "name": "JavaScript" }
+      ],
+      "github": "https://github.com/Kurisari/fupCalendar"
+    },
+    {
       "icon": "navigation",
       "title": "Portfolio",
       "subtitle": "Website",
