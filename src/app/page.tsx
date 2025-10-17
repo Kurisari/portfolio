@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
 import LanguageToggle from "@/components/LanguageToggle";
 import { useEffect, useState } from "react";
-import GitHubCalendar from 'react-github-calendar';
+// Removed unused GitHubCalendar import
 
 type Portfolio = typeof import("@/data/portfolio.en.json");
 type Technology = Portfolio["technologies"][number];
@@ -235,8 +235,7 @@ export default function Home() {
                           background: `
                             linear-gradient(
                               135deg,
-                              ${techColor(tech.name)}
-                            }80,
+                              ${techColor(tech.name)}80,
                               rgba(255,255,255,0.1)
                             )
                           `,
