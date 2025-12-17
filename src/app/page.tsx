@@ -6,11 +6,10 @@ import { ExternalLink, Github, Linkedin, FileText, Mail } from "lucide-react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
+import { loadPortfolio, type Portfolio } from "@/lib/portfolio";
 import LanguageToggle from "@/components/LanguageToggle";
 import { useEffect, useState } from "react";
 // Removed unused GitHubCalendar import
-
-type Portfolio = typeof import("@/data/portfolio.en.json");
 type Technology = Portfolio["technologies"][number];
 type Project = Portfolio["projects"][number];
 type Experience = Portfolio["experience"][number];
@@ -67,10 +66,7 @@ export default function Home() {
   useEffect(() => {
     let active = true;
     (async () => {
-      const mod = lang === "es"
-        ? await import("@/data/portfolio.es.json")
-        : await import("@/data/portfolio.en.json");
-      const data = mod.default as Portfolio;
+      const data = await loadPortfolio(lang);
       if (active) setPortfolio(data);
     })();
     return () => { active = false; };

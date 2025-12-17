@@ -3,8 +3,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import enDict from "../i18n/en.json";
 
-const LANGS = ["en", "es"] as const;
-type Lang = typeof LANGS[number];
+export const LANGS = ["en", "es"] as const;
+export type Lang = typeof LANGS[number];
 
 type Dict = Record<string, string>;
 
