@@ -100,33 +100,27 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-0 grid-fade" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(96,165,250,0.18),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(168,85,247,0.14),transparent_35%),radial-gradient(circle_at_50%_90%,rgba(34,197,94,0.12),transparent_35%)]" />
 
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 shadow-lg shadow-blue-500/30" />
-            <div>
-              <p className="text-sm text-slate-400">{t("skill")}</p>
-              <p className="text-lg font-semibold text-slate-50">{portfolio.name}</p>
-            </div>
-          </div>
-          <nav className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 glass-panel shadow-xl shadow-black/10">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+          <nav className="flex items-center gap-8 text-sm text-slate-300">
             <a href="#projects" className="hover:text-white transition">{t("projects")}</a>
             <a href="#experience" className="hover:text-white transition">{t("experience")}</a>
             <a href="#training" className="hover:text-white transition">{t("training")}</a>
             <a href="#extras" className="hover:text-white transition">{t("extras")}</a>
           </nav>
+
           <div className="flex items-center gap-3">
             <LanguageToggle />
-            <Button asChild>
+            <Button asChild size="sm">
               <a href={`mailto:${portfolio.media.email}`} className="flex items-center gap-2 text-sm">
-                <Mail className="h-4 w-4" /> {t("email")}
+                <Mail className="h-4 w-4" />
               </a>
             </Button>
           </div>
         </div>
       </header>
 
-      <div className="mx-auto max-w-6xl px-4 pt-12">
+      <div className="mx-auto max-w-6xl px-4 pt-24">
         <section className="grid gap-10 lg:grid-cols-[1.2fr_1fr] items-start">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
