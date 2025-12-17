@@ -103,17 +103,17 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(96,165,250,0.18),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(168,85,247,0.14),transparent_35%),radial-gradient(circle_at_50%_90%,rgba(34,197,94,0.12),transparent_35%)]" />
 
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 glass-panel shadow-xl shadow-black/10">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <nav className="flex items-center gap-8 text-sm text-slate-300">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-3 py-2 md:px-4 md:py-3">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm text-slate-300">
             <a href="#projects" className="hover:text-white transition">{t("projects")}</a>
             <a href="#experience" className="hover:text-white transition">{t("experience")}</a>
             <a href="#training" className="hover:text-white transition">{t("training")}</a>
             <a href="#extras" className="hover:text-white transition">{t("extras")}</a>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-3">
             <LanguageToggle />
-            <Button asChild size="sm">
+            <Button asChild size="sm" className="hidden sm:flex">
               <a href={`mailto:${portfolio.media.email}`} className="flex items-center gap-2 text-sm">
                 <Mail className="h-4 w-4" />
               </a>
@@ -122,39 +122,39 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="mx-auto max-w-6xl px-4 pt-24">
-        <section className="grid gap-10 lg:grid-cols-[1.2fr_1fr] items-start">
+      <div className="mx-auto max-w-6xl px-4 pt-16 md:pt-20 lg:pt-24">
+        <section className="grid gap-6 md:gap-10 lg:grid-cols-[1.2fr_1fr] items-start">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <Avatar className="h-20 w-20 border-2 border-white/20 shadow-xl shadow-blue-500/20">
+            <div className="space-y-3 md:space-y-4">
+              <div className="flex items-center gap-3 md:gap-4">
+                <Avatar className="h-16 w-16 md:h-20 md:w-20 border-2 border-white/20 shadow-xl shadow-blue-500/20">
                   <AvatarImage src={portfolio.avatar} alt={portfolio.name} />
                 </Avatar>
                 <div>
-                  <p className="text-sm text-slate-400">{portfolio.location}</p>
-                  <h2 className="text-4xl font-bold leading-tight text-slate-50">
+                  <p className="text-xs md:text-sm text-slate-400">{portfolio.location}</p>
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-slate-50">
                     <span className="gradient-text">{portfolio.name}</span>
                   </h2>
                 </div>
               </div>
-              <p className="text-lg text-slate-300" dangerouslySetInnerHTML={{ __html: t("about") }} />
+              <p className="text-base md:text-lg text-slate-300" dangerouslySetInnerHTML={{ __html: t("about") }} />
             </div>
-            <div className="flex flex-wrap gap-3 text-sm text-slate-200">
-              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 inline-flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-sky-300" />
-                {portfolio.location}
+            <div className="flex flex-wrap gap-2 text-xs md:text-sm text-slate-200">
+              <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 md:px-3 md:py-1 inline-flex items-center gap-1.5 md:gap-2">
+                <MapPin className="h-3 w-3 md:h-4 md:w-4 text-sky-300" />
+                <span className="hidden sm:inline">{portfolio.location}</span>
               </span>
-              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 inline-flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-indigo-300" />
-                {portfolio.skill}
+              <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 md:px-3 md:py-1 inline-flex items-center gap-1.5 md:gap-2">
+                <Sparkles className="h-3 w-3 md:h-4 md:w-4 text-indigo-300" />
+                <span className="hidden sm:inline">{portfolio.skill}</span>
               </span>
             </div>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2 md:gap-3">
               <Button asChild>
                 <a
                   href={portfolio.media.github}
@@ -202,14 +202,14 @@ export default function Home() {
                   {t("available")} • Open to work
                 </span>
               </div>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2 md:gap-3">
                 {quickStats.map((stat, idx) => (
-                  <div key={stat.label} className="rounded-xl border border-white/10 bg-white/5 p-3 text-center shadow-inner shadow-black/30">
-                    <div className="mx-auto mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-sky-200">
+                  <div key={stat.label} className="rounded-xl border border-white/10 bg-white/5 p-2 md:p-3 text-center shadow-inner shadow-black/30">
+                    <div className="mx-auto mb-1.5 md:mb-2 flex h-7 w-7 md:h-8 md:w-8 items-center justify-center rounded-full bg-white/10 text-sky-200">
                       {stat.icon}
                     </div>
-                    <p className="text-xl font-semibold text-slate-50">{stat.value}</p>
-                    <p className="text-[10px] text-slate-400 uppercase tracking-wide">{stat.label}</p>
+                    <p className="text-lg md:text-xl font-semibold text-slate-50">{stat.value}</p>
+                    <p className="text-[9px] md:text-[10px] text-slate-400 uppercase tracking-wide">{stat.label}</p>
                   </div>
                 ))}
               </div>
@@ -217,9 +217,9 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section className="mt-16 space-y-8">
+        <section className="mt-10 md:mt-16 space-y-6 md:space-y-8">
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-semibold text-slate-100">Stack & Tools</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-slate-100">Stack & Tools</h3>
             <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           </div>
           <div className="flex flex-wrap gap-3">
@@ -242,9 +242,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="projects" className="mt-16 space-y-8">
+        <section id="projects" className="mt-10 md:mt-16 space-y-6 md:space-y-8">
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-semibold text-slate-100">{t("projects")}</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-slate-100">{t("projects")}</h3>
             <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           </div>
           <div className="grid gap-8 md:grid-cols-2">
@@ -314,9 +314,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="experience" className="mt-16 space-y-8">
+        <section id="experience" className="mt-10 md:mt-16 space-y-6 md:space-y-8">
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-semibold text-slate-100">{t("experience")}</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-slate-100">{t("experience")}</h3>
             <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           </div>
           <div className="relative before:absolute before:left-3 before:top-0 before:h-full before:w-[1px] before:bg-gradient-to-b before:from-sky-400/60 before:to-transparent">
@@ -342,9 +342,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="training" className="mt-16 space-y-8">
+        <section id="training" className="mt-10 md:mt-16 space-y-6 md:space-y-8">
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-semibold text-slate-100">{t("training")}</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-slate-100">{t("training")}</h3>
             <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           </div>
           <div className="grid gap-6 md:grid-cols-2">
@@ -367,9 +367,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="extras" className="mt-16 space-y-8">
+        <section id="extras" className="mt-10 md:mt-16 space-y-6 md:space-y-8">
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-semibold text-slate-100">{t("extras")}</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-slate-100">{t("extras")}</h3>
             <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           </div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -401,11 +401,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mt-20 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-purple-500/10 p-8 shadow-2xl">
+        <section className="mt-12 md:mt-20 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-purple-500/10 p-6 md:p-8 shadow-2xl">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.2em] text-slate-200">Let us build together</p>
-              <h3 className="text-2xl font-semibold text-slate-50">¿Hablamos? Proyectos, consultoría o colaboraciones.</h3>
+              <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-slate-200">Let us build together</p>
+              <h3 className="text-xl md:text-2xl font-semibold text-slate-50">¿Hablamos? Proyectos, consultoría o colaboraciones.</h3>
               <p className="text-sm text-slate-300">Disponibilidad inmediata y enfoque en experiencias digitales con IA.</p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -423,7 +423,7 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="mt-20 mb-8 border-t border-white/10 pt-8 pb-4 text-sm text-slate-400">
+        <footer className="mt-12 md:mt-20 mb-6 md:mb-8 border-t border-white/10 pt-6 md:pt-8 pb-4 text-xs md:text-sm text-slate-400">
           <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-4 md:flex-row md:items-center">
             <p>© {new Date().getFullYear()} {portfolio.name}. {t("all_rights")}</p>
             <div className="flex items-center gap-4">

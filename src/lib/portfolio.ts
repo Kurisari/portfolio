@@ -55,5 +55,5 @@ function mergeValue<T>(base: T, override: DeepPartial<T> | undefined): T {
 export async function loadPortfolio(lang: Lang): Promise<Portfolio> {
   const base = await loadBase();
   const overrides = await loadOverrides(lang);
-  return mergeValue(base, overrides);
+  return mergeValue(base, overrides ?? undefined);
 }
