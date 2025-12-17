@@ -86,7 +86,7 @@ export default function Home() {
     () => [
       { label: t("projects"), value: portfolio?.projects.length ?? 0, icon: <Layers className="h-4 w-4" /> },
       { label: t("experience"), value: portfolio?.experience.length ?? 0, icon: <Sparkles className="h-4 w-4" /> },
-      { label: t("training"), value: portfolio?.training.length ?? 0, icon: <CalendarDays className="h-4 w-4" /> },
+      { label: t("extras"), value: portfolio?.extras.length ?? 0, icon: <CalendarDays className="h-4 w-4" /> },
     ],
     [portfolio, t]
   );
@@ -128,15 +128,18 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-slate-200">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-              {t("available")}
-            </div>
-            <div className="space-y-3">
-              <p className="text-sm text-slate-400">{portfolio.location}</p>
-              <h2 className="text-4xl font-bold leading-tight text-slate-50 sm:text-5xl">
-                <span className="gradient-text">{portfolio.name}</span>
-              </h2>
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <Avatar className="h-20 w-20 border-2 border-white/20 shadow-xl shadow-blue-500/20">
+                  <AvatarImage src={portfolio.avatar} alt={portfolio.name} />
+                </Avatar>
+                <div>
+                  <p className="text-sm text-slate-400">{portfolio.location}</p>
+                  <h2 className="text-4xl font-bold leading-tight text-slate-50">
+                    <span className="gradient-text">{portfolio.name}</span>
+                  </h2>
+                </div>
+              </div>
               <p className="text-lg text-slate-300" dangerouslySetInnerHTML={{ __html: t("about") }} />
             </div>
             <div className="flex flex-wrap gap-3 text-sm text-slate-200">
@@ -190,33 +193,23 @@ export default function Home() {
             className="relative rounded-2xl border border-white/10 bg-white/5 p-6 shadow-2xl glass-panel"
           >
             <div className="glow-ring rounded-2xl" />
-            <div className="relative flex flex-col gap-6">
-              <div className="flex items-center gap-4">
-                <Avatar className="h-16 w-16 border-2 border-white/20">
-                  <AvatarImage src={portfolio.avatar} alt={portfolio.name} />
-                </Avatar>
-                <div>
-                  <p className="text-sm text-slate-400">{t("skill")}</p>
-                  <p className="text-xl font-semibold text-slate-50">{portfolio.name}</p>
-                  <p className="text-sm text-slate-400">{portfolio.description}</p>
-                </div>
+            <div className="relative space-y-4">
+              <div className="rounded-xl border border-white/10 bg-gradient-to-r from-emerald-500/15 via-green-400/10 to-cyan-500/15 px-4 py-3 text-center">
+                <span className="flex items-center justify-center gap-2 text-sm font-medium text-emerald-200">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+                  {t("available")} • Open to work
+                </span>
               </div>
               <div className="grid grid-cols-3 gap-3">
                 {quickStats.map((stat, idx) => (
-                  <div key={stat.label} className="rounded-xl border border-white/10 bg-white/5 p-3 text-center shadow-inner shadow-black/30">
-                    <div className="mx-auto mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-sky-200">
+                  <div key={stat.label} className="rounded-xl border border-white/10 bg-white/5 p-4 text-center shadow-inner shadow-black/30">
+                    <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-sky-200">
                       {stat.icon}
                     </div>
-                    <p className="text-lg font-semibold text-slate-50">{stat.value}</p>
+                    <p className="text-2xl font-semibold text-slate-50">{stat.value}</p>
                     <p className="text-xs text-slate-400">{stat.label}</p>
                   </div>
                 ))}
-              </div>
-              <div className="flex items-center justify-between rounded-xl border border-white/10 bg-gradient-to-r from-sky-500/15 via-cyan-400/10 to-purple-500/15 px-4 py-3 text-sm text-slate-100">
-                <span>{t("available")}</span>
-                <span className="flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs uppercase tracking-wide text-emerald-200">
-                  <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" /> Open to work
-                </span>
               </div>
             </div>
           </motion.div>
