@@ -85,8 +85,10 @@ export default function Home() {
   const quickStats = useMemo(
     () => [
       { label: t("projects"), value: portfolio?.projects.length ?? 0, icon: <Layers className="h-4 w-4" /> },
-      { label: t("experience"), value: portfolio?.experience.length ?? 0, icon: <Sparkles className="h-4 w-4" /> },
-      { label: t("extras"), value: portfolio?.extras.length ?? 0, icon: <CalendarDays className="h-4 w-4" /> },
+      { label: t("training"), value: portfolio?.training.length ?? 0, icon: <CalendarDays className="h-4 w-4" /> },
+      { label: t("extras"), value: portfolio?.extras.length ?? 0, icon: <FileText className="h-4 w-4" /> },
+      { label: "Technologies", value: portfolio?.technologies.length ?? 0, icon: <Github className="h-4 w-4" /> },
+      { label: "Years Active", value: new Date().getFullYear() - 2022, icon: <Sparkles className="h-4 w-4" /> },
     ],
     [portfolio, t]
   );
@@ -200,14 +202,14 @@ export default function Home() {
                   {t("available")} • Open to work
                 </span>
               </div>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 gap-3">
                 {quickStats.map((stat, idx) => (
-                  <div key={stat.label} className="rounded-xl border border-white/10 bg-white/5 p-4 text-center shadow-inner shadow-black/30">
-                    <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-sky-200">
+                  <div key={stat.label} className="rounded-xl border border-white/10 bg-white/5 p-3 text-center shadow-inner shadow-black/30">
+                    <div className="mx-auto mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-sky-200">
                       {stat.icon}
                     </div>
-                    <p className="text-2xl font-semibold text-slate-50">{stat.value}</p>
-                    <p className="text-xs text-slate-400">{stat.label}</p>
+                    <p className="text-xl font-semibold text-slate-50">{stat.value}</p>
+                    <p className="text-[10px] text-slate-400 uppercase tracking-wide">{stat.label}</p>
                   </div>
                 ))}
               </div>
@@ -256,12 +258,12 @@ export default function Home() {
               >
                 <div className="glow-ring rounded-2xl" />
                 {project.image ? (
-                  <div className="relative mb-4 h-48 w-full overflow-hidden rounded-xl border border-white/10">
+                  <div className="relative mb-4 h-56 w-full overflow-hidden rounded-xl border border-white/10">
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover transition duration-500 hover:scale-105"
+                      className="object-cover object-top transition duration-500 hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 50vw"
                       priority={i < 2}
                     />
@@ -383,12 +385,12 @@ export default function Home() {
                 className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-3 shadow-lg"
               >
                 <div className="glow-ring rounded-xl" />
-                <div className="relative h-28 w-full overflow-hidden rounded-lg border border-white/10">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-white/10">
                   <Image
                     src={extra.image}
                     alt={extra.title}
                     fill
-                    className="object-cover transition duration-500 group-hover:scale-105"
+                    className="object-cover object-center transition duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
