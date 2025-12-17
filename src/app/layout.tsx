@@ -83,7 +83,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-950 text-slate-100`}
+      >
         <I18nProvider>
           {/* Optional: Google Analytics (GA4) */}
           {process.env.NEXT_PUBLIC_GA_ID ? (
@@ -117,7 +119,11 @@ export default function RootLayout({
               ],
             })}
           </Script>
-          {children}
+          <div className="relative min-h-screen overflow-hidden">
+            <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.18),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(236,72,153,0.12),transparent_30%),radial-gradient(circle_at_50%_90%,rgba(16,185,129,0.12),transparent_30%)]" />
+            <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:120px_120px] opacity-20" />
+            {children}
+          </div>
         </I18nProvider>
       </body>
     </html>

@@ -1,25 +1,33 @@
 "use client";
-import { motion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Linkedin, FileText, Mail } from "lucide-react";
-import dynamic from "next/dynamic";
-import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
 import { loadPortfolio, type Portfolio } from "@/lib/portfolio";
 import LanguageToggle from "@/components/LanguageToggle";
-import { useEffect, useState } from "react";
-// Removed unused GitHubCalendar import
+import Image from "next/image";
+import {
+  ExternalLink,
+  Github,
+  Linkedin,
+  FileText,
+  Mail,
+  MapPin,
+  Sparkles,
+  Layers,
+  CalendarDays,
+} from "lucide-react";
+import { motion } from "framer-motion";
+
 type Technology = Portfolio["technologies"][number];
 type Project = Portfolio["projects"][number];
 type Experience = Portfolio["experience"][number];
 type Training = Portfolio["training"][number];
 type Extra = Portfolio["extras"][number];
 
-// Lazy load below-the-fold widget for performance
 const CalWidget = dynamic(() => import("@/components/CalWidget"), { ssr: false });
 
-// Map technology name to a base color (used to build gradients)
 const techColor = (name: string): string => {
   switch (name) {
     case "Next.js":
@@ -69,312 +77,375 @@ export default function Home() {
       const data = await loadPortfolio(lang);
       if (active) setPortfolio(data);
     })();
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, [lang]);
+
+  const quickStats = useMemo(
+    () => [
+      { label: t("projects"), value: portfolio?.projects.length ?? 0, icon: <Layers className="h-4 w-4" /> },
+      { label: t("experience"), value: portfolio?.experience.length ?? 0, icon: <Sparkles className="h-4 w-4" /> },
+      { label: t("training"), value: portfolio?.training.length ?? 0, icon: <CalendarDays className="h-4 w-4" /> },
+    ],
+    [portfolio, t]
+  );
+
   if (!portfolio) return null;
+
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white">
-      {/* Semantic H1 for SEO at top of main */}
-      <h1 className="sr-only">
-        {portfolio.name} — {t("skill")}
-      </h1>
-      <header className="fixed top-0 left-0 w-full bg-black/50 backdrop-blur-md border-b border-white/10 z-50">
-        <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6 md:px-8 flex flex-col md:flex-row justify-center md:justify-between items-center py-4 text-center md:text-left">
-          <p className="hidden md:block text-lg font-bold text-white" aria-hidden="true">{portfolio.name}</p>
-          <nav className="flex gap-6 text-gray-300">
+    <main className="relative min-h-screen overflow-hidden">
+      <h1 className="sr-only">{portfolio.name} — {t("skill")}</h1>
+
+      <div className="pointer-events-none absolute inset-0 grid-fade" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(96,165,250,0.18),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(168,85,247,0.14),transparent_35%),radial-gradient(circle_at_50%_90%,rgba(34,197,94,0.12),transparent_35%)]" />
+
+      <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 shadow-lg shadow-blue-500/30" />
+            <div>
+              <p className="text-sm text-slate-400">{t("skill")}</p>
+              <p className="text-lg font-semibold text-slate-50">{portfolio.name}</p>
+            </div>
+          </div>
+          <nav className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
             <a href="#projects" className="hover:text-white transition">{t("projects")}</a>
             <a href="#experience" className="hover:text-white transition">{t("experience")}</a>
             <a href="#training" className="hover:text-white transition">{t("training")}</a>
             <a href="#extras" className="hover:text-white transition">{t("extras")}</a>
           </nav>
-          <LanguageToggle />
+          <div className="flex items-center gap-3">
+            <LanguageToggle />
+            <Button asChild>
+              <a href={`mailto:${portfolio.media.email}`} className="flex items-center gap-2 text-sm">
+                <Mail className="h-4 w-4" /> {t("email")}
+              </a>
+            </Button>
+          </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center py-32 mx-auto w-full max-w-[900px] px-4 sm:px-6 md:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <Avatar className="w-32 h-32 border-4 border-white shadow-lg">
-            <AvatarImage src={portfolio.avatar} alt={portfolio.name} />
-          </Avatar>
-        </motion.div>
-        <div className="mt-6 flex flex-col items-center gap-3">
-          <span className="px-4 py-1 rounded-full border border-green-400/50 bg-green-600/20 text-green-300 text-sm font-medium">
-            {t("available")}
-          </span>
-          <motion.h1
-            className="text-5xl font-extrabold text-white"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 1 }}
+      <div className="mx-auto max-w-6xl px-4 pt-12">
+        <section className="grid gap-10 lg:grid-cols-[1.2fr_1fr] items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
           >
-            {portfolio.name}
-          </motion.h1>
-          <p className="text-lg text-gray-300 hover:text-gray-200 transition-colors">
-            {t("skill")}
-          </p>
-        </div>
-        <div className="flex gap-4 mt-6">
-          <Button asChild>
-            <a href={portfolio.media.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-purple-400/50 bg-purple-600/20 hover:bg-purple-600/30 transition">
-              <Github className="w-4 h-4" /> {t("github")}
-            </a>
-          </Button>
-          <Button asChild>
-            <a
-              href={portfolio.media.likedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-blue-400/50 bg-blue-600/20 hover:bg-blue-600/30 transition"
-            >
-              <Linkedin className="w-4 h-4" /> {t("linkedin")}
-            </a>
-          </Button>
-          <Button asChild>
-            <a
-              href={portfolio.media.cv}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-green-400/50 bg-green-600/20 hover:bg-green-600/30 transition"
-            >
-              <FileText className="w-4 h-4" /> {t("cv")}
-            </a>
-          </Button>
-          <Button asChild>
-            <a
-              href={`mailto:${portfolio.media.email}`}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-yellow-400/50 bg-yellow-600/20 hover:bg-yellow-600/30 transition"
-            >
-              <Mail className="w-4 h-4" /> {t("email")}
-            </a>
-          </Button>
-        </div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-slate-200">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+              {t("available")}
+            </div>
+            <div className="space-y-3">
+              <p className="text-sm text-slate-400">{portfolio.location}</p>
+              <h2 className="text-4xl font-bold leading-tight text-slate-50 sm:text-5xl">
+                <span className="gradient-text">{portfolio.name}</span>
+              </h2>
+              <p className="text-lg text-slate-300" dangerouslySetInnerHTML={{ __html: t("about") }} />
+            </div>
+            <div className="flex flex-wrap gap-3 text-sm text-slate-200">
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 inline-flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-sky-300" />
+                {portfolio.location}
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 inline-flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-indigo-300" />
+                {portfolio.skill}
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild>
+                <a
+                  href={portfolio.media.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  <Github className="h-4 w-4" /> {t("github")}
+                </a>
+              </Button>
+              <Button asChild>
+                <a
+                  href={portfolio.media.likedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  <Linkedin className="h-4 w-4" /> {t("linkedin")}
+                </a>
+              </Button>
+              <Button asChild>
+                <a
+                  href={portfolio.media.cv}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  <FileText className="h-4 w-4" /> {t("cv")}
+                </a>
+              </Button>
+            </div>
+          </motion.div>
 
-        {/* About Section */}
-        <section id="about" className="mx-auto w-full max-w-[900px] py-12 px-4 sm:px-6 md:px-8 text-center">
-          <p className="text-lg leading-relaxed text-gray-300" dangerouslySetInnerHTML={{ __html: t("about") }} />
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.6 }}
+            className="relative rounded-2xl border border-white/10 bg-white/5 p-6 shadow-2xl glass-panel"
+          >
+            <div className="glow-ring rounded-2xl" />
+            <div className="relative flex flex-col gap-6">
+              <div className="flex items-center gap-4">
+                <Avatar className="h-16 w-16 border-2 border-white/20">
+                  <AvatarImage src={portfolio.avatar} alt={portfolio.name} />
+                </Avatar>
+                <div>
+                  <p className="text-sm text-slate-400">{t("skill")}</p>
+                  <p className="text-xl font-semibold text-slate-50">{portfolio.name}</p>
+                  <p className="text-sm text-slate-400">{portfolio.description}</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-3">
+                {quickStats.map((stat, idx) => (
+                  <div key={stat.label} className="rounded-xl border border-white/10 bg-white/5 p-3 text-center shadow-inner shadow-black/30">
+                    <div className="mx-auto mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-sky-200">
+                      {stat.icon}
+                    </div>
+                    <p className="text-lg font-semibold text-slate-50">{stat.value}</p>
+                    <p className="text-xs text-slate-400">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center justify-between rounded-xl border border-white/10 bg-gradient-to-r from-sky-500/15 via-cyan-400/10 to-purple-500/15 px-4 py-3 text-sm text-slate-100">
+                <span>{t("available")}</span>
+                <span className="flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs uppercase tracking-wide text-emerald-200">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" /> Open to work
+                </span>
+              </div>
+            </div>
+          </motion.div>
         </section>
 
-        <div className="flex flex-wrap justify-center gap-4 mt-4">
-          {portfolio.technologies.map((tech: Technology, i: number) => (
-            <motion.div
-              key={`${tech.name}-${tech.icon}`}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: i * 0.05 }}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white hover:scale-105 hover:shadow-lg transition-transform duration-300"
-              style={{
-                background: `
-                  linear-gradient(
-                    135deg,
-                    ${techColor(tech.name)}80,
-                    rgba(255,255,255,0.1)
-                  )
-                `,
-                backdropFilter: "blur(10px)",
-                WebkitBackdropFilter: "blur(10px)",
-                border: "1px solid rgba(255,255,255,0.2)",
-                color: "#fff"
-              }}
-            >
-              <i
-                className={`${tech.icon} text-2xl`}
-              ></i>
-              <span>{tech.name}</span>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+        <section className="mt-16 space-y-8">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl font-semibold text-slate-100">Stack & Tools</h3>
+            <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {portfolio.technologies.map((tech: Technology, i: number) => (
+              <motion.div
+                key={`${tech.name}-${tech.icon}`}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.03, duration: 0.25 }}
+                className="glass-panel flex items-center gap-2 rounded-full px-3 py-2 text-sm text-slate-100"
+                style={{
+                  borderColor: "rgba(255,255,255,0.08)",
+                  background: `linear-gradient(135deg, ${techColor(tech.name)}20, rgba(255,255,255,0.05))`,
+                }}
+              >
+                <i className={`${tech.icon} text-lg`} />
+                <span>{tech.name}</span>
+              </motion.div>
+            ))}
+          </div>
+        </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
-        <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("projects")}</h2>
-        <div className="space-y-12">
-          {portfolio.projects.map((project: Project, i: number) => (
-            <motion.div
-              key={`${project.title}-${i}`}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: i * 0.05 }}
-              viewport={{ once: false, amount: 0.2 }}
-              className="flex flex-col md:flex-row gap-6 items-start group"
-            >
-              {project.image && (
-                <div className="md:w-1/2 w-full overflow-hidden rounded-xl shadow-md">
-                  <div className="relative w-full aspect-[16/9]">
+        <section id="projects" className="mt-16 space-y-8">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl font-semibold text-slate-100">{t("projects")}</h3>
+            <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          </div>
+          <div className="grid gap-8 md:grid-cols-2">
+            {portfolio.projects.map((project: Project, i: number) => (
+              <motion.article
+                key={`${project.title}-${i}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: i * 0.04 }}
+                className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-4 glass-panel"
+              >
+                <div className="glow-ring rounded-2xl" />
+                {project.image ? (
+                  <div className="relative mb-4 h-48 w-full overflow-hidden rounded-xl border border-white/10">
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                      priority={i === 0}
+                      className="object-cover transition duration-500 hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      priority={i < 2}
                     />
                   </div>
+                ) : null}
+                <div className="space-y-2">
+                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{project.subtitle}</p>
+                  <h4 className="text-xl font-semibold text-slate-50">{project.title}</h4>
+                  <p className="text-sm text-slate-300">{project.description}</p>
                 </div>
-              )}
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-                <p className="text-gray-300 hover:text-gray-200 transition-colors mb-2">{project.subtitle}</p>
-                <p className="mt-2 text-base text-gray-300 hover:text-gray-200 transition-colors">{project.description}</p>
-                {project.technologies && (
-                  <div className="flex flex-wrap gap-2 mt-3">
+                {project.technologies ? (
+                  <div className="mt-3 flex flex-wrap gap-2">
                     {project.technologies.map((tech: Technology, idx: number) => (
                       <span
                         key={`${tech.name}-${idx}`}
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white hover:scale-105 transition-transform duration-200"
-                        style={{
-                          background: `
-                            linear-gradient(
-                              135deg,
-                              ${techColor(tech.name)}80,
-                              rgba(255,255,255,0.1)
-                            )
-                          `,
-                          backdropFilter: "blur(8px)",
-                          WebkitBackdropFilter: "blur(8px)",
-                          border: "1px solid rgba(255,255,255,0.2)"
-                        }}
+                        className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200"
+                        style={{ background: `linear-gradient(135deg, ${techColor(tech.name)}25, rgba(255,255,255,0.04))` }}
                       >
-                        <i className={`${tech.icon} text-base`}></i>
-                        <span>{tech.name}</span>
+                        {tech.name}
                       </span>
                     ))}
                   </div>
-                )}
-                <div className="flex gap-3 mt-4">
-                  {project.github && (
+                ) : null}
+                <div className="mt-4 flex flex-wrap gap-2 text-sm">
+                  {project.github ? (
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-purple-400/50 bg-purple-600/20 hover:bg-purple-600/30 transition"
+                      className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-slate-200 hover:border-white/30"
                     >
-                      <i className="devicon-github-original text-lg"></i> {t("code")}
+                      <Github className="h-4 w-4" /> {t("code")}
                     </a>
-                  )}
-                  {project.url && (
+                  ) : null}
+                  {project.url ? (
                     <a
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white border border-pink-400/50 bg-pink-600/20 hover:bg-pink-600/30 transition"
+                      className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-slate-200 hover:border-white/30"
                     >
-                      <ExternalLink className="w-4 h-4" /> {t("preview")}
+                      <ExternalLink className="h-4 w-4" /> {t("preview")}
                     </a>
-                  )}
+                  ) : null}
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+              </motion.article>
+            ))}
+          </div>
+        </section>
 
-      {/* Experience Section */}
-      <section id="experience" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
-        <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("experience")}</h2>
-        <div className="relative border-l border-gray-700 pl-6">
-          {portfolio.experience.map((exp: Experience, i: number) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: i * 0.05 }}
-              viewport={{ once: false, amount: 0.2 }}
-              className="mb-10"
-            >
-              <div className="absolute -left-3 flex items-center justify-center w-6 h-6 rounded-full bg-blue-600 border border-white/20"></div>
-              <h3 className="text-lg font-bold text-blue-400">{exp.title}</h3>
-              <p className="text-gray-300 font-medium">{exp.subtitle}</p>
-              <p className="text-sm text-gray-400">{exp.date}</p>
-              <p className="mt-2 text-sm text-gray-300">{exp.description}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+        <section id="experience" className="mt-16 space-y-8">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl font-semibold text-slate-100">{t("experience")}</h3>
+            <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          </div>
+          <div className="relative before:absolute before:left-3 before:top-0 before:h-full before:w-[1px] before:bg-gradient-to-b before:from-sky-400/60 before:to-transparent">
+            {portfolio.experience.map((exp: Experience, i: number) => (
+              <motion.div
+                key={`${exp.title}-${i}`}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
+                className="relative ml-10 mb-10 rounded-xl border border-white/10 bg-white/5 p-4 shadow-lg"
+              >
+                <div className="absolute -left-9 flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-white shadow-lg shadow-sky-500/30">
+                  <span className="text-xs font-semibold">{i + 1}</span>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <p className="text-sm font-semibold text-sky-200">{exp.title}</p>
+                  <p className="text-xs text-slate-400">{exp.date}</p>
+                </div>
+                <p className="text-sm text-slate-300">{exp.subtitle}</p>
+                <p className="mt-2 text-sm text-slate-400">{exp.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
 
-      {/* Training Section */}
-      <section id="training" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
-        <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("training")}</h2>
-        <div className="space-y-8">
-          {portfolio.training.map((train: Training, i: number) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: i * 0.05 }}
-              viewport={{ once: false, amount: 0.2 }}
-              className="flex items-start gap-6"
-            >
-              <div className="flex-shrink-0 w-20 h-20 flex items-center justify-center rounded-xl bg-blue-600/20 border border-blue-400/30 text-blue-400 font-bold text-sm flex-col">
-                <span>{train.date.split(" ")[0]}</span>
-                <span>{train.date.split(" ")[1]}</span>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-white">{train.title}</h3>
-                <p className="text-gray-300 font-medium">{train.subtitle}</p>
-                <p className="mt-2 text-sm text-gray-400">{train.description}</p>
-                <p className="text-xs text-gray-500 mt-1">{train.date}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+        <section id="training" className="mt-16 space-y-8">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl font-semibold text-slate-100">{t("training")}</h3>
+            <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {portfolio.training.map((train: Training, i: number) => (
+              <motion.div
+                key={`${train.title}-${i}`}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25, delay: i * 0.05 }}
+                className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-lg"
+              >
+                <div className="flex items-center justify-between text-xs text-slate-400">
+                  <span>{train.subtitle}</span>
+                  <span className="rounded-full bg-white/5 px-2 py-1 text-[11px] text-slate-200">{train.date}</span>
+                </div>
+                <h4 className="mt-2 text-lg font-semibold text-slate-50">{train.title}</h4>
+                <p className="mt-2 text-sm text-slate-300">{train.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
 
-      {/* Extras Section */}
-      <section id="extras" className="mx-auto w-full max-w-[1100px] py-16 px-4 sm:px-6 md:px-8">
-        <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">{t("extras")}</h2>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {portfolio.extras.map((extra: Extra, i: number) => (
-            <motion.a
-              key={i}
-              href={extra.url || "#"}
-              target={extra.url ? "_blank" : undefined}
-              rel={extra.url ? "noopener noreferrer" : undefined}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group rounded-xl p-3 transition-transform duration-300 hover:scale-[1.02]"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(59,130,246,0.08), rgba(236,72,153,0.06)), rgba(255,255,255,0.03)",
-                backdropFilter: "blur(10px)",
-                WebkitBackdropFilter: "blur(10px)",
-                border: "1px solid rgba(255,255,255,0.12)",
-              }}
-            >
-              <div className="w-full overflow-hidden rounded-lg border border-white/10 bg-white/5">
-                <div className="relative aspect-[16/9] w-full">
+        <section id="extras" className="mt-16 space-y-8">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl font-semibold text-slate-100">{t("extras")}</h3>
+            <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {portfolio.extras.map((extra: Extra, i: number) => (
+              <motion.a
+                key={`${extra.title}-${i}`}
+                href={extra.url || "#"}
+                target={extra.url ? "_blank" : undefined}
+                rel={extra.url ? "noopener noreferrer" : undefined}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
+                className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-3 shadow-lg"
+              >
+                <div className="glow-ring rounded-xl" />
+                <div className="relative h-28 w-full overflow-hidden rounded-lg border border-white/10">
                   <Image
                     src={extra.image}
                     alt={extra.title}
                     fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px"
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
-              </div>
-              <h3 className="mt-3 text-lg font-bold text-white">{extra.title}</h3>
-              <p className="text-gray-300 text-sm group-hover:text-gray-200 transition-colors">{extra.description}</p>
-            </motion.a>
-          ))}
-        </div>
-      </section>
-
-      <footer className="bg-gradient-to-r from-gray-950 via-gray-900 to-black border-t border-white/10 py-6 mt-12">
-        <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6 md:px-8 flex flex-col md:flex-row justify-between items-center text-gray-400">
-          <p>© {new Date().getFullYear()} {portfolio.name}. {t("all_rights")}</p>
-          <div className="flex gap-4 mt-4 md:mt-0">
-            <a href={portfolio.media.github} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition">{t("github")}</a>
-            <a href={portfolio.media.likedin} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition">{t("linkedin")}</a>
-            <a href={`mailto:${portfolio.media.email}`} className="hover:text-pink-400 transition">{t("email")}</a>
+                <h4 className="mt-3 text-sm font-semibold text-slate-100">{extra.title}</h4>
+                <p className="text-xs text-slate-400">{extra.description}</p>
+              </motion.a>
+            ))}
           </div>
-        </div>
-      </footer>
+        </section>
+
+        <section className="mt-20 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-purple-500/10 p-8 shadow-2xl">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-[0.2em] text-slate-200">Let us build together</p>
+              <h3 className="text-2xl font-semibold text-slate-50">¿Hablamos? Proyectos, consultoría o colaboraciones.</h3>
+              <p className="text-sm text-slate-300">Disponibilidad inmediata y enfoque en experiencias digitales con IA.</p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild>
+                <a href={`mailto:${portfolio.media.email}`} className="flex items-center gap-2">
+                  <Mail className="h-4 w-4" /> {t("email")}
+                </a>
+              </Button>
+              <Button asChild>
+                <a href={portfolio.media.likedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                  <Linkedin className="h-4 w-4" /> {t("linkedin")}
+                </a>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <footer className="mt-20 mb-8 border-t border-white/10 pt-8 pb-4 text-sm text-slate-400">
+          <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-4 md:flex-row md:items-center">
+            <p>© {new Date().getFullYear()} {portfolio.name}. {t("all_rights")}</p>
+            <div className="flex items-center gap-4">
+              <a href={portfolio.media.github} target="_blank" rel="noopener noreferrer" className="hover:text-slate-100">{t("github")}</a>
+              <a href={portfolio.media.likedin} target="_blank" rel="noopener noreferrer" className="hover:text-slate-100">{t("linkedin")}</a>
+              <a href={`mailto:${portfolio.media.email}`} className="hover:text-slate-100">{t("email")}</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+
       <CalWidget />
     </main>
   );
