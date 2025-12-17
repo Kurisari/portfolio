@@ -5,53 +5,49 @@ import { motion } from "framer-motion";
 export default function LanguageToggle() {
   const { lang, setLang } = useI18n();
 
-  const containerStyle: React.CSSProperties = {
-    background:
-      "linear-gradient(135deg, rgba(59,130,246,0.12), rgba(236,72,153,0.10)), rgba(255,255,255,0.04)",
-    backdropFilter: "blur(10px)",
-    WebkitBackdropFilter: "blur(10px)",
-    border: "1px solid rgba(255,255,255,0.18)",
-  };
-
-  const activeStyle: React.CSSProperties = {
-    background:
-      "linear-gradient(135deg, rgba(59,130,246,0.35), rgba(34,197,94,0.18), rgba(59,130,246,0.25))",
-    boxShadow: "0 8px 24px -12px rgba(59,130,246,0.45)",
-    border: "1px solid rgba(255,255,255,0.28)",
-    color: "#fff",
-  };
-
-  const inactiveClass =
-    "border border-white/20 text-gray-300 hover:text-white hover:bg-white/5 transition-colors";
-
   return (
     <div
-      className="ml-4 flex items-center gap-2 rounded-xl px-2 py-1"
-      style={containerStyle}
+      className="relative flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 p-1 backdrop-blur-md"
       role="tablist"
       aria-label="Language selector"
     >
       <motion.button
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.98 }}
-        role="tab"
-        aria-selected={lang === "es"}
-        className={`px-3 py-1 rounded-lg text-xs font-semibold ${lang === "es" ? "" : inactiveClass}`}
-        style={lang === "es" ? activeStyle : undefined}
-        onClick={() => setLang("es")}
-      >
-        ES
-      </motion.button>
-      <motion.button
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.98 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         role="tab"
         aria-selected={lang === "en"}
-        className={`px-3 py-1 rounded-lg text-xs font-semibold ${lang === "en" ? "" : inactiveClass}`}
-        style={lang === "en" ? activeStyle : undefined}
+        className={`relative z-10 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
+          lang === "en" ? "text-slate-50" : "text-slate-400 hover:text-slate-200"
+        }`}
         onClick={() => setLang("en")}
       >
-        EN
+        {lang === "en" && (
+          <motion.div
+            layoutId="language-indicator"
+            className="absolute inset-0 rounded-md bg-gradient-to-r from-blue-500/30 to-purple-500/30 border border-white/20"
+            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+          />
+        )}
+        <span className="relative z-10">EN</span>
+      </motion.button>
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        role="tab"
+        aria-selected={lang === "es"}
+        className={`relative z-10 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
+          lang === "es" ? "text-slate-50" : "text-slate-400 hover:text-slate-200"
+        }`}
+        onClick={() => setLang("es")}
+      >
+        {lang === "es" && (
+          <motion.div
+            layoutId="language-indicator"
+            className="absolute inset-0 rounded-md bg-gradient-to-r from-blue-500/30 to-purple-500/30 border border-white/20"
+            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+          />
+        )}
+        <span className="relative z-10">ES</span>
       </motion.button>
     </div>
   );
