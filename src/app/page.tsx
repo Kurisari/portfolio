@@ -86,13 +86,13 @@ export default function Home() {
     };
   }, [lang]);
 
+  const latestExperience = portfolio?.experience?.[0];
+
   const quickStats = useMemo(
     () => [
       { label: t("projects"), value: portfolio?.projects.length ?? 0, icon: <Layers className="h-4 w-4" /> },
       { label: t("training"), value: portfolio?.training.length ?? 0, icon: <CalendarDays className="h-4 w-4" /> },
-      { label: t("extras"), value: portfolio?.extras.length ?? 0, icon: <FileText className="h-4 w-4" /> },
-      { label: "Technologies", value: portfolio?.technologies.length ?? 0, icon: <Github className="h-4 w-4" /> },
-      { label: "Years Active", value: new Date().getFullYear() - 2022, icon: <Sparkles className="h-4 w-4" /> },
+      { label: t("years_active"), value: new Date().getFullYear() - 2022, icon: <Sparkles className="h-4 w-4" /> },
     ],
     [portfolio, t]
   );
@@ -215,6 +215,16 @@ export default function Home() {
                 </span>
               </div>
               <div className="grid grid-cols-2 gap-2 md:gap-3">
+                {latestExperience ? (
+                  <div className="col-span-2 rounded-xl border border-white/15 bg-gradient-to-r from-indigo-500/20 via-purple-500/15 to-sky-500/20 p-3 md:p-4 text-left shadow-inner shadow-black/30">
+                    <div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-slate-200">
+                      <Sparkles className="h-4 w-4" /> {t("experience")}
+                    </div>
+                    <p className="text-sm md:text-base font-semibold text-slate-50">{latestExperience.title}</p>
+                    <p className="text-xs md:text-sm text-slate-300">{latestExperience.subtitle}</p>
+                    <p className="mt-1 text-[11px] md:text-xs text-slate-400">{latestExperience.date}</p>
+                  </div>
+                ) : null}
                 {quickStats.map((stat, idx) => (
                   <div key={stat.label} className="rounded-xl border border-white/10 bg-white/5 p-2 md:p-3 text-center shadow-inner shadow-black/30">
                     <div className="mx-auto mb-1.5 md:mb-2 flex h-7 w-7 md:h-8 md:w-8 items-center justify-center rounded-full bg-white/10 text-sky-200">
