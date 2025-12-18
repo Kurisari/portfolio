@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
 import { loadPortfolio, type Portfolio } from "@/lib/portfolio";
 import LanguageToggle from "@/components/LanguageToggle";
+import HamburgerMenu from "@/components/HamburgerMenu";
 import Image from "next/image";
 import {
   ExternalLink,
@@ -103,7 +104,7 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(96,165,250,0.18),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(168,85,247,0.14),transparent_35%),radial-gradient(circle_at_50%_90%,rgba(34,197,94,0.12),transparent_35%)]" />
 
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 glass-panel shadow-xl shadow-black/10">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-3 py-2 md:px-4 md:py-3">
+        <div className="relative mx-auto flex max-w-6xl items-center justify-between px-3 py-2 md:px-4 md:py-3">
           <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm text-slate-300">
             <a href="#projects" className="hover:text-white transition">{t("projects")}</a>
             <a href="#experience" className="hover:text-white transition">{t("experience")}</a>
@@ -112,6 +113,7 @@ export default function Home() {
           </nav>
 
           <div className="flex items-center gap-2 md:gap-3">
+            <HamburgerMenu />
             <LanguageToggle />
             <Button asChild size="sm" className="hidden sm:flex">
               <a href={`mailto:${portfolio.media.email}`} className="flex items-center gap-2 text-sm">
@@ -122,7 +124,7 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="mx-auto max-w-6xl px-4 pt-16 md:pt-20 lg:pt-24">
+      <div className="mx-auto max-w-6xl px-4 pt-24 md:pt-32 lg:pt-40">
         <section className="grid gap-6 md:gap-10 lg:grid-cols-[1.2fr_1fr] items-start">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
