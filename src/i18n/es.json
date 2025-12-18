@@ -1,5 +1,7 @@
 {
   "available": "Disponible para trabajar",
+  "not_available": "No disponible para trabajar",
+  "open_to_work": "Abierto a trabajar",
   "about": "Soy un <span class=\"text-blue-400 font-semibold\">Ingeniero en Inteligencia Artificial</span> con experiencia en desarrollo de software y aplicaciones web. Apasionado por la <span class=\"text-blue-400 font-semibold\">tecnología</span> y la <span class=\"text-blue-400 font-semibold\">programación</span>, comprometido con el aprendizaje continuo y los nuevos retos. Soy <span class=\"text-blue-400 font-semibold\">proactivo</span>, <span class=\"text-blue-400 font-semibold\">responsable</span> y dedicado a mi trabajo.",
   "projects": "Proyectos",
   "experience": "Experiencia",

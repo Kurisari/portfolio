@@ -1,5 +1,7 @@
 {
   "available": "Available for work",
+  "not_available": "Not available to work",
+  "open_to_work": "Open to work",
   "about": "I am an <span class=\"text-blue-400 font-semibold\">Artificial Intelligence Engineer</span> with experience in software development and web applications. Passionate about <span class=\"text-blue-400 font-semibold\">technology</span> and <span class=\"text-blue-400 font-semibold\">programming</span>, I am committed to continuous learning and enjoy tackling new challenges. I am <span class=\"text-blue-400 font-semibold\">proactive</span>, <span class=\"text-blue-400 font-semibold\">responsible</span>, and dedicated to my work.",
   "projects": "Projects",
   "experience": "Experience",

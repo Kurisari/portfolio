@@ -3,6 +3,7 @@
   "description": "Ingeniero en Inteligencia Artificial",
   "skill": "Ingeniero en Inteligencia Artificial",
   "location": "Aguascalientes, México",
+  "isAvailable": false,
   "about": "Soy un Ingeniero en Inteligencia Artificial con experiencia en desarrollo de software y aplicaciones web. Apasionado por la tecnología y la programación, comprometido con el aprendizaje continuo y los nuevos retos. Soy proactivo, responsable y dedicado a mi trabajo.",
   "experience": [
     {

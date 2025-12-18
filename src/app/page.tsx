@@ -96,6 +96,13 @@ export default function Home() {
 
   if (!portfolio) return null;
 
+  const statusColor = portfolio.isAvailable ? "text-emerald-200" : "text-red-200";
+  const dotColor = portfolio.isAvailable ? "bg-emerald-400" : "bg-red-400";
+  const animatePulse = portfolio.isAvailable ? "animate-pulse" : "";
+  const backgroundGradient = portfolio.isAvailable 
+    ? "bg-gradient-to-r from-emerald-500/15 via-green-400/10 to-cyan-500/15" 
+    : "bg-gradient-to-r from-red-500/15 via-red-400/10 to-pink-500/15";
+
   return (
     <main className="relative min-h-screen overflow-hidden">
       <h1 className="sr-only">{portfolio.name} — {t("skill")}</h1>
@@ -198,10 +205,10 @@ export default function Home() {
           >
             <div className="glow-ring rounded-2xl" />
             <div className="relative space-y-4">
-              <div className="rounded-xl border border-white/10 bg-gradient-to-r from-emerald-500/15 via-green-400/10 to-cyan-500/15 px-4 py-3 text-center">
-                <span className="flex items-center justify-center gap-2 text-sm font-medium text-emerald-200">
-                  <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-                  {t("available")} • Open to work
+              <div className={`rounded-xl border border-white/10 ${backgroundGradient} px-4 py-3 text-center`}>
+                <span className={`flex items-center justify-center gap-2 text-sm font-medium ${statusColor}`}>
+                  <span className={`h-2 w-2 rounded-full ${dotColor} ${animatePulse}`} />
+                  {portfolio.isAvailable ? t("open_to_work") : t("not_available")}
                 </span>
               </div>
               <div className="grid grid-cols-2 gap-2 md:gap-3">
