@@ -7,6 +7,13 @@
   "about": "Soy un Ingeniero en Inteligencia Artificial con experiencia en desarrollo de software y aplicaciones web. Apasionado por la tecnología y la programación, comprometido con el aprendizaje continuo y los nuevos retos. Soy proactivo, responsable y dedicado a mi trabajo.",
   "experience": [
     {
+      "icon": "app-window-mac",
+      "title": "nohuman",
+      "subtitle": "Desarrollador de Software en Prácticas",
+      "description": "Desarrollé y mantuve herramientas internas y scripts de automatización para mejorar la eficiencia operativa. Colaboré con equipos multifuncionales para entregar soluciones de software que satisfacen las necesidades del negocio.",
+      "date": "Dic 2025 - Presente"
+    },
+    {
       "title": "Foráneos UP",
       "subtitle": "Presidente",
       "description": "Guié y supervisé las operaciones del equipo, promoví la colaboración y fomenté un entorno de trabajo eficiente alineado con los objetivos.",

@@ -20,6 +20,7 @@ import {
   CalendarDays,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { N8n } from '@lobehub/icons';
 
 type Technology = Portfolio["technologies"][number];
 type Project = Portfolio["projects"][number];
@@ -63,6 +64,8 @@ const techColor = (name: string): string => {
       return "#181717";
     case "Reflex":
       return "#06B6D4";
+    case "N8N":
+      return "#FF6B35";
     default:
       return "#444";
   }
@@ -244,7 +247,7 @@ export default function Home() {
                   background: `linear-gradient(135deg, ${techColor(tech.name)}20, rgba(255,255,255,0.05))`,
                 }}
               >
-                <i className={`${tech.icon} text-lg`} />
+                {tech.name === "N8N" ? <N8n size={18} /> : <i className={`${tech.icon} text-lg`} />}
                 <span>{tech.name}</span>
               </motion.div>
             ))}
