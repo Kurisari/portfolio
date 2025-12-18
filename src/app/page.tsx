@@ -426,9 +426,9 @@ export default function Home() {
         <section className="mt-12 md:mt-20 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-purple-500/10 p-6 md:p-8 shadow-2xl">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-slate-200">Let us build together</p>
-              <h3 className="text-xl md:text-2xl font-semibold text-slate-50">¿Hablamos? Proyectos, consultoría o colaboraciones.</h3>
-              <p className="text-sm text-slate-300">Disponibilidad inmediata y enfoque en experiencias digitales con IA.</p>
+              <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-slate-200">{t("cta_tag")}</p>
+              <h3 className="text-xl md:text-2xl font-semibold text-slate-50">{t("cta_title")}</h3>
+              <p className="text-sm text-slate-300">{t("cta_desc")}</p>
             </div>
             <div className="flex flex-wrap gap-3">
               <Button asChild>
