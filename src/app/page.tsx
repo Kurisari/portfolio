@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -18,9 +18,16 @@ import {
   Sparkles,
   Layers,
   CalendarDays,
+  ChevronDown,
+  Terminal,
+  Brain,
+  Code2,
+  Globe,
+  Cpu,
+  X,
 } from "lucide-react";
-import { motion } from "framer-motion";
-import { N8n } from '@lobehub/icons';
+import { motion, AnimatePresence } from "framer-motion";
+import { N8n } from "@lobehub/icons";
 
 type Technology = Portfolio["technologies"][number];
 type Project = Portfolio["projects"][number];
@@ -31,49 +38,45 @@ type Extra = Portfolio["extras"][number];
 const CalWidget = dynamic(() => import("@/components/CalWidget"), { ssr: false });
 
 const techColor = (name: string): string => {
-  switch (name) {
-    case "Next.js":
-      return "#000000";
-    case "TailwindCSS":
-      return "#38BDF8";
-    case "Framer Motion":
-      return "#E10098";
-    case "Shadcn/UI":
-      return "#9333EA";
-    case "Python":
-      return "#3776AB";
-    case "C++":
-      return "#00599C";
-    case "Java":
-      return "#007396";
-    case "JavaScript":
-      return "#F7DF1E";
-    case "React":
-      return "#61DAFB";
-    case "Material UI":
-      return "#007FFF";
-    case "Firebase":
-      return "#FFCA28";
-    case "PyTorch":
-      return "#EE4C2C";
-    case "HTML":
-      return "#E34F26";
-    case "CSS":
-      return "#1572B6";
-    case "GitHub":
-      return "#181717";
-    case "Reflex":
-      return "#06B6D4";
-    case "N8N":
-      return "#FF6B35";
-    default:
-      return "#444";
-  }
+  const colors: Record<string, string> = {
+    "Next.js": "#000000",
+    TailwindCSS: "#38BDF8",
+    "Framer Motion": "#E10098",
+    "Shadcn/UI": "#9333EA",
+    Python: "#3776AB",
+    "C++": "#00599C",
+    Java: "#007396",
+    JavaScript: "#F7DF1E",
+    React: "#61DAFB",
+    "Material UI": "#007FFF",
+    Firebase: "#FFCA28",
+    PyTorch: "#EE4C2C",
+    HTML: "#E34F26",
+    CSS: "#1572B6",
+    GitHub: "#181717",
+    Reflex: "#06B6D4",
+    N8N: "#FF6B35",
+    Supabase: "#3ECF8E",
+  };
+  return colors[name] || "#444";
 };
+
+function SectionHeading({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex items-center gap-4 mb-10">
+      <h3 className="text-xs font-mono uppercase tracking-[0.25em] text-slate-500 whitespace-nowrap">
+        {children}
+      </h3>
+      <div className="h-px flex-1 bg-linear-to-r from-white/10 to-transparent" />
+    </div>
+  );
+}
 
 export default function Home() {
   const { t, lang } = useI18n();
   const [portfolio, setPortfolio] = useState<Portfolio | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [expandedProject, setExpandedProject] = useState<Project | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -97,346 +100,506 @@ export default function Home() {
     [portfolio, t]
   );
 
+  const filteredProjects = useMemo(() => {
+    if (!portfolio) return [];
+    if (activeCategory === "all") return portfolio.projects;
+    return portfolio.projects.filter((p: Project) => p.category === activeCategory);
+  }, [portfolio, activeCategory]);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (expandedProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [expandedProject]);
+
   if (!portfolio) return null;
 
-  const statusColor = portfolio.isAvailable ? "text-emerald-200" : "text-red-200";
+  const statusColor = portfolio.isAvailable ? "text-emerald-300" : "text-red-300";
   const dotColor = portfolio.isAvailable ? "bg-emerald-400" : "bg-red-400";
   const animatePulse = portfolio.isAvailable ? "animate-pulse" : "";
-  const backgroundGradient = portfolio.isAvailable 
-    ? "bg-gradient-to-r from-emerald-500/15 via-green-400/10 to-cyan-500/15" 
-    : "bg-gradient-to-r from-red-500/15 via-red-400/10 to-pink-500/15";
+  const statusBg = portfolio.isAvailable
+    ? "bg-gradient-to-r from-emerald-500/10 to-cyan-500/10"
+    : "bg-gradient-to-r from-red-500/10 to-pink-500/10";
 
   return (
     <main className="relative min-h-screen overflow-hidden">
       <h1 className="sr-only">{portfolio.name} — {t("skill")}</h1>
 
-      <div className="pointer-events-none absolute inset-0 grid-fade" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(96,165,250,0.18),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(168,85,247,0.14),transparent_35%),radial-gradient(circle_at_50%_90%,rgba(34,197,94,0.12),transparent_35%)]" />
+      {/* Background */}
+      <div className="pointer-events-none fixed inset-0 grid-fade" />
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(96,165,250,0.10),transparent_45%),radial-gradient(circle_at_80%_20%,rgba(168,85,247,0.08),transparent_45%),radial-gradient(circle_at_50%_80%,rgba(34,197,94,0.06),transparent_45%)]" />
 
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 glass-panel shadow-xl shadow-black/10">
-        <div className="relative mx-auto flex max-w-6xl items-center justify-between px-3 py-2 md:px-4 md:py-3">
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm text-slate-300">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 glass-panel">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
+          <a href="#" className="font-mono text-sm text-slate-500 hover:text-white transition">
+            kurisari<span className="text-sky-400">.</span>dev
+          </a>
+          <nav className="hidden md:flex items-center gap-8 text-sm text-slate-500">
             <a href="#projects" className="hover:text-white transition">{t("projects")}</a>
             <a href="#experience" className="hover:text-white transition">{t("experience")}</a>
             <a href="#training" className="hover:text-white transition">{t("training")}</a>
             <a href="#extras" className="hover:text-white transition">{t("extras")}</a>
           </nav>
-
-          <div className="flex items-center gap-2 md:gap-3">
+          <div className="flex items-center gap-3">
             <HamburgerMenu />
             <LanguageToggle />
-            <Button asChild size="sm" className="hidden sm:flex">
-              <a href={`mailto:${portfolio.media.email}`} className="flex items-center gap-2 text-sm">
-                <Mail className="h-4 w-4" />
-              </a>
-            </Button>
           </div>
         </div>
       </header>
 
-      <div className="mx-auto max-w-6xl px-4 pt-24 md:pt-32 lg:pt-40">
-        <section className="grid gap-6 md:gap-10 lg:grid-cols-[1.2fr_1fr] items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <div className="space-y-3 md:space-y-4">
-              <div className="flex items-center gap-3 md:gap-4">
-                <Avatar className="h-16 w-16 md:h-20 md:w-20 border-2 border-white/20 shadow-xl shadow-blue-500/20">
-                  <AvatarImage src={portfolio.avatar} alt={portfolio.name} />
-                </Avatar>
-                <div>
-                  <p className="text-xs md:text-sm text-slate-400">{portfolio.location}</p>
-                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-slate-50">
-                    <span className="gradient-text">{portfolio.name}</span>
-                  </h2>
-                </div>
-              </div>
-              <p className="text-base md:text-lg text-slate-300" dangerouslySetInnerHTML={{ __html: t("about") }} />
-            </div>
-            <div className="flex flex-wrap gap-2 text-xs md:text-sm text-slate-200">
-              <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 md:px-3 md:py-1 inline-flex items-center gap-1.5 md:gap-2">
-                <MapPin className="h-3 w-3 md:h-4 md:w-4 text-sky-300" />
-                <span className="hidden sm:inline">{portfolio.location}</span>
-              </span>
-              <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 md:px-3 md:py-1 inline-flex items-center gap-1.5 md:gap-2">
-                <Sparkles className="h-3 w-3 md:h-4 md:w-4 text-indigo-300" />
-                <span className="hidden sm:inline">{portfolio.skill}</span>
-              </span>
-            </div>
-            <div className="flex flex-wrap gap-2 md:gap-3">
-              <Button asChild>
-                <a
-                  href={portfolio.media.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  <Github className="h-4 w-4" /> {t("github")}
-                </a>
-              </Button>
-              <Button asChild>
-                <a
-                  href={portfolio.media.likedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  <Linkedin className="h-4 w-4" /> {t("linkedin")}
-                </a>
-              </Button>
-              <Button asChild>
-                <a
-                  href={portfolio.media.cv}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  <FileText className="h-4 w-4" /> {t("cv")}
-                </a>
-              </Button>
-            </div>
-          </motion.div>
+      {/* Hero — full viewport */}
+      <section className="relative flex min-h-dvh flex-col items-center justify-center px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="space-y-6"
+        >
+          <Avatar className="mx-auto h-24 w-24 border-2 border-white/10 shadow-2xl shadow-blue-500/15">
+            <AvatarImage src={portfolio.avatar} alt={portfolio.name} />
+          </Avatar>
 
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.6 }}
-            className="relative rounded-2xl border border-white/10 bg-white/5 p-6 shadow-2xl glass-panel"
-          >
-            <div className="glow-ring rounded-2xl" />
-            <div className="relative space-y-4">
-              <div className={`rounded-xl border border-white/10 ${backgroundGradient} px-4 py-3 text-center`}>
-                <span className={`flex items-center justify-center gap-2 text-sm font-medium ${statusColor}`}>
-                  <span className={`h-2 w-2 rounded-full ${dotColor} ${animatePulse}`} />
-                  {portfolio.isAvailable ? t("open_to_work") : t("not_available")}
-                </span>
-              </div>
-              <div className="grid grid-cols-2 gap-2 md:gap-3">
-                {latestExperience ? (
-                  <div className="col-span-2 rounded-xl border border-white/15 bg-gradient-to-r from-indigo-500/20 via-purple-500/15 to-sky-500/20 p-3 md:p-4 text-left shadow-inner shadow-black/30">
-                    <div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-slate-200">
-                      <Sparkles className="h-4 w-4" /> {t("experience")}
-                    </div>
-                    <p className="text-sm md:text-base font-semibold text-slate-50">{latestExperience.title}</p>
-                    <p className="text-xs md:text-sm text-slate-300">{latestExperience.subtitle}</p>
-                    <p className="mt-1 text-[11px] md:text-xs text-slate-400">{latestExperience.date}</p>
-                  </div>
-                ) : null}
-                {quickStats.map((stat, idx) => (
-                  <div key={stat.label} className="rounded-xl border border-white/10 bg-white/5 p-2 md:p-3 text-center shadow-inner shadow-black/30">
-                    <div className="mx-auto mb-1.5 md:mb-2 flex h-7 w-7 md:h-8 md:w-8 items-center justify-center rounded-full bg-white/10 text-sky-200">
-                      {stat.icon}
-                    </div>
-                    <p className="text-lg md:text-xl font-semibold text-slate-50">{stat.value}</p>
-                    <p className="text-[9px] md:text-[10px] text-slate-400 uppercase tracking-wide">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
+          <div className="space-y-2">
+            <p className="font-mono text-xs sm:text-sm tracking-[0.3em] uppercase text-sky-400/70">
+              {portfolio.skill}
+            </p>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-none">
+              <span className="gradient-text">{portfolio.name}</span>
+            </h2>
+          </div>
+
+          <p
+            className="mx-auto max-w-lg text-sm sm:text-base text-slate-400 leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: t("about") }}
+          />
+
+          {/* Status + Location */}
+          <div className="flex items-center justify-center gap-4 flex-wrap">
+            <div className={`inline-flex items-center gap-2.5 rounded-full border border-white/10 ${statusBg} px-4 py-2`}>
+              <span className={`h-1.5 w-1.5 rounded-full ${dotColor} ${animatePulse}`} />
+              <span className={`text-xs font-medium ${statusColor}`}>
+                {portfolio.isAvailable ? t("open_to_work") : t("not_available")}
+              </span>
             </div>
-          </motion.div>
+            <span className="text-xs text-slate-600 flex items-center gap-1.5">
+              <MapPin className="h-3 w-3" /> {portfolio.location}
+            </span>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+            {[
+              { href: portfolio.media.github, icon: <Github className="h-4 w-4" />, label: t("github"), external: true },
+              { href: portfolio.media.likedin, icon: <Linkedin className="h-4 w-4" />, label: t("linkedin"), external: true },
+              { href: portfolio.media.cv, icon: <FileText className="h-4 w-4" />, label: t("cv"), external: true },
+              { href: `mailto:${portfolio.media.email}`, icon: <Mail className="h-4 w-4" />, label: t("email"), external: false },
+            ].map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                className="inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/3 px-4 py-2 text-xs text-slate-400 hover:bg-white/8 hover:text-white transition-all"
+              >
+                {link.icon}
+                <span className="hidden sm:inline">{link.label}</span>
+              </a>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+          className="absolute bottom-8 flex flex-col items-center gap-1.5 text-slate-600"
+        >
+          <span className="text-[10px] font-mono tracking-[0.2em] uppercase">scroll</span>
+          <ChevronDown className="h-3.5 w-3.5 animate-bounce" />
+        </motion.div>
+      </section>
+
+      {/* Content */}
+      <div className="mx-auto max-w-5xl px-6">
+
+        {/* Stats */}
+        <section className="py-20 md:py-28">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            {latestExperience && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="col-span-2 rounded-2xl border border-white/5 bg-white/2 p-5 backdrop-blur-sm"
+              >
+                <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-slate-600 mb-3">
+                  <Terminal className="h-3 w-3" />
+                  <span>{t("experience")}</span>
+                </div>
+                <p className="text-base font-semibold text-slate-100">{latestExperience.title}</p>
+                <p className="text-sm text-slate-400 mt-0.5">{latestExperience.subtitle}</p>
+                <p className="text-[11px] text-slate-600 font-mono mt-1.5">{latestExperience.date}</p>
+              </motion.div>
+            )}
+            {quickStats.map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}
+                className="rounded-2xl border border-white/5 bg-white/2 p-5 text-center backdrop-blur-sm"
+              >
+                <div className="mx-auto mb-2.5 flex h-8 w-8 items-center justify-center rounded-lg bg-white/4 text-sky-400/60">
+                  {stat.icon}
+                </div>
+                <p className="text-2xl font-bold text-slate-100 font-mono tabular-nums">{stat.value}</p>
+                <p className="text-[10px] uppercase tracking-[0.15em] text-slate-600 mt-1">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
         </section>
 
-        <section className="mt-10 md:mt-16 space-y-6 md:space-y-8">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg md:text-xl font-semibold text-slate-100">Stack & Tools</h3>
-            <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          </div>
-          <div className="flex flex-wrap gap-3">
+        {/* Stack & Tools */}
+        <section className="pb-20 md:pb-28">
+          <SectionHeading>Stack & Tools</SectionHeading>
+          <div className="flex flex-wrap gap-2">
             {portfolio.technologies.map((tech: Technology, i: number) => (
               <motion.div
                 key={`${tech.name}-${tech.icon}`}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.03, duration: 0.25 }}
-                className="glass-panel flex items-center gap-2 rounded-full px-3 py-2 text-sm text-slate-100"
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.02, duration: 0.2 }}
+                className="flex items-center gap-2 rounded-full border border-white/5 px-3.5 py-1.5 text-sm text-slate-300"
                 style={{
-                  borderColor: "rgba(255,255,255,0.08)",
-                  background: `linear-gradient(135deg, ${techColor(tech.name)}20, rgba(255,255,255,0.05))`,
+                  background: `linear-gradient(135deg, ${techColor(tech.name)}15, transparent)`,
                 }}
               >
-                {tech.name === "N8N" ? <N8n size={18} /> : <i className={`${tech.icon} text-lg`} />}
-                <span>{tech.name}</span>
+                {tech.name === "N8N" ? <N8n size={16} /> : <i className={`${tech.icon} text-base`} />}
+                <span className="text-xs">{tech.name}</span>
               </motion.div>
             ))}
           </div>
         </section>
 
-        <section id="projects" className="mt-10 md:mt-16 space-y-6 md:space-y-8">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg md:text-xl font-semibold text-slate-100">{t("projects")}</h3>
-            <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        {/* Projects */}
+        <section id="projects" className="pb-20 md:pb-28">
+          <SectionHeading>{t("projects")}</SectionHeading>
+
+          {/* Category Tabs */}
+          <div className="flex flex-wrap gap-2 mb-8">
+            {(["all", "ai", "web", "algorithms", "software"] as const).map((cat) => {
+              const icons: Record<string, ReactNode> = {
+                all: <Layers className="h-3.5 w-3.5" />,
+                ai: <Brain className="h-3.5 w-3.5" />,
+                web: <Globe className="h-3.5 w-3.5" />,
+                algorithms: <Code2 className="h-3.5 w-3.5" />,
+                software: <Cpu className="h-3.5 w-3.5" />,
+              };
+              const isActive = activeCategory === cat;
+              const count = cat === "all"
+                ? portfolio.projects.length
+                : portfolio.projects.filter((p: Project) => p.category === cat).length;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-medium transition-all ${
+                    isActive
+                      ? "border-sky-500/30 bg-sky-500/10 text-sky-300"
+                      : "border-white/5 bg-white/2 text-slate-500 hover:text-slate-300 hover:border-white/10"
+                  }`}
+                >
+                  {icons[cat]}
+                  {t(`cat_${cat}`)}
+                  <span className={`ml-0.5 text-[10px] tabular-nums ${isActive ? "text-sky-400/60" : "text-slate-600"}`}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
-          <div className="grid gap-8 md:grid-cols-2">
-            {portfolio.projects.map((project: Project, i: number) => (
-              <motion.article
-                key={`${project.title}-${i}`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: i * 0.04 }}
-                className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-4 glass-panel"
-              >
-                <div className="glow-ring rounded-2xl" />
-                {project.image ? (
-                  <div className="relative mb-4 h-56 w-full overflow-hidden rounded-xl border border-white/10">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover object-top transition duration-500 hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      priority={i < 2}
-                    />
+
+          {/* Project Cards */}
+          <motion.div layout className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project: Project, i: number) => (
+                <motion.article
+                  key={project.title}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.25, delay: i * 0.03 }}
+                  onClick={() => setExpandedProject(project)}
+                  className="group relative cursor-pointer rounded-2xl border border-white/5 bg-white/2 p-4 hover:border-white/15 transition-all backdrop-blur-sm"
+                >
+                  {project.image && (
+                    <div className="relative mb-3.5 h-36 w-full overflow-hidden rounded-xl border border-white/5">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        priority={i < 3}
+                      />
+                    </div>
+                  )}
+
+                  <div className="flex items-start justify-between gap-2 mb-1.5">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/5 bg-white/3 px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-slate-500">
+                      {project.category === "ai" && <Brain className="h-2.5 w-2.5" />}
+                      {project.category === "web" && <Globe className="h-2.5 w-2.5" />}
+                      {project.category === "algorithms" && <Code2 className="h-2.5 w-2.5" />}
+                      {project.category === "software" && <Cpu className="h-2.5 w-2.5" />}
+                      {t(`cat_${project.category}`)}
+                    </span>
                   </div>
-                ) : null}
-                <div className="space-y-2">
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{project.subtitle}</p>
-                  <h4 className="text-xl font-semibold text-slate-50">{project.title}</h4>
-                  <p className="text-sm text-slate-300">{project.description}</p>
-                </div>
-                {project.technologies ? (
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {project.technologies.map((tech: Technology, idx: number) => (
-                      <span
-                        key={`${tech.name}-${idx}`}
-                        className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200"
-                        style={{ background: `linear-gradient(135deg, ${techColor(tech.name)}25, rgba(255,255,255,0.04))` }}
-                      >
-                        {tech.name}
+
+                  <h4 className="text-base font-semibold text-slate-100 mt-2">{project.title}</h4>
+                  <p className="text-[11px] font-mono text-slate-600 mt-0.5">{project.subtitle}</p>
+                  <p className="text-sm text-slate-400 mt-2 leading-relaxed line-clamp-2">{project.description}</p>
+
+                  {project.technologies && (
+                    <div className="mt-3 flex flex-wrap gap-1">
+                      {project.technologies.slice(0, 4).map((tech: Technology, idx: number) => (
+                        <span
+                          key={`${tech.name}-${idx}`}
+                          className="rounded-full border border-white/5 px-2 py-0.5 text-[10px] text-slate-500"
+                          style={{ background: `linear-gradient(135deg, ${techColor(tech.name)}10, transparent)` }}
+                        >
+                          {tech.name}
+                        </span>
+                      ))}
+                      {project.technologies.length > 4 && (
+                        <span className="rounded-full border border-white/5 px-2 py-0.5 text-[10px] text-slate-600">
+                          +{project.technologies.length - 4}
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="mt-3 flex gap-2">
+                    {project.github && (
+                      <span className="inline-flex items-center gap-1 text-[10px] text-slate-600">
+                        <Github className="h-3 w-3" /> {t("code")}
                       </span>
-                    ))}
+                    )}
+                    {project.url && (
+                      <span className="inline-flex items-center gap-1 text-[10px] text-slate-600">
+                        <ExternalLink className="h-3 w-3" /> {t("preview")}
+                      </span>
+                    )}
                   </div>
-                ) : null}
-                <div className="mt-4 flex flex-wrap gap-2 text-sm">
-                  {project.github ? (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-slate-200 hover:border-white/30"
-                    >
-                      <Github className="h-4 w-4" /> {t("code")}
-                    </a>
-                  ) : null}
-                  {project.url ? (
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-slate-200 hover:border-white/30"
-                    >
-                      <ExternalLink className="h-4 w-4" /> {t("preview")}
-                    </a>
-                  ) : null}
-                </div>
-              </motion.article>
-            ))}
-          </div>
+                </motion.article>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+
+          {/* Expanded Project Modal */}
+          <AnimatePresence>
+            {expandedProject && (
+              <>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setExpandedProject(null)}
+                  className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+                />
+                <motion.div
+                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 40, scale: 0.95 }}
+                  transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
+                  className="fixed inset-x-4 top-[10%] bottom-[10%] z-50 mx-auto max-w-2xl overflow-y-auto rounded-2xl border border-white/10 bg-slate-950/95 p-6 md:p-8 shadow-2xl backdrop-blur-xl"
+                >
+                  <button
+                    onClick={() => setExpandedProject(null)}
+                    className="absolute top-4 right-4 rounded-full border border-white/10 bg-white/5 p-1.5 text-slate-400 hover:text-white transition"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+
+                  {expandedProject.image && (
+                    <div className="relative mb-6 h-52 md:h-64 w-full overflow-hidden rounded-xl border border-white/5">
+                      <Image
+                        src={expandedProject.image}
+                        alt={expandedProject.title}
+                        fill
+                        className="object-cover object-top"
+                        sizes="(max-width: 768px) 100vw, 640px"
+                      />
+                    </div>
+                  )}
+
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/5 bg-white/3 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-slate-500 mb-3">
+                    {expandedProject.category === "ai" && <Brain className="h-3 w-3" />}
+                    {expandedProject.category === "web" && <Globe className="h-3 w-3" />}
+                    {expandedProject.category === "algorithms" && <Code2 className="h-3 w-3" />}
+                    {expandedProject.category === "software" && <Cpu className="h-3 w-3" />}
+                    {t(`cat_${expandedProject.category}`)}
+                  </span>
+
+                  <h3 className="text-2xl font-bold text-slate-50 mt-2">{expandedProject.title}</h3>
+                  <p className="text-sm font-mono text-slate-500 mt-1">{expandedProject.subtitle}</p>
+                  <p className="text-sm text-slate-300 mt-4 leading-relaxed">{expandedProject.description}</p>
+
+                  {expandedProject.technologies && (
+                    <div className="mt-5">
+                      <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-600 mb-2.5">Stack</p>
+                      <div className="flex flex-wrap gap-2">
+                        {expandedProject.technologies.map((tech: Technology, idx: number) => (
+                          <span
+                            key={`${tech.name}-${idx}`}
+                            className="inline-flex items-center gap-1.5 rounded-full border border-white/5 px-3 py-1 text-xs text-slate-300"
+                            style={{ background: `linear-gradient(135deg, ${techColor(tech.name)}15, transparent)` }}
+                          >
+                            {tech.name === "N8N" ? <N8n size={14} /> : <i className={`${tech.icon} text-sm`} />}
+                            {tech.name}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    {expandedProject.github && (
+                      <a
+                        href={expandedProject.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 hover:text-white hover:border-white/20 transition-colors"
+                      >
+                        <Github className="h-4 w-4" /> {t("code")}
+                      </a>
+                    )}
+                    {expandedProject.url && (
+                      <a
+                        href={expandedProject.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-sky-500/20 bg-sky-500/10 px-4 py-2 text-sm text-sky-300 hover:bg-sky-500/20 transition-colors"
+                      >
+                        <ExternalLink className="h-4 w-4" /> {t("preview")}
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
         </section>
 
-        <section id="experience" className="mt-10 md:mt-16 space-y-6 md:space-y-8">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg md:text-xl font-semibold text-slate-100">{t("experience")}</h3>
-            <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          </div>
-          <div className="relative before:absolute before:left-3 before:top-0 before:h-full before:w-[1px] before:bg-gradient-to-b before:from-sky-400/60 before:to-transparent">
+        {/* Experience */}
+        <section id="experience" className="pb-20 md:pb-28">
+          <SectionHeading>{t("experience")}</SectionHeading>
+          <div className="relative pl-8 before:absolute before:left-[7px] before:top-2 before:h-[calc(100%-16px)] before:w-px before:bg-linear-to-b before:from-sky-500/40 before:via-sky-500/20 before:to-transparent">
             {portfolio.experience.map((exp: Experience, i: number) => (
               <motion.div
                 key={`${exp.title}-${i}`}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -12 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
-                className="relative ml-10 mb-10 rounded-xl border border-white/10 bg-white/5 p-4 shadow-lg"
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: i * 0.06 }}
+                className="relative mb-8 last:mb-0"
               >
-                <div className="absolute -left-9 flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-white shadow-lg shadow-sky-500/30">
-                  <span className="text-xs font-semibold">{i + 1}</span>
+                <div className="absolute -left-8 top-1.5 flex h-3.5 w-3.5 items-center justify-center rounded-full border-2 border-sky-500/40 bg-slate-950">
+                  <div className="h-1.5 w-1.5 rounded-full bg-sky-400" />
                 </div>
-                <div className="flex items-center justify-between gap-2">
-                  <p className="text-sm font-semibold text-sky-200">{exp.title}</p>
-                  <p className="text-xs text-slate-400">{exp.date}</p>
+                <div className="rounded-xl border border-white/5 bg-white/2 p-4 backdrop-blur-sm">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                    <h4 className="text-sm font-semibold text-slate-100">{exp.title}</h4>
+                    <span className="text-[11px] font-mono text-slate-600">{exp.date}</span>
+                  </div>
+                  <p className="text-xs text-sky-400/70 mt-0.5">{exp.subtitle}</p>
+                  <p className="text-sm text-slate-400 mt-2">{exp.description}</p>
                 </div>
-                <p className="text-sm text-slate-300">{exp.subtitle}</p>
-                <p className="mt-2 text-sm text-slate-400">{exp.description}</p>
               </motion.div>
             ))}
           </div>
         </section>
 
-        <section id="training" className="mt-10 md:mt-16 space-y-6 md:space-y-8">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg md:text-xl font-semibold text-slate-100">{t("training")}</h3>
-            <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
+        {/* Training */}
+        <section id="training" className="pb-20 md:pb-28">
+          <SectionHeading>{t("training")}</SectionHeading>
+          <div className="grid gap-4 md:grid-cols-2">
             {portfolio.training.map((train: Training, i: number) => (
               <motion.div
                 key={`${train.title}-${i}`}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25, delay: i * 0.05 }}
-                className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-lg"
+                viewport={{ once: true }}
+                transition={{ duration: 0.25, delay: i * 0.06 }}
+                className="rounded-xl border border-white/5 bg-white/2 p-5 backdrop-blur-sm"
               >
-                <div className="flex items-center justify-between text-xs text-slate-400">
-                  <span>{train.subtitle}</span>
-                  <span className="rounded-full bg-white/5 px-2 py-1 text-[11px] text-slate-200">{train.date}</span>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-slate-600">{train.subtitle}</span>
+                  <span className="text-[11px] font-mono text-slate-600">{train.date}</span>
                 </div>
-                <h4 className="mt-2 text-lg font-semibold text-slate-50">{train.title}</h4>
-                <p className="mt-2 text-sm text-slate-300">{train.description}</p>
+                <h4 className="text-base font-semibold text-slate-100">{train.title}</h4>
+                <p className="text-sm text-slate-400 mt-2">{train.description}</p>
               </motion.div>
             ))}
           </div>
         </section>
 
-        <section id="extras" className="mt-10 md:mt-16 space-y-6 md:space-y-8">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg md:text-xl font-semibold text-slate-100">{t("extras")}</h3>
-            <div className="h-px w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
+        {/* Extras */}
+        <section id="extras" className="pb-20 md:pb-28">
+          <SectionHeading>{t("extras")}</SectionHeading>
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
             {portfolio.extras.map((extra: Extra, i: number) => (
               <motion.a
                 key={`${extra.title}-${i}`}
                 href={extra.url || "#"}
                 target={extra.url ? "_blank" : undefined}
                 rel={extra.url ? "noopener noreferrer" : undefined}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
-                className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-3 shadow-lg"
+                viewport={{ once: true }}
+                transition={{ duration: 0.25, delay: i * 0.04 }}
+                className="group rounded-xl border border-white/5 bg-white/2 p-3 hover:border-white/15 transition-colors backdrop-blur-sm"
               >
-                <div className="glow-ring rounded-xl" />
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-white/10">
+                <div className="relative aspect-4/3 w-full overflow-hidden rounded-lg border border-white/4">
                   <Image
                     src={extra.image}
                     alt={extra.title}
                     fill
-                    className="object-cover object-center transition duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover object-center transition duration-500 group-hover:scale-[1.03]"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                   />
                 </div>
-                <h4 className="mt-3 text-sm font-semibold text-slate-100">{extra.title}</h4>
-                <p className="text-xs text-slate-400">{extra.description}</p>
+                <h4 className="mt-3 text-sm font-medium text-slate-200">{extra.title}</h4>
+                <p className="text-[11px] text-slate-500 mt-0.5">{extra.description}</p>
               </motion.a>
             ))}
           </div>
         </section>
 
-        <section className="mt-12 md:mt-20 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-purple-500/10 p-6 md:p-8 shadow-2xl">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        {/* CTA */}
+        <section className="mb-20 md:mb-28 rounded-2xl border border-white/5 bg-linear-to-r from-sky-500/6 via-cyan-500/4 to-purple-500/6 p-8 md:p-10 backdrop-blur-sm">
+          <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-slate-200">{t("cta_tag")}</p>
-              <h3 className="text-xl md:text-2xl font-semibold text-slate-50">{t("cta_title")}</h3>
-              <p className="text-sm text-slate-300">{t("cta_desc")}</p>
+              <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-slate-500 mb-2">{t("cta_tag")}</p>
+              <h3 className="text-xl md:text-2xl font-semibold text-slate-100">{t("cta_title")}</h3>
+              <p className="text-sm text-slate-400 mt-1">{t("cta_desc")}</p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Button asChild>
+              <Button asChild size="sm">
                 <a href={`mailto:${portfolio.media.email}`} className="flex items-center gap-2">
                   <Mail className="h-4 w-4" /> {t("email")}
                 </a>
               </Button>
-              <Button asChild>
+              <Button asChild size="sm">
                 <a href={portfolio.media.likedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   <Linkedin className="h-4 w-4" /> {t("linkedin")}
                 </a>
@@ -445,13 +608,14 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="mt-12 md:mt-20 mb-6 md:mb-8 border-t border-white/10 pt-6 md:pt-8 pb-4 text-xs md:text-sm text-slate-400">
-          <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-4 md:flex-row md:items-center">
-            <p>© {new Date().getFullYear()} {portfolio.name}. {t("all_rights")}</p>
-            <div className="flex items-center gap-4">
-              <a href={portfolio.media.github} target="_blank" rel="noopener noreferrer" className="hover:text-slate-100">{t("github")}</a>
-              <a href={portfolio.media.likedin} target="_blank" rel="noopener noreferrer" className="hover:text-slate-100">{t("linkedin")}</a>
-              <a href={`mailto:${portfolio.media.email}`} className="hover:text-slate-100">{t("email")}</a>
+        {/* Footer */}
+        <footer className="border-t border-white/5 py-8 text-xs text-slate-600">
+          <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+            <p className="font-mono">© {new Date().getFullYear()} {portfolio.name}. {t("all_rights")}</p>
+            <div className="flex items-center gap-6">
+              <a href={portfolio.media.github} target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 transition">{t("github")}</a>
+              <a href={portfolio.media.likedin} target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 transition">{t("linkedin")}</a>
+              <a href={`mailto:${portfolio.media.email}`} className="hover:text-slate-300 transition">{t("email")}</a>
             </div>
           </div>
         </footer>

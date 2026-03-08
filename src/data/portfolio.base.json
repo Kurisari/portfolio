@@ -15,20 +15,62 @@
   },
   "about": "I am an Artificial Intelligence Engineer with experience in software development and web applications. Passionate about technology and programming, I am committed to continuous learning and enjoy tackling new challenges. I am proactive, responsible, and dedicated to my work.",
   "technologies": [
-    { "icon": "devicon-python-plain", "name": "Python" },
-    { "icon": "devicon-cplusplus-plain", "name": "C++" },
-    { "icon": "devicon-javascript-plain", "name": "JavaScript" },
-    { "icon": "devicon-react-original", "name": "React" },
-    { "icon": "devicon-materialui-plain", "name": "Material UI" },
-    { "icon": "devicon-firebase-plain", "name": "Firebase" },
-    { "icon": "devicon-pytorch-plain", "name": "PyTorch" },
-    { "icon": "devicon-html5-plain", "name": "HTML" },
-    { "icon": "devicon-css3-plain", "name": "CSS" },
-    { "icon": "devicon-github-original", "name": "GitHub" },
-    { "icon": "devicon-reflex-plain", "name": "Reflex" },
-    { "icon": "devicon-supabase-plain", "name": "Supabase" },
-    { "icon": "devicon-n8n-plain", "name": "N8N" },
-    { "icon": "devicon-nextjs-plain", "name": "Next.js" }
+    {
+      "icon": "devicon-python-plain",
+      "name": "Python"
+    },
+    {
+      "icon": "devicon-cplusplus-plain",
+      "name": "C++"
+    },
+    {
+      "icon": "devicon-javascript-plain",
+      "name": "JavaScript"
+    },
+    {
+      "icon": "devicon-react-original",
+      "name": "React"
+    },
+    {
+      "icon": "devicon-materialui-plain",
+      "name": "Material UI"
+    },
+    {
+      "icon": "devicon-firebase-plain",
+      "name": "Firebase"
+    },
+    {
+      "icon": "devicon-pytorch-plain",
+      "name": "PyTorch"
+    },
+    {
+      "icon": "devicon-html5-plain",
+      "name": "HTML"
+    },
+    {
+      "icon": "devicon-css3-plain",
+      "name": "CSS"
+    },
+    {
+      "icon": "devicon-github-original",
+      "name": "GitHub"
+    },
+    {
+      "icon": "devicon-reflex-plain",
+      "name": "Reflex"
+    },
+    {
+      "icon": "devicon-supabase-plain",
+      "name": "Supabase"
+    },
+    {
+      "icon": "devicon-n8n-plain",
+      "name": "N8N"
+    },
+    {
+      "icon": "devicon-nextjs-plain",
+      "name": "Next.js"
+    }
   ],
   "experience": [
     {
@@ -65,12 +107,25 @@
       "icon": "book",
       "title": "Foráneos UP Dashboard",
       "subtitle": "Management and Analytics Platform for Foreign Students",
+      "category": "web",
       "description": "Developed a web platform to manage students, bulk upload data, track changes, and visualize real-time interactive analytics. Integrated Firebase for authentication and scalability.",
       "technologies": [
-        { "icon": "devicon-react-original", "name": "React" },
-        { "icon": "devicon-firebase-plain", "name": "Firebase" },
-        { "icon": "devicon-materialui-plain", "name": "Material UI" },
-        { "icon": "devicon-javascript-plain", "name": "JavaScript" }
+        {
+          "icon": "devicon-react-original",
+          "name": "React"
+        },
+        {
+          "icon": "devicon-firebase-plain",
+          "name": "Firebase"
+        },
+        {
+          "icon": "devicon-materialui-plain",
+          "name": "Material UI"
+        },
+        {
+          "icon": "devicon-javascript-plain",
+          "name": "JavaScript"
+        }
       ],
       "image": "/fup.png"
     },
@@ -78,9 +133,13 @@
       "icon": "swords",
       "title": "Quixo Bot",
       "subtitle": "Data Structures and Algorithms Software",
+      "category": "algorithms",
       "description": "Developed a competitive Quixo bot using minimax with alpha-beta pruning, improved heuristics, and tested across scenarios for optimal strategy.",
       "technologies": [
-        { "icon": "devicon-python-plain", "name": "Python" }
+        {
+          "icon": "devicon-python-plain",
+          "name": "Python"
+        }
       ],
       "github": "https://github.com/Kurisari/quixo-bot"
     },
@@ -88,10 +147,17 @@
       "icon": "brain",
       "title": "Kvasir-AI",
       "subtitle": "Deep Learning · Medical Imaging",
+      "category": "ai",
       "description": "Built a deep learning system for endoscopic image classification using ResNet18 and DenseNet121. Applied preprocessing (CLAHE, data augmentation) and Grad-CAM visualizations for interpretability. Achieved 88.75% accuracy with DenseNet121.",
       "technologies": [
-        { "icon": "devicon-python-plain", "name": "Python" },
-        { "icon": "devicon-pytorch-plain", "name": "PyTorch" }
+        {
+          "icon": "devicon-python-plain",
+          "name": "Python"
+        },
+        {
+          "icon": "devicon-pytorch-plain",
+          "name": "PyTorch"
+        }
       ],
       "github": "https://github.com/Kurisari/Kvasir-AI"
     },
@@ -99,9 +165,13 @@
       "icon": "box",
       "title": "Rubik's Cube Solver",
       "subtitle": "Data Structures and Algorithms Software",
+      "category": "algorithms",
       "description": "Implemented a 3x3x3 Rubik’s Cube solver using BFS, A*, and IDA*. Optimized efficiency to reduce moves and added visualization for usability.",
       "technologies": [
-        { "icon": "devicon-python-plain", "name": "Python" }
+        {
+          "icon": "devicon-python-plain",
+          "name": "Python"
+        }
       ],
       "github": "https://github.com/Kurisari/Rubik-s-Cube-Solver"
     },
@@ -109,9 +179,13 @@
       "icon": "file-diff",
       "title": "File Compressor",
       "subtitle": "Data Structures and Algorithms Software",
+      "category": "algorithms",
       "description": "Built a Huffman coding-based tool to compress and decompress files, reducing file size by up to 20%, with a simple interface.",
       "technologies": [
-        { "icon": "devicon-python-plain", "name": "Python" }
+        {
+          "icon": "devicon-python-plain",
+          "name": "Python"
+        }
       ],
       "github": "https://github.com/Kurisari/Compresor_Archivos"
     },
@@ -119,9 +193,13 @@
       "icon": "gamepad-2",
       "title": "Mastermind",
       "subtitle": "Game",
+      "category": "software",
       "description": "Developed a color-combination logic game with feedback hints to enhance the user experience.",
       "technologies": [
-        { "icon": "devicon-cplusplus-plain", "name": "C++" }
+        {
+          "icon": "devicon-cplusplus-plain",
+          "name": "C++"
+        }
       ],
       "github": "https://github.com/Kurisari/Mastermind_CPP"
     },
@@ -129,9 +207,13 @@
       "icon": "regex",
       "title": "Modified RegEx",
       "subtitle": "Data Structures and Algorithms Software",
+      "category": "algorithms",
       "description": "Developed software to create and test regular expressions, optimized processing, and designed an interactive interface for real-time validation.",
       "technologies": [
-        { "icon": "devicon-python-plain", "name": "Python" }
+        {
+          "icon": "devicon-python-plain",
+          "name": "Python"
+        }
       ],
       "github": "https://github.com/Kurisari/RegEx-Modificado"
     },
@@ -139,11 +221,21 @@
       "icon": "scan",
       "title": "MX Banknote Detection",
       "subtitle": "Computer Vision · Deep Learning",
+      "category": "ai",
       "description": "Trained and evaluated a CNN pipeline to detect and classify Mexican banknotes using PyTorch and OpenCV. Includes preprocessing, data augmentation, and metrics reporting.",
       "technologies": [
-        { "icon": "devicon-python-plain", "name": "Python" },
-        { "icon": "devicon-pytorch-plain", "name": "PyTorch" },
-        { "icon": "devicon-opencv-plain", "name": "OpenCV" }
+        {
+          "icon": "devicon-python-plain",
+          "name": "Python"
+        },
+        {
+          "icon": "devicon-pytorch-plain",
+          "name": "PyTorch"
+        },
+        {
+          "icon": "devicon-opencv-plain",
+          "name": "OpenCV"
+        }
       ],
       "github": "https://github.com/Kurisari/MX-Banknote-Detection"
     },
@@ -151,10 +243,17 @@
       "icon": "cpu",
       "title": "STM32F401RE Oscilloscope",
       "subtitle": "Embedded Systems · STM32",
+      "category": "software",
       "description": "Built a simple digital oscilloscope on the STM32F401RE for signal acquisition and visualization. Implemented ADC sampling, buffering, and serial plotting for real-time inspection.",
       "technologies": [
-        { "icon": "devicon-c-plain", "name": "C" },
-        { "icon": "devicon-cplusplus-plain", "name": "C++" }
+        {
+          "icon": "devicon-c-plain",
+          "name": "C"
+        },
+        {
+          "icon": "devicon-cplusplus-plain",
+          "name": "C++"
+        }
       ],
       "github": "https://github.com/Kurisari/oscilloscope-stm32f401re"
     },
@@ -162,11 +261,21 @@
       "icon": "calendar",
       "title": "fupCalendar",
       "subtitle": "Web App · Calendar",
+      "category": "web",
       "description": "Lightweight calendar to organize Foráneos UP activities and events with a responsive UI.",
       "technologies": [
-        { "icon": "devicon-react-original", "name": "React" },
-        { "icon": "devicon-firebase-plain", "name": "Firebase" },
-        { "icon": "devicon-javascript-plain", "name": "JavaScript" }
+        {
+          "icon": "devicon-react-original",
+          "name": "React"
+        },
+        {
+          "icon": "devicon-firebase-plain",
+          "name": "Firebase"
+        },
+        {
+          "icon": "devicon-javascript-plain",
+          "name": "JavaScript"
+        }
       ],
       "github": "https://github.com/Kurisari/fupCalendar"
     },
@@ -174,13 +283,29 @@
       "icon": "navigation",
       "title": "Portfolio",
       "subtitle": "Website",
+      "category": "web",
       "description": "Developed and manage a personal portfolio using Next.js, TailwindCSS, Framer Motion, and Shadcn/UI to showcase projects, experience, and achievements. Integrated responsive design and animations for a modern professional presentation.",
       "technologies": [
-        { "icon": "devicon-react-original", "name": "Next.js" },
-        { "icon": "devicon-tailwindcss-original", "name": "TailwindCSS" },
-        { "icon": "devicon-javascript-plain", "name": "JavaScript" },
-        { "icon": "devicon-react-original", "name": "Framer Motion" },
-        { "icon": "devicon-react-original", "name": "Shadcn/UI" }
+        {
+          "icon": "devicon-react-original",
+          "name": "Next.js"
+        },
+        {
+          "icon": "devicon-tailwindcss-original",
+          "name": "TailwindCSS"
+        },
+        {
+          "icon": "devicon-javascript-plain",
+          "name": "JavaScript"
+        },
+        {
+          "icon": "devicon-react-original",
+          "name": "Framer Motion"
+        },
+        {
+          "icon": "devicon-react-original",
+          "name": "Shadcn/UI"
+        }
       ],
       "image": "/portfolio-new.png",
       "github": "https://github.com/Kurisari/portfolio",
@@ -190,9 +315,13 @@
       "icon": "navigation",
       "title": "Foreigner's Corner",
       "subtitle": "Website",
+      "category": "web",
       "description": "Designed a support website with FAQs for international students, improving accessibility and usability.",
       "technologies": [
-        { "icon": "devicon-html5-plain", "name": "Web" }
+        {
+          "icon": "devicon-html5-plain",
+          "name": "Web"
+        }
       ],
       "image": "/foreigners-corner.png",
       "url": "https://foreigners-corner-up-ags.odoo.com/"
@@ -201,9 +330,13 @@
       "icon": "navigation",
       "title": "Portfolio - OLD VERSION",
       "subtitle": "Website",
+      "category": "web",
       "description": "Developed and manage a personal portfolio using Python and the Reflex framework to showcase projects and achievements.",
       "technologies": [
-        { "icon": "devicon-reflex-plain", "name": "Reflex" }
+        {
+          "icon": "devicon-reflex-plain",
+          "name": "Reflex"
+        }
       ],
       "image": "/portafolio.png",
       "github": "https://github.com/Kurisari/portafolio-old",
@@ -265,11 +398,23 @@
     }
   ],
   "gallery": [
-    { "image": "https://picsum.photos/200/300" },
-    { "image": "https://picsum.photos/300/300" },
-    { "image": "https://picsum.photos/400/200" },
-    { "image": "https://picsum.photos/500/500" },
-    { "image": "https://picsum.photos/400/300" },
-    { "image": "https://picsum.photos/300/200" }
+    {
+      "image": "https://picsum.photos/200/300"
+    },
+    {
+      "image": "https://picsum.photos/300/300"
+    },
+    {
+      "image": "https://picsum.photos/400/200"
+    },
+    {
+      "image": "https://picsum.photos/500/500"
+    },
+    {
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "image": "https://picsum.photos/300/200"
+    }
   ]
 }

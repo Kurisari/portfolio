@@ -16,6 +16,11 @@
   "all_rights": "All rights reserved.",
   "skill": "Artificial Intelligence Engineer",
   "years_active": "Years active",
+  "cat_all": "All",
+  "cat_ai": "AI & ML",
+  "cat_web": "Web Dev",
+  "cat_algorithms": "Algorithms",
+  "cat_software": "Software",
   "cta_tag": "Let's connect",
   "cta_title": "Available for professional projects",
   "cta_desc": "Reach out for roles or formal collaborations."

@@ -92,6 +92,7 @@
             "icon": "book",
             "title": "Foráneos UP Dashboard",
             "subtitle": "Management and Analytics Platform for Foreign Students",
+            "category": "web",
             "description": "Developed a web platform to manage students, bulk upload data, track changes, and visualize real-time interactive analytics. Integrated Firebase for authentication and scalability.",
             "technologies": [
                 {
@@ -117,6 +118,7 @@
             "icon": "swords",
             "title": "Quixo Bot",
             "subtitle": "Data Structures and Algorithms Software",
+            "category": "algorithms",
             "description": "Developed a competitive Quixo bot using minimax with alpha-beta pruning, improved heuristics, and tested across scenarios for optimal strategy.",
             "technologies": [
                 {
@@ -130,6 +132,7 @@
             "icon": "brain",
             "title": "Kvasir-AI",
             "subtitle": "Deep Learning · Medical Imaging",
+            "category": "ai",
             "description": "Built a deep learning system for endoscopic image classification using ResNet18 and DenseNet121. Applied preprocessing (CLAHE, data augmentation) and Grad-CAM visualizations for interpretability. Achieved 88.75% accuracy with DenseNet121.",
             "technologies": [
                 {
@@ -147,6 +150,7 @@
             "icon": "box",
             "title": "Rubik's Cube Solver",
             "subtitle": "Data Structures and Algorithms Software",
+            "category": "algorithms",
             "description": "Implemented a 3x3x3 Rubik’s Cube solver using BFS, A*, and IDA*. Optimized efficiency to reduce moves and added visualization for usability.",
             "technologies": [
                 {
@@ -160,6 +164,7 @@
             "icon": "file-diff",
             "title": "File Compressor",
             "subtitle": "Data Structures and Algorithms Software",
+            "category": "algorithms",
             "description": "Built a Huffman coding-based tool to compress and decompress files, reducing file size by up to 20%, with a simple interface.",
             "technologies": [
                 {
@@ -173,6 +178,7 @@
             "icon": "gamepad-2",
             "title": "Mastermind",
             "subtitle": "Game",
+            "category": "software",
             "description": "Developed a color-combination logic game with feedback hints to enhance the user experience.",
             "technologies": [
                 {
@@ -186,6 +192,7 @@
             "icon": "regex",
             "title": "Modified RegEx",
             "subtitle": "Data Structures and Algorithms Software",
+            "category": "algorithms",
             "description": "Developed software to create and test regular expressions, optimized processing, and designed an interactive interface for real-time validation.",
             "technologies": [
                 {
@@ -199,6 +206,7 @@
             "icon": "navigation",
             "title": "Portfolio",
             "subtitle": "Website",
+            "category": "web",
             "description": "Developed and manage a personal portfolio using Next.js, TailwindCSS, Framer Motion, and Shadcn/UI to showcase projects, experience, and achievements. Integrated responsive design and animations for a modern professional presentation.",
             "technologies": [
                 {
@@ -230,6 +238,7 @@
             "icon": "navigation",
             "title": "Foreigner's Corner",
             "subtitle": "Website",
+            "category": "web",
             "description": "Designed a support website with FAQs for international students, improving accessibility and usability.",
             "technologies": [
                 {
@@ -244,6 +253,7 @@
             "icon": "navigation",
             "title": "Portfolio - OLD VERSION",
             "subtitle": "Website",
+            "category": "web",
             "description": "Developed and manage a personal portfolio using Python and the Reflex framework to showcase projects and achievements.",
             "technologies": [
                 {

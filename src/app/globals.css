@@ -147,11 +147,11 @@
 }
 
 .grid-fade {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  background-size: 120px 120px;
-  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.55), transparent 65%);
-  opacity: 0.25;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 100px 100px;
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.45), transparent 60%);
+  opacity: 0.18;
 }
 
 .gradient-text {
