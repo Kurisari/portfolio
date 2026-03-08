@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -77,6 +77,19 @@ export default function Home() {
   const [portfolio, setPortfolio] = useState<Portfolio | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [expandedProject, setExpandedProject] = useState<Project | null>(null);
+  const projectsSectionRef = useRef<HTMLElement>(null);
+  const [showFixedTabs, setShowFixedTabs] = useState(false);
+
+  useEffect(() => {
+    const section = projectsSectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowFixedTabs(entry.isIntersecting),
+      { rootMargin: "-49px 0px 0px 0px", threshold: 0 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [portfolio]);
 
   useEffect(() => {
     let active = true;
@@ -106,6 +119,15 @@ export default function Home() {
     return portfolio.projects.filter((p: Project) => p.category === activeCategory);
   }, [portfolio, activeCategory]);
 
+  const featuredProject = useMemo(
+    () => filteredProjects.find((p) => p.image),
+    [filteredProjects]
+  );
+  const remainingProjects = useMemo(
+    () => filteredProjects.filter((p) => p !== featuredProject),
+    [filteredProjects, featuredProject]
+  );
+
   // Lock body scroll when modal is open
   useEffect(() => {
     if (expandedProject) {
@@ -126,15 +148,15 @@ export default function Home() {
     : "bg-gradient-to-r from-red-500/10 to-pink-500/10";
 
   return (
-    <main className="relative min-h-screen overflow-hidden">
+    <main className="relative min-h-screen overflow-x-clip">
       <h1 className="sr-only">{portfolio.name} — {t("skill")}</h1>
 
       {/* Background */}
       <div className="pointer-events-none fixed inset-0 grid-fade" />
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(96,165,250,0.10),transparent_45%),radial-gradient(circle_at_80%_20%,rgba(168,85,247,0.08),transparent_45%),radial-gradient(circle_at_50%_80%,rgba(34,197,94,0.06),transparent_45%)]" />
 
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 glass-panel">
+      {/* Header + Fixed Category Tabs — unified */}
+      <header className={`fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/5`}>
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
           <a href="#" className="font-mono text-sm text-slate-500 hover:text-white transition">
             kurisari<span className="text-sky-400">.</span>dev
@@ -150,6 +172,53 @@ export default function Home() {
             <LanguageToggle />
           </div>
         </div>
+        <AnimatePresence>
+          {showFixedTabs && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="overflow-hidden"
+            >
+              <div className="mx-auto max-w-5xl px-6 pb-3">
+                <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
+                  {(["all", "ai", "web", "algorithms", "software"] as const).map((cat) => {
+                    const icons: Record<string, ReactNode> = {
+                      all: <Layers className="h-3.5 w-3.5" />,
+                      ai: <Brain className="h-3.5 w-3.5" />,
+                      web: <Globe className="h-3.5 w-3.5" />,
+                      algorithms: <Code2 className="h-3.5 w-3.5" />,
+                      software: <Cpu className="h-3.5 w-3.5" />,
+                    };
+                    const isActive = activeCategory === cat;
+                    const count = cat === "all"
+                      ? portfolio.projects.length
+                      : portfolio.projects.filter((p: Project) => p.category === cat).length;
+                    if (count === 0 && cat !== "all") return null;
+                    return (
+                      <button
+                        key={cat}
+                        onClick={() => setActiveCategory(cat)}
+                        className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full border px-4 py-2 text-xs font-medium transition-all shrink-0 ${
+                          isActive
+                            ? "border-sky-500/30 bg-sky-500/10 text-sky-300 shadow-[0_0_12px_rgba(56,189,248,0.1)]"
+                            : "border-white/5 bg-white/2 text-slate-500 hover:text-slate-300 hover:border-white/10"
+                        }`}
+                      >
+                        {icons[cat]}
+                        {t(`cat_${cat}`)}
+                        <span className={`ml-0.5 text-[10px] tabular-nums ${isActive ? "text-sky-400/60" : "text-slate-600"}`}>
+                          {count}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* Hero — full viewport */}
@@ -291,11 +360,11 @@ export default function Home() {
         </section>
 
         {/* Projects */}
-        <section id="projects" className="pb-20 md:pb-28">
+        <section id="projects" ref={projectsSectionRef} className="pb-20 md:pb-28">
           <SectionHeading>{t("projects")}</SectionHeading>
 
-          {/* Category Tabs */}
-          <div className="flex flex-wrap gap-2 mb-8">
+          {/* Inline Category Tabs (hidden when fixed bar is visible) */}
+          <div className={`flex items-center gap-2 overflow-x-auto no-scrollbar mb-6 transition-opacity duration-200 ${showFixedTabs ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
             {(["all", "ai", "web", "algorithms", "software"] as const).map((cat) => {
               const icons: Record<string, ReactNode> = {
                 all: <Layers className="h-3.5 w-3.5" />,
@@ -308,13 +377,14 @@ export default function Home() {
               const count = cat === "all"
                 ? portfolio.projects.length
                 : portfolio.projects.filter((p: Project) => p.category === cat).length;
+              if (count === 0 && cat !== "all") return null;
               return (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-medium transition-all ${
+                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full border px-4 py-2 text-xs font-medium transition-all shrink-0 ${
                     isActive
-                      ? "border-sky-500/30 bg-sky-500/10 text-sky-300"
+                      ? "border-sky-500/30 bg-sky-500/10 text-sky-300 shadow-[0_0_12px_rgba(56,189,248,0.1)]"
                       : "border-white/5 bg-white/2 text-slate-500 hover:text-slate-300 hover:border-white/10"
                   }`}
                 >
@@ -328,10 +398,84 @@ export default function Home() {
             })}
           </div>
 
-          {/* Project Cards */}
-          <motion.div layout className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {/* Featured Project */}
+          <AnimatePresence mode="popLayout">
+            {featuredProject && (
+              <motion.article
+                key={`featured-${featuredProject.title}`}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                onClick={() => setExpandedProject(featuredProject)}
+                className="group relative mt-6 cursor-pointer rounded-2xl border border-white/5 bg-white/2
+                  hover:border-white/15 transition-all backdrop-blur-sm overflow-hidden"
+              >
+                <div className="flex flex-col md:flex-row">
+                  {/* Image */}
+                  <div className="relative h-52 md:h-auto md:w-1/2 overflow-hidden">
+                    <Image
+                      src={featuredProject.image!}
+                      alt={featuredProject.title}
+                      fill
+                      className="object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-slate-950/60 via-transparent to-transparent md:bg-linear-to-r md:from-transparent md:via-transparent md:to-slate-950/40" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex flex-col justify-center p-6 md:w-1/2 md:p-8">
+                    <span className="inline-flex items-center gap-1.5 self-start rounded-full border border-sky-500/20 bg-sky-500/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-sky-400 mb-3">
+                      {featuredProject.category === "ai" && <Brain className="h-2.5 w-2.5" />}
+                      {featuredProject.category === "web" && <Globe className="h-2.5 w-2.5" />}
+                      {featuredProject.category === "algorithms" && <Code2 className="h-2.5 w-2.5" />}
+                      {featuredProject.category === "software" && <Cpu className="h-2.5 w-2.5" />}
+                      {t(`cat_${featuredProject.category}`)}
+                    </span>
+
+                    <h4 className="text-xl md:text-2xl font-bold text-slate-50">{featuredProject.title}</h4>
+                    <p className="text-xs font-mono text-slate-500 mt-1">{featuredProject.subtitle}</p>
+                    <p className="text-sm text-slate-400 mt-3 leading-relaxed line-clamp-3">{featuredProject.description}</p>
+
+                    {featuredProject.technologies && (
+                      <div className="mt-4 flex flex-wrap gap-1.5">
+                        {featuredProject.technologies.map((tech: Technology, idx: number) => (
+                          <span
+                            key={`${tech.name}-${idx}`}
+                            className="rounded-full border border-white/5 px-2.5 py-0.5 text-[11px] text-slate-400"
+                            style={{ background: `linear-gradient(135deg, ${techColor(tech.name)}10, transparent)` }}
+                          >
+                            {tech.name}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="mt-4 flex gap-3">
+                      {featuredProject.github && (
+                        <span className="inline-flex items-center gap-1.5 text-xs text-slate-500 group-hover:text-slate-300 transition">
+                          <Github className="h-3.5 w-3.5" /> {t("code")}
+                        </span>
+                      )}
+                      {featuredProject.url && (
+                        <span className="inline-flex items-center gap-1.5 text-xs text-slate-500 group-hover:text-sky-400 transition">
+                          <ExternalLink className="h-3.5 w-3.5" /> {t("preview")}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </motion.article>
+            )}
+          </AnimatePresence>
+
+          {/* Project Cards Grid */}
+          <motion.div layout className="grid gap-4 md:grid-cols-2 mt-4">
             <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project: Project, i: number) => (
+              {remainingProjects.map((project: Project, i: number) => (
                 <motion.article
                   key={project.title}
                   layout
@@ -340,17 +484,17 @@ export default function Home() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.25, delay: i * 0.03 }}
                   onClick={() => setExpandedProject(project)}
-                  className="group relative cursor-pointer rounded-2xl border border-white/5 bg-white/2 p-4 hover:border-white/15 transition-all backdrop-blur-sm"
+                  className="group relative cursor-pointer rounded-2xl border border-white/5 bg-white/2 p-5 hover:border-white/15 transition-all backdrop-blur-sm"
                 >
                   {project.image && (
-                    <div className="relative mb-3.5 h-36 w-full overflow-hidden rounded-xl border border-white/5">
+                    <div className="relative mb-4 h-40 w-full overflow-hidden rounded-xl border border-white/5">
                       <Image
                         src={project.image}
                         alt={project.title}
                         fill
                         className="object-cover object-top transition duration-500 group-hover:scale-[1.03]"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        priority={i < 3}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        priority={i < 2}
                       />
                     </div>
                   )}
@@ -370,7 +514,7 @@ export default function Home() {
                   <p className="text-sm text-slate-400 mt-2 leading-relaxed line-clamp-2">{project.description}</p>
 
                   {project.technologies && (
-                    <div className="mt-3 flex flex-wrap gap-1">
+                    <div className="mt-3.5 flex flex-wrap gap-1.5">
                       {project.technologies.slice(0, 4).map((tech: Technology, idx: number) => (
                         <span
                           key={`${tech.name}-${idx}`}
@@ -388,14 +532,14 @@ export default function Home() {
                     </div>
                   )}
 
-                  <div className="mt-3 flex gap-2">
+                  <div className="mt-3.5 flex gap-3">
                     {project.github && (
-                      <span className="inline-flex items-center gap-1 text-[10px] text-slate-600">
+                      <span className="inline-flex items-center gap-1.5 text-[11px] text-slate-600 group-hover:text-slate-400 transition">
                         <Github className="h-3 w-3" /> {t("code")}
                       </span>
                     )}
                     {project.url && (
-                      <span className="inline-flex items-center gap-1 text-[10px] text-slate-600">
+                      <span className="inline-flex items-center gap-1.5 text-[11px] text-slate-600 group-hover:text-sky-400/70 transition">
                         <ExternalLink className="h-3 w-3" /> {t("preview")}
                       </span>
                     )}

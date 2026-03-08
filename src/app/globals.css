@@ -180,3 +180,21 @@
 .float-fast {
   animation: float 3.5s ease-in-out infinite;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.sticky-tabs {
+  background: linear-gradient(to bottom, rgba(3, 7, 18, 0.95) 60%, rgba(3, 7, 18, 0.80));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
