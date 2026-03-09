@@ -6,7 +6,7 @@
   "name": "Cristian Aragón Salazar",
   "skill": "Artificial Intelligence Engineer",
   "location": "Aguascalientes, Mexico",
-  "isAvailable": false,
+  "isAvailable": true,
   "media": {
     "email": "crisarag8.sal@gmail.com",
     "cv": "/data/cv.pdf",
