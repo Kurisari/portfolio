@@ -79,6 +79,13 @@
     "experience": [
         {
             "icon": "user",
+            "title": "Universidad Panamericana Student Council",
+            "subtitle": "Active Member",
+            "description": "Active member of the student council at Universidad Panamericana, collaborating on student initiatives, representation, and campus improvement efforts.",
+            "date": "Jan 2026 - Present"
+        },
+        {
+            "icon": "user",
             "title": "Foráneos UP",
             "subtitle": "President",
             "description": "Guided and supervised team operations, promoted collaboration, and fostered an efficient work environment aligned with objectives.",

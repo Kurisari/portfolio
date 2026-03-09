@@ -7,6 +7,13 @@
   "about": "Soy un Ingeniero en Inteligencia Artificial con experiencia en desarrollo de software y aplicaciones web. Apasionado por la tecnología y la programación, comprometido con el aprendizaje continuo y los nuevos retos. Soy proactivo, responsable y dedicado a mi trabajo.",
   "experience": [
     {
+      "icon": "user",
+      "title": "Consejo de Alumnos de la Universidad Panamericana",
+      "subtitle": "Miembro Activo",
+      "description": "Miembro activo del consejo de alumnos de la Universidad Panamericana, colaborando en iniciativas estudiantiles, representación y mejora del campus.",
+      "date": "Ene 2026 - Presente"
+    },
+    {
       "icon": "app-window-mac",
       "title": "nohuman",
       "subtitle": "Desarrollador de Software en Prácticas",
