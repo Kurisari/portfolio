@@ -5,7 +5,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "devicon/devicon.min.css";
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n";
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

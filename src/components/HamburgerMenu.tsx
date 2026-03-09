@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Menu } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 
 export default function HamburgerMenu() {

@@ -10,7 +10,6 @@ import LanguageToggle from "@/components/LanguageToggle";
 import HamburgerMenu from "@/components/HamburgerMenu";
 import Image from "next/image";
 import {
-  ExternalLink,
   Github,
   Linkedin,
   FileText,
