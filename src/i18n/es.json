@@ -23,5 +23,9 @@
   "cat_software": "Software",
   "cta_tag": "Contacto",
   "cta_title": "Disponible para proyectos profesionales",
-  "cta_desc": "Escríbeme para roles u oportunidades formales."
+  "cta_desc": "Escríbeme para roles u oportunidades formales.",
+  "view_all_projects": "Ver todos los proyectos",
+  "all_projects": "Todos los Proyectos",
+  "projects_desc": "Una colección de todos los proyectos que he construido — desde IA y desarrollo web hasta algoritmos y software.",
+  "back_home": "Volver al inicio"
 }

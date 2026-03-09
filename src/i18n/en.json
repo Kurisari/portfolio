@@ -23,5 +23,9 @@
   "cat_software": "Software",
   "cta_tag": "Let's connect",
   "cta_title": "Available for professional projects",
-  "cta_desc": "Reach out for roles or formal collaborations."
+  "cta_desc": "Reach out for roles or formal collaborations.",
+  "view_all_projects": "View all projects",
+  "all_projects": "All Projects",
+  "projects_desc": "A collection of all the projects I've built — from AI and web development to algorithms and software.",
+  "back_home": "Back to home"
 }

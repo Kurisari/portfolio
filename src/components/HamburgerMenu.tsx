@@ -15,10 +15,10 @@ export default function HamburgerMenu() {
   }, []);
 
   const menuItems = [
-    { label: t("projects"), href: "#projects" },
-    { label: t("experience"), href: "#experience" },
-    { label: t("training"), href: "#training" },
-    { label: t("extras"), href: "#extras" },
+    { label: t("projects"), href: "/projects" },
+    { label: t("experience"), href: "/#experience" },
+    { label: t("training"), href: "/#training" },
+    { label: t("extras"), href: "/#extras" },
   ];
 
   const handleNavClick = () => {
