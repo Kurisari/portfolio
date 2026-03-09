@@ -236,6 +236,120 @@
             "tags": ["algorithms"]
         },
         {
+            "id": "b-tree",
+            "icon": "git-branch",
+            "title": "B-Tree",
+            "subtitle": "Data Structures",
+            "category": "algorithms",
+            "description": "Implementation of a B-Tree structure in Python focused on insertion, balancing, and efficient search operations.",
+            "technologies": [
+                {
+                    "icon": "devicon-python-plain",
+                    "name": "Python"
+                }
+            ],
+            "github": "https://github.com/Kurisari/B-Tree",
+            "priority": 28,
+            "tags": ["algorithms", "data-structures"]
+        },
+        {
+            "id": "numerical-methods",
+            "icon": "calculator",
+            "title": "Numerical Methods",
+            "subtitle": "Scientific Computing Toolkit",
+            "category": "algorithms",
+            "description": "Collection of numerical analysis methods implemented in Python for approximation, interpolation, and equation solving.",
+            "technologies": [
+                {
+                    "icon": "devicon-python-plain",
+                    "name": "Python"
+                }
+            ],
+            "github": "https://github.com/Kurisari/numerical_methods",
+            "priority": 27,
+            "tags": ["algorithms", "math"]
+        },
+        {
+            "id": "digits-recognition",
+            "icon": "scan-line",
+            "title": "Digits Recognition",
+            "subtitle": "Computer Vision · Deep Learning",
+            "category": "ai",
+            "description": "Deep learning experiment for handwritten digit recognition using image preprocessing and neural network training pipelines.",
+            "technologies": [
+                {
+                    "icon": "devicon-python-plain",
+                    "name": "Python"
+                },
+                {
+                    "icon": "devicon-pytorch-plain",
+                    "name": "PyTorch"
+                }
+            ],
+            "github": "https://github.com/Kurisari/Digits-Recognition",
+            "priority": 58,
+            "tags": ["ai", "computer-vision"]
+        },
+        {
+            "id": "animal-identifier",
+            "icon": "paw-print",
+            "title": "Animal Identifier",
+            "subtitle": "Computer Vision Classifier",
+            "category": "ai",
+            "description": "Image classification project to identify animal classes from visual inputs using notebook-based model experimentation.",
+            "technologies": [
+                {
+                    "icon": "devicon-python-plain",
+                    "name": "Python"
+                },
+                {
+                    "icon": "devicon-pytorch-plain",
+                    "name": "PyTorch"
+                }
+            ],
+            "github": "https://github.com/Kurisari/IdentificadorAnimal",
+            "priority": 54,
+            "tags": ["ai", "computer-vision"]
+        },
+        {
+            "id": "mx-banknote-detection",
+            "icon": "scan",
+            "title": "MX Banknote Detection",
+            "subtitle": "Computer Vision · Deep Learning",
+            "category": "ai",
+            "description": "Trained and evaluated a CNN pipeline to detect and classify Mexican banknotes using PyTorch and OpenCV.",
+            "technologies": [
+                {
+                    "icon": "devicon-python-plain",
+                    "name": "Python"
+                },
+                {
+                    "icon": "devicon-pytorch-plain",
+                    "name": "PyTorch"
+                }
+            ],
+            "github": "https://github.com/Kurisari/MX-Banknote-Detection",
+            "priority": 62,
+            "tags": ["ai", "computer-vision", "featured"]
+        },
+        {
+            "id": "stm32f401re-oscilloscope",
+            "icon": "cpu",
+            "title": "STM32F401RE Oscilloscope",
+            "subtitle": "Embedded Systems · STM32",
+            "category": "software",
+            "description": "Built a simple oscilloscope for STM32F401RE with ADC sampling, buffering, and real-time signal visualization.",
+            "technologies": [
+                {
+                    "icon": "devicon-c-plain",
+                    "name": "C"
+                }
+            ],
+            "github": "https://github.com/Kurisari/oscilloscope-stm32f401re",
+            "priority": 52,
+            "tags": ["software", "embedded"]
+        },
+        {
             "id": "portfolio-next",
             "icon": "navigation",
             "title": "Portfolio",
@@ -408,6 +522,7 @@
                     "name": "Vite"
                 }
             ],
+            "github": "https://github.com/Kurisari/generador-boletos",
             "priority": 80,
             "tags": ["web", "university", "recent", "home"]
         }

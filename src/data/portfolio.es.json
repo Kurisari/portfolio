@@ -76,6 +76,30 @@
       "description": "Desarrollé software para crear y probar expresiones regulares, optimicé el procesamiento y diseñé una interfaz interactiva para validación en tiempo real."
     },
     {
+      "id": "b-tree",
+      "title": "Árbol B",
+      "subtitle": "Estructuras de Datos",
+      "description": "Implementación de una estructura Árbol B en Python enfocada en inserción, balanceo y búsquedas eficientes."
+    },
+    {
+      "id": "numerical-methods",
+      "title": "Métodos Numéricos",
+      "subtitle": "Toolkit de Cómputo Científico",
+      "description": "Colección de métodos de análisis numérico implementados en Python para aproximación, interpolación y resolución de ecuaciones."
+    },
+    {
+      "id": "digits-recognition",
+      "title": "Reconocimiento de Dígitos",
+      "subtitle": "Visión por Computadora · Deep Learning",
+      "description": "Experimento de deep learning para reconocimiento de dígitos manuscritos usando preprocesamiento de imágenes y entrenamiento de redes neuronales."
+    },
+    {
+      "id": "animal-identifier",
+      "title": "Identificador de Animales",
+      "subtitle": "Clasificador de Visión por Computadora",
+      "description": "Proyecto de clasificación de imágenes para identificar clases de animales mediante experimentación de modelos en notebooks."
+    },
+    {
       "id": "mx-banknote-detection",
       "title": "Detección de Billetes MX",
       "subtitle": "Visión por Computadora · Machine Learning",
