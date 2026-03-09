@@ -225,43 +225,54 @@ export default function Home() {
       {/* Content */}
       <div className="mx-auto max-w-5xl px-6">
 
-        {/* Stats */}
+        {/* Highlights */}
         <section className="py-20 md:py-28">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {latestExperience && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
-                className="col-span-2 rounded-2xl border border-white/5 bg-white/2 p-5 backdrop-blur-sm"
-              >
-                <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-slate-600 mb-3">
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.35 }}
+            className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.05] via-white/[0.025] to-transparent p-6 md:p-8 backdrop-blur-sm"
+          >
+            <div className="grid gap-8 md:grid-cols-[1.1fr_1fr] md:items-end">
+              <div>
+                <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-sky-400/20 bg-sky-500/10 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-sky-300">
                   <Terminal className="h-3 w-3" />
                   <span>{t("experience")}</span>
                 </div>
-                <p className="text-base font-semibold text-slate-100">{latestExperience.title}</p>
-                <p className="text-sm text-slate-400 mt-0.5">{latestExperience.subtitle}</p>
-                <p className="text-[11px] text-slate-600 font-mono mt-1.5">{latestExperience.date}</p>
-              </motion.div>
-            )}
-            {quickStats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}
-                className="rounded-2xl border border-white/5 bg-white/2 p-5 text-center backdrop-blur-sm"
-              >
-                <div className="mx-auto mb-2.5 flex h-8 w-8 items-center justify-center rounded-lg bg-white/4 text-sky-400/60">
-                  {stat.icon}
-                </div>
-                <p className="text-2xl font-bold text-slate-100 font-mono tabular-nums">{stat.value}</p>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-slate-600 mt-1">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
+                {latestExperience ? (
+                  <>
+                    <h4 className="text-xl md:text-2xl font-semibold text-slate-100">
+                      {latestExperience.title}
+                    </h4>
+                    <p className="text-sm text-slate-400 mt-1">{latestExperience.subtitle}</p>
+                    <p className="text-xs font-mono text-slate-500 mt-3">{latestExperience.date}</p>
+                  </>
+                ) : (
+                  <p className="text-sm text-slate-500">{t("experience")}</p>
+                )}
+              </div>
+
+              <div className="grid grid-cols-2 gap-x-5 gap-y-5">
+                {quickStats.map((stat, i) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.25, delay: 0.05 + i * 0.06 }}
+                    className="border-b border-white/10 pb-2"
+                  >
+                    <div className="mb-1.5 flex items-center gap-2 text-slate-500">
+                      {stat.icon}
+                      <span className="text-[10px] uppercase tracking-[0.15em]">{stat.label}</span>
+                    </div>
+                    <p className="text-2xl font-mono font-bold tabular-nums text-slate-100">{stat.value}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </section>
 
         {/* Stack & Tools */}

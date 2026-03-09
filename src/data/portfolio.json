@@ -62,6 +62,18 @@
         {
             "icon": "devicon-reflex-plain",
             "name": "Reflex"
+        },
+        {
+            "icon": "devicon-supabase-plain",
+            "name": "Supabase"
+        },
+        {
+            "icon": "devicon-vitejs-plain",
+            "name": "Vite"
+        },
+        {
+            "icon": "devicon-astro-plain",
+            "name": "Astro"
         }
     ],
     "experience": [
