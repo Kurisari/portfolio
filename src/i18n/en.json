@@ -27,5 +27,9 @@
   "view_all_projects": "View all projects",
   "all_projects": "All Projects",
   "projects_desc": "A collection of all the projects I've built — from AI and web development to algorithms and software.",
-  "back_home": "Back to home"
+  "projects_category_desc": "A curated selection of projects in this category.",
+  "back_home": "Back to home",
+  "back_projects": "Back to projects",
+  "brands_title": "Brands and Companies",
+  "brands_subtitle": "Selected collaborations"
 }

@@ -97,6 +97,31 @@
       "title": "Portafolio - VERSIÓN ANTIGUA",
       "subtitle": "Sitio Web",
       "description": "Desarrollé y mantengo un portafolio personal usando Python y el framework Reflex para mostrar proyectos y logros."
+    },
+    {
+      "title": "Notaria 71 Aguascalientes",
+      "subtitle": "Sitio Web Corporativo",
+      "description": "Diseñé y desarrollé el sitio web público de Notaria 71 en Aguascalientes con información de servicios, contacto y una navegación clara centrada en el usuario."
+    },
+    {
+      "title": "Burkle Fumigaciones",
+      "subtitle": "Sitio Web Empresarial",
+      "description": "Construí y publiqué el sitio oficial de Burkle Fumigaciones para mejorar confianza, captación de clientes y visibilidad de servicios con una experiencia responsiva moderna."
+    },
+    {
+      "title": "Garbon Albercas",
+      "subtitle": "Sitio Web Empresarial",
+      "description": "Desarrollé el sitio web de Garbon, empresa de mantenimiento de albercas, enfocado en mostrar servicios, estructura orientada a conversión y usabilidad móvil."
+    },
+    {
+      "title": "Collector's Vault Store",
+      "subtitle": "Tienda en Línea",
+      "description": "Implementé una tienda online para Collector's Vault con un flujo de compra pulido, catálogo responsivo y una experiencia visual alineada con la marca."
+    },
+    {
+      "title": "Sistema de Boletinaje UP",
+      "subtitle": "Plataforma Universitaria de Boletos",
+      "description": "Desarrollé el concepto de una plataforma de boletinaje para la Universidad Panamericana para gestionar registros a eventos, emisión de boletos y control de asistencia."
     }
   ],
   "training": [

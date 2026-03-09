@@ -341,6 +341,115 @@
       "image": "/portafolio.png",
       "github": "https://github.com/Kurisari/portafolio-old",
       "url": "https://cristian-old-version.vercel.app"
+    },
+    {
+      "icon": "building-2",
+      "title": "Notaria 71 Aguascalientes",
+      "subtitle": "Corporate Website",
+      "category": "web",
+      "description": "Designed and developed the public website for Notaria 71 in Aguascalientes with service information, contact flows, and a clear user-first navigation structure.",
+      "technologies": [
+        {
+          "icon": "devicon-html5-plain",
+          "name": "HTML"
+        },
+        {
+          "icon": "devicon-css3-plain",
+          "name": "CSS"
+        },
+        {
+          "icon": "devicon-javascript-plain",
+          "name": "JavaScript"
+        }
+      ],
+      "url": "https://notaria71ags.com"
+    },
+    {
+      "icon": "shield-check",
+      "title": "Burkle Fumigaciones",
+      "subtitle": "Business Website",
+      "category": "web",
+      "description": "Built and launched the official website for Burkle Fumigaciones to improve trust, lead generation, and service visibility through a modern responsive experience.",
+      "technologies": [
+        {
+          "icon": "devicon-html5-plain",
+          "name": "HTML"
+        },
+        {
+          "icon": "devicon-css3-plain",
+          "name": "CSS"
+        },
+        {
+          "icon": "devicon-javascript-plain",
+          "name": "JavaScript"
+        }
+      ],
+      "url": "https://burklefumigaciones.com"
+    },
+    {
+      "icon": "waves",
+      "title": "Garbon Albercas",
+      "subtitle": "Business Website",
+      "category": "web",
+      "description": "Developed the website for Garbon, a pool maintenance company, focused on service presentation, conversion-oriented structure, and mobile-first usability.",
+      "technologies": [
+        {
+          "icon": "devicon-html5-plain",
+          "name": "HTML"
+        },
+        {
+          "icon": "devicon-css3-plain",
+          "name": "CSS"
+        },
+        {
+          "icon": "devicon-javascript-plain",
+          "name": "JavaScript"
+        }
+      ],
+      "url": "https://garbon.com.mx"
+    },
+    {
+      "icon": "shopping-bag",
+      "title": "Collector's Vault Store",
+      "subtitle": "E-commerce Website",
+      "category": "web",
+      "description": "Implemented an online store for Collector's Vault with a polished shopping flow, responsive product browsing, and a brand-focused visual experience.",
+      "technologies": [
+        {
+          "icon": "devicon-react-original",
+          "name": "React"
+        },
+        {
+          "icon": "devicon-javascript-plain",
+          "name": "JavaScript"
+        },
+        {
+          "icon": "devicon-css3-plain",
+          "name": "CSS"
+        }
+      ],
+      "url": "https://thecollectorsvault.com.mx"
+    },
+    {
+      "icon": "ticket",
+      "title": "UP Ticketing System",
+      "subtitle": "University Ticketing Platform",
+      "category": "web",
+      "description": "Developed a ticketing platform concept for Universidad Panamericana to manage event registrations, issuance, and attendance workflows in one system.",
+      "technologies": [
+        {
+          "icon": "devicon-react-original",
+          "name": "React"
+        },
+        {
+          "icon": "devicon-firebase-plain",
+          "name": "Firebase"
+        },
+        {
+          "icon": "devicon-javascript-plain",
+          "name": "JavaScript"
+        }
+      ]
     }
   ],
   "training": [
