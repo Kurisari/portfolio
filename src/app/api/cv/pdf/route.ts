@@ -171,7 +171,7 @@ export async function GET(request: NextRequest) {
   }
 
   const pdfBytes = await pdfDoc.save();
-  const body = pdfBytes.buffer.slice(pdfBytes.byteOffset, pdfBytes.byteOffset + pdfBytes.byteLength);
+  const body = new Blob([pdfBytes], { type: "application/pdf" });
   const filename = `cv-${portfolio.name.toLowerCase().replace(/\s+/g, "-")}-${lang}.pdf`;
 
   return new NextResponse(body, {
