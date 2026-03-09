@@ -17,7 +17,12 @@ import {
 } from "lucide-react";
 import { N8n } from "@lobehub/icons";
 import { useI18n } from "@/lib/i18n";
-import { loadPortfolio, type Portfolio } from "@/lib/portfolio";
+import {
+  hasProjectTag,
+  loadPortfolio,
+  sortProjectsByPriority,
+  type Portfolio,
+} from "@/lib/portfolio";
 import LanguageToggle from "@/components/LanguageToggle";
 import HamburgerMenu from "@/components/HamburgerMenu";
 
@@ -33,6 +38,9 @@ const techColor = (name: string): string => {
     "Next.js": "#000000",
     TailwindCSS: "#38BDF8",
     "Framer Motion": "#E10098",
+    Astro: "#FF5D01",
+    "Shopify Headless": "#95BF47",
+    Vite: "#646CFF",
     "Shadcn/UI": "#9333EA",
     Python: "#3776AB",
     "C++": "#00599C",
@@ -125,11 +133,17 @@ export default function ProjectsShowcase({ category = "all" }: { category?: Cate
 
   const filteredProjects = useMemo(() => {
     if (!portfolio) return [];
-    if (category === "all") return portfolio.projects;
-    return portfolio.projects.filter((project: Project) => project.category === category);
+    const source = category === "all"
+      ? portfolio.projects
+      : portfolio.projects.filter((project: Project) => project.category === category);
+    return sortProjectsByPriority(source);
   }, [portfolio, category]);
 
-  const featuredProject = useMemo(() => filteredProjects.find((project) => project.image), [filteredProjects]);
+  const featuredProject = useMemo(() => {
+    const byTag = filteredProjects.find((project) => hasProjectTag(project, "featured"));
+    if (byTag) return byTag;
+    return filteredProjects.find((project) => project.image);
+  }, [filteredProjects]);
   const remainingProjects = useMemo(
     () => filteredProjects.filter((project) => project !== featuredProject),
     [filteredProjects, featuredProject]

@@ -5,7 +5,12 @@ import Link from "next/link";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
-import { loadPortfolio, type Portfolio } from "@/lib/portfolio";
+import {
+  loadPortfolio,
+  selectProjectsByTag,
+  sortProjectsByPriority,
+  type Portfolio,
+} from "@/lib/portfolio";
 import LanguageToggle from "@/components/LanguageToggle";
 import HamburgerMenu from "@/components/HamburgerMenu";
 import Image from "next/image";
@@ -42,6 +47,9 @@ const techColor = (name: string): string => {
     "Next.js": "#000000",
     TailwindCSS: "#38BDF8",
     "Framer Motion": "#E10098",
+    Astro: "#FF5D01",
+    "Shopify Headless": "#95BF47",
+    Vite: "#646CFF",
     "Shadcn/UI": "#9333EA",
     Python: "#3776AB",
     "C++": "#00599C",
@@ -98,10 +106,12 @@ export default function Home() {
     [portfolio, t]
   );
 
-  const latestProjects = useMemo(
-    () => portfolio?.projects.slice(0, 3) ?? [],
-    [portfolio]
-  );
+  const latestProjects = useMemo(() => {
+    if (!portfolio) return [];
+    const taggedForHome = selectProjectsByTag(portfolio.projects, "home", 3);
+    if (taggedForHome.length > 0) return taggedForHome;
+    return sortProjectsByPriority(portfolio.projects).slice(0, 3);
+  }, [portfolio]);
 
   if (!portfolio) return null;
 

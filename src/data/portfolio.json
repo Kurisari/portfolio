@@ -89,6 +89,7 @@
     ],
     "projects": [
         {
+            "id": "foraneos-up-dashboard",
             "icon": "book",
             "title": "Foráneos UP Dashboard",
             "subtitle": "Management and Analytics Platform for Foreign Students",
@@ -112,9 +113,12 @@
                     "name": "JavaScript"
                 }
             ],
-            "image": "/fup.png"
+            "image": "/fup.png",
+            "priority": 40,
+            "tags": ["web", "dashboard"]
         },
         {
+            "id": "quixo-bot",
             "icon": "swords",
             "title": "Quixo Bot",
             "subtitle": "Data Structures and Algorithms Software",
@@ -126,9 +130,12 @@
                     "name": "Python"
                 }
             ],
-            "github": "https://github.com/Kurisari/quixo-bot"
+            "github": "https://github.com/Kurisari/quixo-bot",
+            "priority": 30,
+            "tags": ["algorithms"]
         },
         {
+            "id": "kvasir-ai",
             "icon": "brain",
             "title": "Kvasir-AI",
             "subtitle": "Deep Learning · Medical Imaging",
@@ -144,9 +151,12 @@
                     "name": "PyTorch"
                 }
             ],
-            "github": "https://github.com/Kurisari/Kvasir-AI"
+            "github": "https://github.com/Kurisari/Kvasir-AI",
+            "priority": 60,
+            "tags": ["ai", "featured"]
         },
         {
+            "id": "rubiks-cube-solver",
             "icon": "box",
             "title": "Rubik's Cube Solver",
             "subtitle": "Data Structures and Algorithms Software",
@@ -158,9 +168,12 @@
                     "name": "Python"
                 }
             ],
-            "github": "https://github.com/Kurisari/Rubik-s-Cube-Solver"
+            "github": "https://github.com/Kurisari/Rubik-s-Cube-Solver",
+            "priority": 35,
+            "tags": ["algorithms", "featured"]
         },
         {
+            "id": "file-compressor",
             "icon": "file-diff",
             "title": "File Compressor",
             "subtitle": "Data Structures and Algorithms Software",
@@ -172,9 +185,12 @@
                     "name": "Python"
                 }
             ],
-            "github": "https://github.com/Kurisari/Compresor_Archivos"
+            "github": "https://github.com/Kurisari/Compresor_Archivos",
+            "priority": 25,
+            "tags": ["algorithms"]
         },
         {
+            "id": "mastermind",
             "icon": "gamepad-2",
             "title": "Mastermind",
             "subtitle": "Game",
@@ -186,9 +202,12 @@
                     "name": "C++"
                 }
             ],
-            "github": "https://github.com/Kurisari/Mastermind_CPP"
+            "github": "https://github.com/Kurisari/Mastermind_CPP",
+            "priority": 20,
+            "tags": ["software", "featured"]
         },
         {
+            "id": "modified-regex",
             "icon": "regex",
             "title": "Modified RegEx",
             "subtitle": "Data Structures and Algorithms Software",
@@ -200,9 +219,12 @@
                     "name": "Python"
                 }
             ],
-            "github": "https://github.com/Kurisari/RegEx-Modificado"
+            "github": "https://github.com/Kurisari/RegEx-Modificado",
+            "priority": 22,
+            "tags": ["algorithms"]
         },
         {
+            "id": "portfolio-next",
             "icon": "navigation",
             "title": "Portfolio",
             "subtitle": "Website",
@@ -232,9 +254,12 @@
             ],
             "image": "/portfolio-new.png",
             "github": "https://github.com/Kurisari/portfolio",
-            "url": "https://www.kurisari.dev"
+            "url": "https://www.kurisari.dev",
+            "priority": 55,
+            "tags": ["web", "featured"]
         },
         {
+            "id": "foreigners-corner",
             "icon": "navigation",
             "title": "Foreigner's Corner",
             "subtitle": "Website",
@@ -247,9 +272,12 @@
                 }
             ],
             "image": "/foreigners-corner.png",
-            "url": "https://foreigners-corner-up-ags.odoo.com/"
+            "url": "https://foraneosup.com/",
+            "priority": 45,
+            "tags": ["web"]
         },
         {
+            "id": "portfolio-old",
             "icon": "navigation",
             "title": "Portfolio - OLD VERSION",
             "subtitle": "Website",
@@ -263,9 +291,12 @@
             ],
             "image": "/portafolio.png",
             "github": "https://github.com/Kurisari/portafolio-old",
-            "url": "https://cristian-old-version.vercel.app"
+            "url": "https://cristian-old-version.vercel.app",
+            "priority": 10,
+            "tags": ["web", "legacy"]
         },
         {
+            "id": "notaria-71-ags",
             "icon": "building-2",
             "title": "Notaria 71 Aguascalientes",
             "subtitle": "Corporate Website",
@@ -273,21 +304,17 @@
             "description": "Designed and developed the public website for Notaria 71 in Aguascalientes with service information, contact flows, and a clear user-first navigation structure.",
             "technologies": [
                 {
-                    "icon": "devicon-html5-plain",
-                    "name": "HTML"
-                },
-                {
-                    "icon": "devicon-css3-plain",
-                    "name": "CSS"
-                },
-                {
-                    "icon": "devicon-javascript-plain",
-                    "name": "JavaScript"
+                    "icon": "devicon-astro-plain",
+                    "name": "Astro"
                 }
             ],
-            "url": "https://notaria71ags.com"
+            "image": "/notaria71web.png",
+            "url": "https://notaria71ags.com",
+            "priority": 100,
+            "tags": ["web", "client", "recent", "home", "featured"]
         },
         {
+            "id": "burkle-fumigaciones",
             "icon": "shield-check",
             "title": "Burkle Fumigaciones",
             "subtitle": "Business Website",
@@ -295,21 +322,17 @@
             "description": "Built and launched the official website for Burkle Fumigaciones to improve trust, lead generation, and service visibility through a modern responsive experience.",
             "technologies": [
                 {
-                    "icon": "devicon-html5-plain",
-                    "name": "HTML"
-                },
-                {
-                    "icon": "devicon-css3-plain",
-                    "name": "CSS"
-                },
-                {
-                    "icon": "devicon-javascript-plain",
-                    "name": "JavaScript"
+                    "icon": "devicon-astro-plain",
+                    "name": "Astro"
                 }
             ],
-            "url": "https://burklefumigaciones.com"
+            "image": "/burkleweb.png",
+            "url": "https://burklefumigaciones.com",
+            "priority": 95,
+            "tags": ["web", "client", "recent", "home"]
         },
         {
+            "id": "garbon-albercas",
             "icon": "waves",
             "title": "Garbon Albercas",
             "subtitle": "Business Website",
@@ -329,9 +352,13 @@
                     "name": "JavaScript"
                 }
             ],
-            "url": "https://garbon.com.mx"
+            "image": "/garbonweb.png",
+            "url": "https://garbon.com.mx",
+            "priority": 90,
+            "tags": ["web", "client", "recent", "home"]
         },
         {
+            "id": "collectors-vault-store",
             "icon": "shopping-bag",
             "title": "Collector's Vault Store",
             "subtitle": "E-commerce Website",
@@ -339,21 +366,21 @@
             "description": "Implemented an online store for Collector's Vault with a polished shopping flow, responsive product browsing, and a brand-focused visual experience.",
             "technologies": [
                 {
-                    "icon": "devicon-react-original",
-                    "name": "React"
+                    "icon": "devicon-nextjs-plain",
+                    "name": "Next.js"
                 },
                 {
-                    "icon": "devicon-javascript-plain",
-                    "name": "JavaScript"
-                },
-                {
-                    "icon": "devicon-css3-plain",
-                    "name": "CSS"
+                    "icon": "devicon-shopify-plain",
+                    "name": "Shopify Headless"
                 }
             ],
-            "url": "https://thecollectorsvault.com.mx"
+            "image": "/collectorsweb.png",
+            "url": "https://thecollectorsvault.com.mx",
+            "priority": 85,
+            "tags": ["web", "client", "recent", "home"]
         },
         {
+            "id": "up-ticketing-system",
             "icon": "ticket",
             "title": "UP Ticketing System",
             "subtitle": "University Ticketing Platform",
@@ -365,14 +392,12 @@
                     "name": "React"
                 },
                 {
-                    "icon": "devicon-firebase-plain",
-                    "name": "Firebase"
-                },
-                {
-                    "icon": "devicon-javascript-plain",
-                    "name": "JavaScript"
+                    "icon": "devicon-vitejs-plain",
+                    "name": "Vite"
                 }
-            ]
+            ],
+            "priority": 80,
+            "tags": ["web", "university", "recent", "home"]
         }
     ],
     "training": [
