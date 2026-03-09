@@ -448,8 +448,16 @@
             "description": "Built and launched the official website for Burkle Fumigaciones to improve trust, lead generation, and service visibility through a modern responsive experience.",
             "technologies": [
                 {
-                    "icon": "devicon-astro-plain",
-                    "name": "Astro"
+                    "icon": "devicon-html5-plain",
+                    "name": "HTML"
+                },
+                {
+                    "icon": "devicon-css3-plain",
+                    "name": "CSS"
+                },
+                {
+                    "icon": "devicon-javascript-plain",
+                    "name": "JavaScript"
                 }
             ],
             "image": "/burkleweb.png",
@@ -466,16 +474,8 @@
             "description": "Developed the website for Garbon, a pool maintenance company, focused on service presentation, conversion-oriented structure, and mobile-first usability.",
             "technologies": [
                 {
-                    "icon": "devicon-html5-plain",
-                    "name": "HTML"
-                },
-                {
-                    "icon": "devicon-css3-plain",
-                    "name": "CSS"
-                },
-                {
-                    "icon": "devicon-javascript-plain",
-                    "name": "JavaScript"
+                    "icon": "devicon-astro-plain",
+                    "name": "Astro"
                 }
             ],
             "image": "/garbonweb.png",
