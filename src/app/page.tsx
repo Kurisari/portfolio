@@ -193,7 +193,7 @@ export default function Home() {
             {[
               { href: portfolio.media.github, icon: <Github className="h-4 w-4" />, label: t("github"), external: true },
               { href: portfolio.media.likedin, icon: <Linkedin className="h-4 w-4" />, label: t("linkedin"), external: true },
-              { href: portfolio.media.cv, icon: <FileText className="h-4 w-4" />, label: t("cv"), external: true },
+              { href: `/cv/${lang}?download=1`, icon: <FileText className="h-4 w-4" />, label: t("cv"), external: true },
               { href: `mailto:${portfolio.media.email}`, icon: <Mail className="h-4 w-4" />, label: t("email"), external: false },
             ].map((link) => (
               <a
