@@ -171,10 +171,11 @@ export async function GET(request: NextRequest) {
   }
 
   const pdfBytes = await pdfDoc.save();
-  const body = new Blob([pdfBytes], { type: "application/pdf" });
+  // Normalize to an ArrayBuffer-backed view to satisfy strict BodyInit typings on Node 24.
+  const normalizedBytes = Uint8Array.from(pdfBytes);
   const filename = `cv-${portfolio.name.toLowerCase().replace(/\s+/g, "-")}-${lang}.pdf`;
 
-  return new NextResponse(body, {
+  return new NextResponse(normalizedBytes, {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": `attachment; filename="${filename}"`,
