@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PDFDocument, PDFName, PDFString, StandardFonts, rgb, type PDFFont } from "pdf-lib";
+import { PDFArray, PDFDocument, PDFName, PDFString, StandardFonts, rgb, type PDFFont } from "pdf-lib";
 import { loadPortfolio, sortProjectsByPriority } from "@/lib/portfolio";
 
 type CvLang = "en" | "es";
@@ -130,9 +130,9 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    const annots = page.node.lookup(PDFName.of("Annots"));
+    const annots = page.node.lookup(PDFName.of("Annots"), PDFArray);
     if (annots) {
-      (annots as any).push(annotation);
+      annots.push(annotation);
     } else {
       page.node.set(PDFName.of("Annots"), pdfDoc.context.obj([annotation]));
     }
