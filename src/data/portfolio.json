@@ -24,10 +24,6 @@
             "name": "C++"
         },
         {
-            "icon": "devicon-java-plain",
-            "name": "Java"
-        },
-        {
             "icon": "devicon-javascript-plain",
             "name": "JavaScript"
         },
@@ -74,6 +70,14 @@
         {
             "icon": "devicon-astro-plain",
             "name": "Astro"
+        },
+        {
+            "icon": "devicon-nextjs-plain",
+            "name": "Next.js"
+        },
+        {
+            "icon": "devicon-n8n-plain",
+            "name": "n8n"
         }
     ],
     "experience": [
