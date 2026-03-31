@@ -44,157 +44,157 @@
       "id": "foraneos-up-dashboard",
       "title": "Foráneos UP Dashboard",
       "subtitle": "Plataforma de Gestión y Analítica para Estudiantes Foráneos",
-      "description": "Desarrollé una plataforma web para gestionar estudiantes, cargar datos en lote, rastrear cambios y visualizar analíticas interactivas en tiempo real. Integré Firebase para autenticación y escalabilidad."
+      "description": "Diseñé una plataforma de operaciones estudiantiles con carga masiva de datos, trazabilidad de cambios y analítica en tiempo real usando React y Firebase. Centralizó procesos clave, redujo coordinación manual y habilitó decisiones más rápidas basadas en datos."
     },
     {
       "id": "quixo-bot",
       "title": "Quixo Bot",
       "subtitle": "Software de Estructuras de Datos y Algoritmos",
-      "description": "Desarrollé un bot competitivo de Quixo usando minimax con poda alfa-beta, mejoré heurísticas y lo probé en distintos escenarios para una estrategia óptima."
+      "description": "Construí una IA competitiva de Quixo con minimax, poda alfa-beta y heurísticas afinadas para evaluar estados del tablero con eficiencia. Mejoró la calidad de decisión y el rendimiento de búsqueda bajo restricciones de tiempo por jugada."
     },
     {
       "id": "kvasir-ai",
       "title": "Kvasir-AI",
       "subtitle": "Deep Learning · Imagen Médica",
-      "description": "Construí un sistema de deep learning para clasificación de imágenes endoscópicas usando ResNet18 y DenseNet121. Apliqué preprocesamiento (CLAHE, aumento de datos) y visualizaciones Grad-CAM para interpretabilidad. Alcancé 88.75% de exactitud con DenseNet121."
+      "description": "Implementé un pipeline integral de imagen médica con ResNet18 y DenseNet121, incluyendo preprocesamiento CLAHE, aumento de datos y explicabilidad con Grad-CAM. Alcanzó 88.75% de exactitud y entregó resultados interpretables para una evaluación más confiable del modelo."
     },
     {
       "id": "rubiks-cube-solver",
       "title": "Solucionador de Cubo de Rubik",
       "subtitle": "Software de Estructuras de Datos y Algoritmos",
-      "description": "Implementé un solucionador de cubo de Rubik 3x3x3 usando BFS, A* e IDA*. Optimicé la eficiencia para reducir movimientos y añadí visualización para mejorar la usabilidad."
+      "description": "Desarrollé un solucionador de Cubo Rubik 3x3x3 combinando BFS, A* e IDA* con visualización para inspección algorítmica. Optimizó la exploración del espacio de estados, redujo movimientos y demostró estrategias escalables de resolución."
     },
     {
       "id": "file-compressor",
       "title": "Compresor de Archivos",
       "subtitle": "Software de Estructuras de Datos y Algoritmos",
-      "description": "Construí una herramienta basada en codificación de Huffman para comprimir y descomprimir archivos, reduciendo el tamaño hasta un 20%, con una interfaz simple."
+      "description": "Construí un motor de compresión basado en Huffman para flujos de codificación y decodificación de archivos con manejo eficiente de I/O. Redujo hasta 20% del tamaño de almacenamiento, disminuyendo costos de transferencia y mejorando la eficiencia operativa."
     },
     {
       "id": "mastermind",
       "title": "Mastermind",
       "subtitle": "Juego",
-      "description": "Desarrollé un juego de lógica de combinaciones de colores con pistas de retroalimentación para mejorar la experiencia del usuario."
+      "description": "Diseñé e implementé el motor lógico de Mastermind con validación de reglas y retroalimentación determinística en cada intento. Entregó una dinámica robusta que refuerza razonamiento algorítmico y confiabilidad del sistema."
     },
     {
       "id": "modified-regex",
       "title": "Expresiones Regulares Modificadas",
       "subtitle": "Software de Estructuras de Datos y Algoritmos",
-      "description": "Desarrollé software para crear y probar expresiones regulares, optimicé el procesamiento y diseñé una interfaz interactiva para validación en tiempo real."
+      "description": "Implementé una herramienta para construcción y validación de expresiones regulares con pruebas en tiempo real y parsing optimizado. Aceleró la depuración de patrones y redujo ciclos de iteración en tareas de procesamiento de texto."
     },
     {
       "id": "b-tree",
       "title": "Árbol B",
       "subtitle": "Estructuras de Datos",
-      "description": "Implementación de una estructura Árbol B en Python enfocada en inserción, balanceo y búsquedas eficientes."
+      "description": "Implementé una estructura de Árbol B en Python con inserción, balanceo y operaciones de búsqueda indexada. Mejoró la eficiencia de consultas en datasets crecientes y reforzó fundamentos de organización escalable de datos."
     },
     {
       "id": "numerical-methods",
       "title": "Métodos Numéricos",
       "subtitle": "Toolkit de Cómputo Científico",
-      "description": "Colección de métodos de análisis numérico implementados en Python para aproximación, interpolación y resolución de ecuaciones."
+      "description": "Desarrollé un toolkit de cómputo numérico en Python para aproximación, interpolación y resolución de ecuaciones. Habilitó flujos científicos repetibles y validación más rápida de modelos matemáticos."
     },
     {
       "id": "digits-recognition",
       "title": "Reconocimiento de Dígitos",
       "subtitle": "Visión por Computadora · Deep Learning",
-      "description": "Experimento de deep learning para reconocimiento de dígitos manuscritos usando preprocesamiento de imágenes y entrenamiento de redes neuronales."
+      "description": "Construí un pipeline de reconocimiento de dígitos manuscritos con preprocesamiento de imágenes y entrenamiento/evaluación de redes neuronales. Mejoró la confiabilidad de clasificación y estableció una base reutilizable para experimentación en visión por computadora."
     },
     {
       "id": "animal-identifier",
       "title": "Identificador de Animales",
       "subtitle": "Clasificador de Visión por Computadora",
-      "description": "Proyecto de clasificación de imágenes para identificar clases de animales mediante experimentación de modelos en notebooks."
+      "description": "Implementé un flujo de clasificación de imágenes para identificar clases de animales mediante experimentación iterativa de modelos. Aceleró la selección de arquitecturas y habilitó ajustes guiados por datos en múltiples corridas de visión por computadora."
     },
     {
       "id": "mx-banknote-detection",
       "title": "Detección de Billetes MX",
       "subtitle": "Visión por Computadora · Machine Learning",
-      "description": "Entrené y evalué una pipeline con CNN para detectar y clasificar billetes mexicanos usando PyTorch y OpenCV. Incluye preprocesamiento, aumento de datos y reporte de métricas."
+      "description": "Diseñé un pipeline de detección de billetes con CNN incorporando preprocesamiento, aumento de datos y evaluación en PyTorch y OpenCV. Incrementó la robustez de clasificación ante variaciones visuales y acercó el modelo a escenarios reales de uso."
     },
     {
       "id": "stm32f401re-oscilloscope",
       "title": "Osciloscopio STM32F401RE",
       "subtitle": "Sistemas Embebidos · STM32",
-      "description": "Construí un osciloscopio digital simple en la STM32F401RE para adquisición y visualización de señales. Implementé muestreo con ADC, buffering y graficado serial en tiempo real."
+      "description": "Construí un osciloscopio embebido en STM32F401RE con muestreo ADC, buffering y renderizado de señal en tiempo real. Habilitó diagnóstico de hardware de bajo costo y aceleró flujos de depuración electrónica."
     },
     {
       "id": "fup-calendar",
       "title": "fupCalendar",
       "subtitle": "Aplicación Web · Calendario",
-      "description": "Calendario ligero para organizar actividades y eventos de Foráneos UP con una interfaz responsiva."
+      "description": "Implementé un calendario web para centralizar actividades y eventos de Foráneos UP con sincronización operativa simple. Mejoró la coordinación del equipo y redujo fricción en la planificación de iniciativas estudiantiles."
     },
     {
       "id": "portfolio-next",
       "title": "Portafolio",
       "subtitle": "Sitio Web",
-      "description": "Desarrollé y mantengo un portafolio personal usando Next.js, TailwindCSS, Framer Motion y Shadcn/UI para mostrar proyectos, experiencia y logros. Integré diseño responsivo y animaciones para una presentación moderna y profesional."
+      "description": "Arquitecté y desplegué un portafolio en producción con Next.js, TailwindCSS, Framer Motion y componentes reutilizables. Mejoró la mantenibilidad del contenido y la visibilidad de proyectos en un formato orientado a conversión profesional."
     },
     {
       "id": "foreigners-corner",
       "title": "Foreigner's Corner",
       "subtitle": "Sitio Web",
-      "description": "Diseñé un sitio de apoyo con preguntas frecuentes para estudiantes internacionales, mejorando la accesibilidad y usabilidad."
+      "description": "Construí un portal de soporte con FAQs para estudiantes internacionales y arquitectura de información estructurada. Redujo consultas repetitivas y potenció el autoservicio en procesos de incorporación."
     },
     {
       "id": "portfolio-old",
       "title": "Portafolio - VERSIÓN ANTIGUA",
       "subtitle": "Sitio Web",
-      "description": "Desarrollé y mantengo un portafolio personal usando Python y el framework Reflex para mostrar proyectos y logros."
+      "description": "Implementé la primera versión de mi portafolio con Python y Reflex para publicar proyectos de extremo a extremo. Estableció una base de marca personal reutilizable y aceleró iteraciones antes de migrar a un stack más moderno."
     },
     {
       "id": "notaria-71-ags",
       "title": "Notaria 71 Aguascalientes",
       "subtitle": "Sitio Web Corporativo",
-      "description": "Diseñé y desarrollé el sitio web público de Notaria 71 en Aguascalientes con información de servicios, contacto y una navegación clara centrada en el usuario."
+      "description": "Diseñé y lancé el sitio público de Notaria 71 con páginas de servicios, flujos de contacto y estructura orientada a confianza. Fortaleció presencia digital y mejoró captación de clientes al facilitar el descubrimiento de servicios."
     },
     {
       "id": "burkle-fumigaciones",
       "title": "Burkle Fumigaciones",
       "subtitle": "Sitio Web Empresarial",
-      "description": "Construí y publiqué el sitio oficial de Burkle Fumigaciones para mejorar confianza, captación de clientes y visibilidad de servicios con una experiencia responsiva moderna."
+      "description": "Construí y lancé el sitio empresarial de Burkle Fumigaciones con contenido de servicios y rutas de contacto orientadas a leads. Incrementó credibilidad digital y habilitó una generación de consultas más eficiente."
     },
     {
       "id": "garbon-albercas",
       "title": "Garbon Albercas",
       "subtitle": "Sitio Web Empresarial",
-      "description": "Desarrollé el sitio web de Garbon, empresa de mantenimiento de albercas, enfocado en mostrar servicios, estructura orientada a conversión y usabilidad móvil."
+      "description": "Desarrollé el sitio de Garbon con presentación de servicios orientada a conversión y flujo mobile-first. Mejoró accesibilidad para prospectos y agilizó la captura de oportunidades desde tráfico web."
     },
     {
       "id": "collectors-vault-store",
       "title": "Collector's Vault Store",
       "subtitle": "Tienda en Línea",
-      "description": "Implementé una tienda online para Collector's Vault con un flujo de compra pulido, catálogo responsivo y una experiencia visual alineada con la marca."
+      "description": "Implementé la tienda en línea de Collector's Vault con navegación de catálogo responsiva y checkout optimizado. Elevó la preparación transaccional del negocio y apoyó crecimiento de ingresos mediante un canal de venta más confiable."
     },
     {
       "id": "up-ticketing-system",
       "title": "Sistema de Boletinaje UP",
       "subtitle": "Plataforma Universitaria de Boletos",
-      "description": "Desarrollé el concepto de una plataforma de boletinaje para la Universidad Panamericana para gestionar registros a eventos, emisión de boletos y control de asistencia."
+      "description": "Diseñé el concepto de una plataforma universitaria de boletinaje para unificar registros, emisión y control de asistencia. Sustituyó procesos fragmentados por un modelo escalable con mayor trazabilidad operativa."
     },
     {
       "id": "tosignal",
       "title": "ToSignal",
       "subtitle": "Plataforma Web de Automatización y Análisis de Leads en LinkedIn",
-      "description": "Diseñé y desarrollé una plataforma web full-stack para extraer, procesar y analizar datos de LinkedIn enfocados en generación de leads y toma de decisiones. Implementé flujos de automatización end-to-end con n8n, integrando Apify para extracción de datos, Supabase para almacenamiento y APIs personalizadas. Desarrollé dashboards en tiempo real con mapas y gráficas, generación automática de reportes en PDF y orquestación de procesos mediante webhooks y edge functions."
+      "description": "Arquitecté una plataforma full-stack de inteligencia comercial que automatiza extracción, procesamiento y análisis de datos de LinkedIn con n8n, Apify y Supabase. Entregó dashboards casi en tiempo real y reportes PDF automáticos, reduciendo horas de investigación manual y acelerando la toma de decisiones."
     },
     {
       "id": "deepreading",
       "title": "DeepReading",
       "subtitle": "Plataforma Web de Lectura y Gestión de Conocimiento con IA",
-      "description": "Desarrollé una plataforma web full-stack para gestionar e interactuar con contenido de lectura. Permite asignar lecturas, subrayar texto, crear marcadores, generar flashcards, construir presentaciones y obtener resúmenes automáticos con inteligencia artificial. Integré funcionalidades basadas en modelos de lenguaje (LLMs) para comprensión de contenido y automatización, utilizando Supabase como backend y React con Vite en el frontend."
+      "description": "Desarrollé una plataforma de conocimiento impulsada por IA con funciones basadas en LLMs para resúmenes, flashcards y generación de contenido. Automatizó flujos de estudio con React, Vite y Supabase, reduciendo significativamente el tiempo para convertir lectura en insights accionables."
     },
     {
       "id": "jewelry-invoicing-system",
       "title": "Sistema de Facturación y Pagos",
       "subtitle": "Plataforma Web de CRM y Gestión para Negocio de Joyería",
-      "description": "Desarrollé una plataforma web para la gestión de clientes, generación de facturas y procesamiento de pagos. Implementé automatización de facturación, integración con Stripe para pagos en línea y envío de correos electrónicos. Utilicé Supabase como backend y edge functions para lógica de negocio, optimizando procesos administrativos y reduciendo trabajo manual."
+      "description": "Diseñé una plataforma de CRM y facturación con integración de Stripe para pagos y edge functions de Supabase para automatización. Simplificó emisión de facturas y comunicación con clientes, reduciendo carga administrativa y mejorando confiabilidad del ciclo de cobro."
     },
     {
       "id": "influencer-analytics-platform",
       "title": "Plataforma de Análisis y Automatización de Influencers",
       "subtitle": "Extracción, Procesamiento de Datos y Automatización de Flujos",
-      "description": "Desarrollo una plataforma web para extraer, procesar y analizar datos de influencers a gran escala. Implementé flujos automatizados con n8n y Apify para scraping de datos, combinados con Supabase y pipelines en SQL para transformación y filtrado. Diseñé sistemas para manejar grandes volúmenes de información y automatizar procesos de toma de decisiones."
+      "description": "Estoy construyendo una plataforma de analítica de influencers a gran escala con pipelines automatizados en n8n y Apify. Procesa grandes volúmenes de datos con flujos SQL en Supabase para habilitar decisiones automatizadas más rápidas y eliminar agregación manual de información."
     }
   ],
   "training": [

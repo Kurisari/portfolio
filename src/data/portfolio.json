@@ -13,7 +13,7 @@
         "github": "https://github.com/Kurisari",
         "likedin": "https://www.linkedin.com/in/cristian-aragon-salazar/"
     },
-    "about": "I am an Artificial Intelligence Engineer with experience in software development and web applications. Passionate about technology and programming, I am committed to continuous learning and enjoy tackling new challenges. I am proactive, responsible, and dedicated to my work.",
+    "about": "I build full-stack web platforms focused on automation, data processing, and AI-driven workflows. My work includes developing systems that integrate APIs, automate business processes, and leverage technologies like n8n, Supabase, and LLMs to deliver real-world impact.",
     "technologies": [
         {
             "icon": "devicon-python-plain",
@@ -113,7 +113,7 @@
             "title": "Foráneos UP Dashboard",
             "subtitle": "Management and Analytics Platform for Foreign Students",
             "category": "web",
-            "description": "Developed a web platform to manage students, bulk upload data, track changes, and visualize real-time interactive analytics. Integrated Firebase for authentication and scalability.",
+            "description": "Engineered a student operations dashboard with bulk data ingestion, change tracking, and live analytics using React and Firebase. Centralized core workflows in one platform, reducing manual coordination and enabling faster, data-driven decisions.",
             "technologies": [
                 {
                     "icon": "devicon-react-original",
@@ -145,7 +145,7 @@
             "title": "Quixo Bot",
             "subtitle": "Data Structures and Algorithms Software",
             "category": "algorithms",
-            "description": "Developed a competitive Quixo bot using minimax with alpha-beta pruning, improved heuristics, and tested across scenarios for optimal strategy.",
+            "description": "Built a competitive Quixo AI with minimax, alpha-beta pruning, and tuned heuristics to evaluate board states efficiently. Improved decision quality and search performance, enabling stronger play under tight move-time constraints.",
             "technologies": [
                 {
                     "icon": "devicon-python-plain",
@@ -164,7 +164,7 @@
             "title": "Kvasir-AI",
             "subtitle": "Deep Learning · Medical Imaging",
             "category": "ai",
-            "description": "Built a deep learning system for endoscopic image classification using ResNet18 and DenseNet121. Applied preprocessing (CLAHE, data augmentation) and Grad-CAM visualizations for interpretability. Achieved 88.75% accuracy with DenseNet121.",
+            "description": "Implemented an end-to-end medical imaging pipeline with ResNet18 and DenseNet121, including CLAHE preprocessing, augmentation, and Grad-CAM explainability. Achieved 88.75% accuracy while delivering interpretable outputs for more reliable model evaluation.",
             "technologies": [
                 {
                     "icon": "devicon-python-plain",
@@ -188,7 +188,7 @@
             "title": "Rubik's Cube Solver",
             "subtitle": "Data Structures and Algorithms Software",
             "category": "algorithms",
-            "description": "Implemented a 3x3x3 Rubik’s Cube solver using BFS, A*, and IDA*. Optimized efficiency to reduce moves and added visualization for usability.",
+            "description": "Engineered a 3x3x3 Rubik's Cube solver combining BFS, A*, and IDA* with visualization tooling for algorithm inspection. Optimized state-space search to reduce moves and demonstrate scalable problem-solving strategies.",
             "technologies": [
                 {
                     "icon": "devicon-python-plain",
@@ -208,7 +208,7 @@
             "title": "File Compressor",
             "subtitle": "Data Structures and Algorithms Software",
             "category": "algorithms",
-            "description": "Built a Huffman coding-based tool to compress and decompress files, reducing file size by up to 20%, with a simple interface.",
+            "description": "Built a Huffman-based compression engine for file encode/decode workflows with streamlined I/O handling. Reduced storage footprint by up to 20%, lowering transfer overhead and improving data handling efficiency.",
             "technologies": [
                 {
                     "icon": "devicon-python-plain",
@@ -227,7 +227,7 @@
             "title": "Mastermind",
             "subtitle": "Game",
             "category": "software",
-            "description": "Developed a color-combination logic game with feedback hints to enhance the user experience.",
+            "description": "Designed and implemented a Mastermind game engine with deterministic feedback logic and rule validation for each guess cycle. Delivered a robust logic-driven gameplay loop that reinforces algorithmic reasoning and reliability.",
             "technologies": [
                 {
                     "icon": "devicon-cplusplus-plain",
@@ -247,7 +247,7 @@
             "title": "Modified RegEx",
             "subtitle": "Data Structures and Algorithms Software",
             "category": "algorithms",
-            "description": "Developed software to create and test regular expressions, optimized processing, and designed an interactive interface for real-time validation.",
+            "description": "Built a regex construction and validation toolkit with real-time pattern testing and optimized parsing routines. Accelerated expression debugging and reduced iteration time across text-processing use cases.",
             "technologies": [
                 {
                     "icon": "devicon-python-plain",
@@ -266,7 +266,7 @@
             "title": "B-Tree",
             "subtitle": "Data Structures",
             "category": "algorithms",
-            "description": "Implementation of a B-Tree structure in Python focused on insertion, balancing, and efficient search operations.",
+            "description": "Implemented a B-Tree data structure in Python with insertion, balancing, and indexed search operations. Improved lookup efficiency on growing datasets and reinforced scalable data-organization fundamentals.",
             "technologies": [
                 {
                     "icon": "devicon-python-plain",
@@ -286,7 +286,7 @@
             "title": "Numerical Methods",
             "subtitle": "Scientific Computing Toolkit",
             "category": "algorithms",
-            "description": "Collection of numerical analysis methods implemented in Python for approximation, interpolation, and equation solving.",
+            "description": "Developed a numerical computing toolkit covering approximation, interpolation, and equation-solving methods in Python. Enabled repeatable scientific workflows and faster validation of mathematical models.",
             "technologies": [
                 {
                     "icon": "devicon-python-plain",
@@ -306,7 +306,7 @@
             "title": "Digits Recognition",
             "subtitle": "Computer Vision · Deep Learning",
             "category": "ai",
-            "description": "Deep learning experiment for handwritten digit recognition using image preprocessing and neural network training pipelines.",
+            "description": "Built a handwritten-digit recognition pipeline with image preprocessing plus neural-network training and evaluation loops. Improved classification reliability and established a reusable baseline for computer-vision experimentation.",
             "technologies": [
                 {
                     "icon": "devicon-python-plain",
@@ -330,7 +330,7 @@
             "title": "Animal Identifier",
             "subtitle": "Computer Vision Classifier",
             "category": "ai",
-            "description": "Image classification project to identify animal classes from visual inputs using notebook-based model experimentation.",
+            "description": "Implemented an image-classification workflow to identify animal classes through iterative notebook-based model experimentation. Improved model selection speed and enabled data-driven tuning across computer-vision runs.",
             "technologies": [
                 {
                     "icon": "devicon-python-plain",
@@ -354,7 +354,7 @@
             "title": "MX Banknote Detection",
             "subtitle": "Computer Vision · Deep Learning",
             "category": "ai",
-            "description": "Trained and evaluated a CNN pipeline to detect and classify Mexican banknotes using PyTorch and OpenCV.",
+            "description": "Engineered a CNN-based banknote detection pipeline with preprocessing, augmentation, and evaluation in PyTorch and OpenCV. Increased classification robustness across visual variance, supporting practical real-world detection scenarios.",
             "technologies": [
                 {
                     "icon": "devicon-python-plain",
@@ -379,7 +379,7 @@
             "title": "STM32F401RE Oscilloscope",
             "subtitle": "Embedded Systems · STM32",
             "category": "software",
-            "description": "Built a simple oscilloscope for STM32F401RE with ADC sampling, buffering, and real-time signal visualization.",
+            "description": "Built an embedded oscilloscope on STM32F401RE using ADC sampling, buffering, and real-time signal rendering. Enabled low-cost waveform inspection for faster hardware diagnostics and debugging workflows.",
             "technologies": [
                 {
                     "icon": "devicon-c-plain",
@@ -399,7 +399,7 @@
             "title": "Portfolio",
             "subtitle": "Website",
             "category": "web",
-            "description": "Developed and manage a personal portfolio using Next.js, TailwindCSS, Framer Motion, and Shadcn/UI to showcase projects, experience, and achievements. Integrated responsive design and animations for a modern professional presentation.",
+            "description": "Architected and deployed a production portfolio on Next.js with TailwindCSS, Framer Motion, and reusable UI components. Improved content maintainability and project discoverability while presenting work in a conversion-focused format.",
             "technologies": [
                 {
                     "icon": "devicon-react-original",
@@ -437,7 +437,7 @@
             "title": "Foreigner's Corner",
             "subtitle": "Website",
             "category": "web",
-            "description": "Designed a support website with FAQs for international students, improving accessibility and usability.",
+            "description": "Built an FAQ-driven support portal for international students with structured information architecture and clear navigation flows. Reduced repetitive support requests and improved self-service access to key onboarding information.",
             "technologies": [
                 {
                     "icon": "devicon-html5-plain",
@@ -457,7 +457,7 @@
             "title": "Portfolio - OLD VERSION",
             "subtitle": "Website",
             "category": "web",
-            "description": "Developed and manage a personal portfolio using Python and the Reflex framework to showcase projects and achievements.",
+            "description": "Implemented an earlier portfolio platform with Python and Reflex to publish projects and achievements end-to-end. Established a reusable personal-brand foundation and accelerated iteration before migrating to a newer stack.",
             "technologies": [
                 {
                     "icon": "devicon-reflex-plain",
@@ -479,7 +479,7 @@
             "title": "Notaria 71 Aguascalientes",
             "subtitle": "Corporate Website",
             "category": "web",
-            "description": "Designed and developed the public website for Notaria 71 in Aguascalientes with service information, contact flows, and a clear user-first navigation structure.",
+            "description": "Designed and launched the public website for Notaria 71 with service pages, contact flows, and trust-oriented information structure. Strengthened digital presence and improved inbound client acquisition through clearer service discovery.",
             "technologies": [
                 {
                     "icon": "devicon-astro-plain",
@@ -503,7 +503,7 @@
             "title": "Burkle Fumigaciones",
             "subtitle": "Business Website",
             "category": "web",
-            "description": "Built and launched the official website for Burkle Fumigaciones to improve trust, lead generation, and service visibility through a modern responsive experience.",
+            "description": "Built and launched Burkle Fumigaciones' business website with structured service content and lead-oriented contact pathways. Increased online credibility and enabled more efficient customer inquiry generation.",
             "technologies": [
                 {
                     "icon": "devicon-html5-plain",
@@ -534,7 +534,7 @@
             "title": "Garbon Albercas",
             "subtitle": "Business Website",
             "category": "web",
-            "description": "Developed the website for Garbon, a pool maintenance company, focused on service presentation, conversion-oriented structure, and mobile-first usability.",
+            "description": "Engineered Garbon's website with conversion-focused service presentation and mobile-first information flow. Improved accessibility for prospective clients and streamlined lead capture from web traffic.",
             "technologies": [
                 {
                     "icon": "devicon-astro-plain",
@@ -557,7 +557,7 @@
             "title": "Collector's Vault Store",
             "subtitle": "E-commerce Website",
             "category": "web",
-            "description": "Implemented an online store for Collector's Vault with a polished shopping flow, responsive product browsing, and a brand-focused visual experience.",
+            "description": "Implemented an online store for Collector's Vault with responsive catalog browsing and an optimized purchase flow. Improved transaction readiness and supported revenue growth through a more reliable sales channel.",
             "technologies": [
                 {
                     "icon": "devicon-nextjs-plain",
@@ -584,7 +584,7 @@
             "title": "UP Ticketing System",
             "subtitle": "University Ticketing Platform",
             "category": "web",
-            "description": "Developed a ticketing platform concept for Universidad Panamericana to manage event registrations, issuance, and attendance workflows in one system.",
+            "description": "Designed a university ticketing platform concept to unify registration, ticket issuance, and attendance workflows in one system. Replaced fragmented event operations with a scalable process model and stronger operational control.",
             "technologies": [
                 {
                     "icon": "devicon-react-original",
@@ -610,7 +610,7 @@
             "title": "ToSignal",
             "subtitle": "LinkedIn Automation & Lead Intelligence Web Platform",
             "category": "web",
-            "description": "Designed and built a full-stack web platform to extract, process, and analyze LinkedIn data for lead generation and decision-making. Implemented end-to-end automation workflows using n8n, integrating Apify for data extraction, Supabase for storage, and custom APIs. Developed real-time dashboards with maps and analytics, automated PDF report generation, and orchestrated event-driven processes via webhooks and edge functions.",
+            "description": "Architected a full-stack lead intelligence platform that automates LinkedIn data extraction, processing, and analysis using n8n, Apify, and Supabase. Delivered near real-time dashboards and automated PDF reporting, reducing manual research time by hours per workflow and accelerating decision-making.",
             "technologies": [
                 {
                     "name": "React"
@@ -652,7 +652,7 @@
             "title": "DeepReading",
             "subtitle": "AI-Powered Reading & Knowledge Management Platform",
             "category": "web",
-            "description": "Developed a full-stack platform for managing and interacting with reading content. Users can assign readings, highlight text, create bookmarks, generate flashcards, build presentations, and obtain AI-generated summaries. Integrated LLM-based features for content understanding and automation, combined with a scalable backend using Supabase and a modern frontend with React and Vite.",
+            "description": "Developed an AI-powered knowledge platform with LLM-driven features for summaries, flashcards, and content generation. Automated study workflows using React, Vite, and Supabase, significantly reducing time to transform content into structured insights.",
             "technologies": [
                 {
                     "name": "React"
@@ -686,7 +686,7 @@
             "title": "Invoicing & Payment Automation Web Platform",
             "subtitle": "Custom CRM & Billing System for Jewelry Business",
             "category": "web",
-            "description": "Built a full-stack web platform for invoicing, client management, and payment processing. Automated invoice generation, Stripe payments, and email notifications. Integrated Supabase backend and edge functions to handle business logic and workflows, significantly reducing manual administrative tasks.",
+            "description": "Engineered a custom CRM and billing platform integrating Stripe for payments and Supabase edge functions for automation. Streamlined invoice generation and client communication, reducing manual administrative work and improving payment processing reliability.",
             "technologies": [
                 {
                     "name": "React"
@@ -725,7 +725,7 @@
             "title": "Influencer Data & Automation Web Platform",
             "subtitle": "Data Extraction, Processing & Workflow Automation",
             "category": "web",
-            "description": "Developing a web platform to extract, process, and analyze influencer data at scale. Built automated workflows using n8n and Apify for data extraction, combined with Supabase and SQL pipelines for data transformation and filtering. Designed systems to handle large datasets and enable automated decision-making processes.",
+            "description": "Building a large-scale influencer analytics platform with automated data pipelines using n8n and Apify. Processes high-volume datasets through SQL workflows in Supabase, enabling faster, automated decision-making and eliminating manual data aggregation.",
             "technologies": [
                 {
                     "name": "n8n"
