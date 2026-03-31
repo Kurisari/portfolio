@@ -12,10 +12,13 @@ const labels: Record<CvLang, Record<string, string>> = {
     experience: "Professional Experience",
     education: "Education",
     projects: "Project Portfolio",
+    featuredProjects: "Featured Projects",
+    otherProjects: "Other Projects",
     skills: "Technical Skills",
     stack: "Stack",
     links: "Links",
-    atsKeywords: "ATS/AI Keywords",
+    english: "English",
+    englishLevel: "Professional working proficiency",
     achievements: "Certifications and Recognitions",
   },
   es: {
@@ -25,10 +28,13 @@ const labels: Record<CvLang, Record<string, string>> = {
     experience: "Experiencia Profesional",
     education: "Formacion Academica",
     projects: "Portafolio de Proyectos",
+    featuredProjects: "Proyectos Destacados",
+    otherProjects: "Otros Proyectos",
     skills: "Habilidades Tecnicas",
     stack: "Stack",
     links: "Enlaces",
-    atsKeywords: "Palabras Clave ATS/IA",
+    english: "Ingles",
+    englishLevel: "Nivel profesional de trabajo",
     achievements: "Certificaciones y Reconocimientos",
   },
 };
@@ -70,6 +76,11 @@ export async function GET(request: NextRequest) {
   const portfolio = await loadPortfolio(lang);
 
   const allProjects = sortProjectsByPriority(portfolio.projects);
+  const featuredProjects = allProjects.filter(
+    (project) => Array.isArray(project.tags) && (project.tags.includes("top") || project.tags.includes("featured") || project.tags.includes("recent"))
+  ).slice(0, 6);
+  const featuredIds = new Set(featuredProjects.map((project) => project.id));
+  const otherProjects = allProjects.filter((project) => !featuredIds.has(project.id));
 
   const pdfDoc = await PDFDocument.create();
   const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
@@ -135,7 +146,7 @@ export async function GET(request: NextRequest) {
       ? ["automatizacion", "integraciones", "apis", "webhooks", "analitica", "ia", "llm", "escalabilidad"]
       : ["automation", "integrations", "apis", "webhooks", "analytics", "ai", "llm", "scalability"];
 
-    return Array.from(new Set([...techKeywords, ...tagKeywords, ...fixedKeywords])).slice(0, 28);
+    return Array.from(new Set([...techKeywords, ...tagKeywords, ...fixedKeywords])).slice(0, 20);
   };
 
   const drawProject = (index: number, item: (typeof allProjects)[number]) => {
@@ -179,6 +190,31 @@ export async function GET(request: NextRequest) {
     y -= 4;
   };
 
+  const drawCompactProject = (index: number, item: (typeof allProjects)[number]) => {
+    ensureSpace(32);
+    line(`${index + 1}. ${item.title}`, MARGIN, 9.5, true, rgb(0.12, 0.12, 0.16));
+    const category = (item.category || "").toUpperCase();
+    if (category) {
+      line(
+        category,
+        A4_WIDTH - MARGIN - bold.widthOfTextAtSize(category, 7.5),
+        7.5,
+        true,
+        rgb(0.38, 0.38, 0.42)
+      );
+    }
+    y -= 11;
+    const stack = item.technologies?.map((tech) => tech.name).filter(Boolean).slice(0, 5) ?? [];
+    if (stack.length > 0) {
+      paragraph(`${t.stack}: ${stack.join(", ")}`, MARGIN, 8.2, 10.5);
+    }
+    if (item.url || item.github) {
+      const links = [item.url, item.github].filter(Boolean) as string[];
+      paragraph(`${t.links}: ${links.join(" | ")}`, MARGIN, 7.8, 10);
+    }
+    y -= 2;
+  };
+
   line(portfolio.name, MARGIN, 22, true);
   y -= 24;
   line(portfolio.skill, MARGIN, 11, false, rgb(0.28, 0.28, 0.33));
@@ -198,10 +234,8 @@ export async function GET(request: NextRequest) {
   paragraph(cleanText(portfolio.about), MARGIN, 10, 14);
 
   sectionTitle(t.skills);
-  chipsLine(portfolio.technologies.map((tech) => tech.name));
-
-  sectionTitle(t.atsKeywords);
-  chipsLine(getAtsKeywords());
+  chipsLine([...portfolio.technologies.map((tech) => tech.name), `${t.english}: ${t.englishLevel}`]);
+  paragraph(getAtsKeywords().join(" | "), MARGIN, 8.2, 10.5);
 
   sectionTitle(t.profile);
   chipsLine([
@@ -237,8 +271,16 @@ export async function GET(request: NextRequest) {
   }
 
   sectionTitle(t.projects);
-  for (let i = 0; i < allProjects.length; i += 1) {
-    drawProject(i, allProjects[i]);
+  sectionTitle(t.featuredProjects);
+  for (let i = 0; i < featuredProjects.length; i += 1) {
+    drawProject(i, featuredProjects[i]);
+  }
+
+  if (otherProjects.length > 0) {
+    sectionTitle(t.otherProjects);
+    for (let i = 0; i < otherProjects.length; i += 1) {
+      drawCompactProject(i + featuredProjects.length, otherProjects[i]);
+    }
   }
 
   sectionTitle(t.achievements);
