@@ -111,7 +111,7 @@ export default function RootLayout({
               jobTitle: "Artificial Intelligence Engineer",
               url: siteUrl,
               image: new URL("/avatar.jpg", siteUrl).toString(),
-              email: "mailto:crisarag8.sal@gmail.com",
+              email: "mailto:hello@kurisari.dev",
               sameAs: [
                 "https://github.com/Kurisari",
                 "https://www.linkedin.com/in/cristian-aragon-salazar/",
