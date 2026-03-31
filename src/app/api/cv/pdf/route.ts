@@ -15,6 +15,7 @@ const labels: Record<CvLang, Record<string, string>> = {
     featuredProjects: "Featured Projects",
     otherProjects: "Other Projects",
     skills: "Technical Skills",
+    languages: "Languages",
     stack: "Stack",
     links: "Links",
     english: "English",
@@ -31,6 +32,7 @@ const labels: Record<CvLang, Record<string, string>> = {
     featuredProjects: "Proyectos Destacados",
     otherProjects: "Otros Proyectos",
     skills: "Habilidades Tecnicas",
+    languages: "Idiomas",
     stack: "Stack",
     links: "Enlaces",
     english: "Ingles",
@@ -234,8 +236,11 @@ export async function GET(request: NextRequest) {
   paragraph(cleanText(portfolio.about), MARGIN, 10, 14);
 
   sectionTitle(t.skills);
-  chipsLine([...portfolio.technologies.map((tech) => tech.name), `${t.english}: ${t.englishLevel}`]);
+  chipsLine(portfolio.technologies.map((tech) => tech.name));
   paragraph(getAtsKeywords().join(" | "), MARGIN, 8.2, 10.5);
+
+  sectionTitle(t.languages);
+  paragraph(`${t.english}: ${t.englishLevel}`, MARGIN, 10, 13);
 
   sectionTitle(t.profile);
   chipsLine([

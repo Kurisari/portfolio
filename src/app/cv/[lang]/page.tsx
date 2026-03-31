@@ -10,6 +10,9 @@ const labels = {
     education: "Education",
     projects: "Selected Projects",
     skills: "Technical Skills",
+    languages: "Languages",
+    english: "English",
+    englishLevel: "Professional working proficiency",
     achievements: "Certifications and Recognitions",
     print: "Download PDF",
     back: "Back to portfolio",
@@ -21,6 +24,9 @@ const labels = {
     education: "Formacion Academica",
     projects: "Proyectos Seleccionados",
     skills: "Habilidades Tecnicas",
+    languages: "Idiomas",
+    english: "Ingles",
+    englishLevel: "Nivel profesional de trabajo",
     achievements: "Certificaciones y Reconocimientos",
     print: "Descargar PDF",
     back: "Volver al portafolio",
@@ -149,6 +155,13 @@ export default async function CvPage({
               {t.skills}
             </h2>
             <p className="leading-relaxed">{portfolio.technologies.map((tech) => tech.name).join(", ")}</p>
+          </section>
+
+          <section className="mb-6">
+            <h2 className="mb-2 border-b border-slate-300 pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-700">
+              {t.languages}
+            </h2>
+            <p className="leading-relaxed">{t.english}: {t.englishLevel}</p>
           </section>
 
           <section>
