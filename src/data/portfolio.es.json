@@ -171,6 +171,30 @@
       "title": "Sistema de Boletinaje UP",
       "subtitle": "Plataforma Universitaria de Boletos",
       "description": "Desarrollé el concepto de una plataforma de boletinaje para la Universidad Panamericana para gestionar registros a eventos, emisión de boletos y control de asistencia."
+    },
+    {
+      "id": "tosignal",
+      "title": "ToSignal",
+      "subtitle": "Plataforma Web de Automatización y Análisis de Leads en LinkedIn",
+      "description": "Diseñé y desarrollé una plataforma web full-stack para extraer, procesar y analizar datos de LinkedIn enfocados en generación de leads y toma de decisiones. Implementé flujos de automatización end-to-end con n8n, integrando Apify para extracción de datos, Supabase para almacenamiento y APIs personalizadas. Desarrollé dashboards en tiempo real con mapas y gráficas, generación automática de reportes en PDF y orquestación de procesos mediante webhooks y edge functions."
+    },
+    {
+      "id": "deepreading",
+      "title": "DeepReading",
+      "subtitle": "Plataforma Web de Lectura y Gestión de Conocimiento con IA",
+      "description": "Desarrollé una plataforma web full-stack para gestionar e interactuar con contenido de lectura. Permite asignar lecturas, subrayar texto, crear marcadores, generar flashcards, construir presentaciones y obtener resúmenes automáticos con inteligencia artificial. Integré funcionalidades basadas en modelos de lenguaje (LLMs) para comprensión de contenido y automatización, utilizando Supabase como backend y React con Vite en el frontend."
+    },
+    {
+      "id": "jewelry-invoicing-system",
+      "title": "Sistema de Facturación y Pagos",
+      "subtitle": "Plataforma Web de CRM y Gestión para Negocio de Joyería",
+      "description": "Desarrollé una plataforma web para la gestión de clientes, generación de facturas y procesamiento de pagos. Implementé automatización de facturación, integración con Stripe para pagos en línea y envío de correos electrónicos. Utilicé Supabase como backend y edge functions para lógica de negocio, optimizando procesos administrativos y reduciendo trabajo manual."
+    },
+    {
+      "id": "influencer-analytics-platform",
+      "title": "Plataforma de Análisis y Automatización de Influencers",
+      "subtitle": "Extracción, Procesamiento de Datos y Automatización de Flujos",
+      "description": "Desarrollo una plataforma web para extraer, procesar y analizar datos de influencers a gran escala. Implementé flujos automatizados con n8n y Apify para scraping de datos, combinados con Supabase y pipelines en SQL para transformación y filtrado. Diseñé sistemas para manejar grandes volúmenes de información y automatizar procesos de toma de decisiones."
     }
   ],
   "training": [

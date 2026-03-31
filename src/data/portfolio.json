@@ -134,7 +134,10 @@
             ],
             "image": "/fup.png",
             "priority": 40,
-            "tags": ["web", "dashboard"]
+            "tags": [
+                "web",
+                "dashboard"
+            ]
         },
         {
             "id": "quixo-bot",
@@ -151,7 +154,9 @@
             ],
             "github": "https://github.com/Kurisari/quixo-bot",
             "priority": 30,
-            "tags": ["algorithms"]
+            "tags": [
+                "algorithms"
+            ]
         },
         {
             "id": "kvasir-ai",
@@ -172,7 +177,10 @@
             ],
             "github": "https://github.com/Kurisari/Kvasir-AI",
             "priority": 60,
-            "tags": ["ai", "featured"]
+            "tags": [
+                "ai",
+                "featured"
+            ]
         },
         {
             "id": "rubiks-cube-solver",
@@ -189,7 +197,10 @@
             ],
             "github": "https://github.com/Kurisari/Rubik-s-Cube-Solver",
             "priority": 35,
-            "tags": ["algorithms", "featured"]
+            "tags": [
+                "algorithms",
+                "featured"
+            ]
         },
         {
             "id": "file-compressor",
@@ -206,7 +217,9 @@
             ],
             "github": "https://github.com/Kurisari/Compresor_Archivos",
             "priority": 25,
-            "tags": ["algorithms"]
+            "tags": [
+                "algorithms"
+            ]
         },
         {
             "id": "mastermind",
@@ -223,7 +236,10 @@
             ],
             "github": "https://github.com/Kurisari/Mastermind_CPP",
             "priority": 20,
-            "tags": ["software", "featured"]
+            "tags": [
+                "software",
+                "featured"
+            ]
         },
         {
             "id": "modified-regex",
@@ -240,7 +256,9 @@
             ],
             "github": "https://github.com/Kurisari/RegEx-Modificado",
             "priority": 22,
-            "tags": ["algorithms"]
+            "tags": [
+                "algorithms"
+            ]
         },
         {
             "id": "b-tree",
@@ -257,7 +275,10 @@
             ],
             "github": "https://github.com/Kurisari/B-Tree",
             "priority": 28,
-            "tags": ["algorithms", "data-structures"]
+            "tags": [
+                "algorithms",
+                "data-structures"
+            ]
         },
         {
             "id": "numerical-methods",
@@ -274,7 +295,10 @@
             ],
             "github": "https://github.com/Kurisari/numerical_methods",
             "priority": 27,
-            "tags": ["algorithms", "math"]
+            "tags": [
+                "algorithms",
+                "math"
+            ]
         },
         {
             "id": "digits-recognition",
@@ -295,7 +319,10 @@
             ],
             "github": "https://github.com/Kurisari/Digits-Recognition",
             "priority": 58,
-            "tags": ["ai", "computer-vision"]
+            "tags": [
+                "ai",
+                "computer-vision"
+            ]
         },
         {
             "id": "animal-identifier",
@@ -316,7 +343,10 @@
             ],
             "github": "https://github.com/Kurisari/IdentificadorAnimal",
             "priority": 54,
-            "tags": ["ai", "computer-vision"]
+            "tags": [
+                "ai",
+                "computer-vision"
+            ]
         },
         {
             "id": "mx-banknote-detection",
@@ -337,7 +367,11 @@
             ],
             "github": "https://github.com/Kurisari/MX-Banknote-Detection",
             "priority": 62,
-            "tags": ["ai", "computer-vision", "featured"]
+            "tags": [
+                "ai",
+                "computer-vision",
+                "featured"
+            ]
         },
         {
             "id": "stm32f401re-oscilloscope",
@@ -354,7 +388,10 @@
             ],
             "github": "https://github.com/Kurisari/oscilloscope-stm32f401re",
             "priority": 52,
-            "tags": ["software", "embedded"]
+            "tags": [
+                "software",
+                "embedded"
+            ]
         },
         {
             "id": "portfolio-next",
@@ -389,7 +426,10 @@
             "github": "https://github.com/Kurisari/portfolio",
             "url": "https://www.kurisari.dev",
             "priority": 55,
-            "tags": ["web", "featured"]
+            "tags": [
+                "web",
+                "featured"
+            ]
         },
         {
             "id": "foreigners-corner",
@@ -407,7 +447,9 @@
             "image": "/foreigners-corner.png",
             "url": "https://www.foraneosup.com/",
             "priority": 45,
-            "tags": ["web"]
+            "tags": [
+                "web"
+            ]
         },
         {
             "id": "portfolio-old",
@@ -426,7 +468,10 @@
             "github": "https://github.com/Kurisari/portafolio-old",
             "url": "https://cristian-old-version.vercel.app",
             "priority": 10,
-            "tags": ["web", "legacy"]
+            "tags": [
+                "web",
+                "legacy"
+            ]
         },
         {
             "id": "notaria-71-ags",
@@ -444,7 +489,13 @@
             "image": "/notaria71web.png",
             "url": "https://notaria71ags.com",
             "priority": 100,
-            "tags": ["web", "client", "recent", "home", "featured"]
+            "tags": [
+                "web",
+                "client",
+                "recent",
+                "home",
+                "featured"
+            ]
         },
         {
             "id": "burkle-fumigaciones",
@@ -470,7 +521,12 @@
             "image": "/burkleweb.png",
             "url": "https://burklefumigaciones.com",
             "priority": 95,
-            "tags": ["web", "client", "recent", "home"]
+            "tags": [
+                "web",
+                "client",
+                "recent",
+                "home"
+            ]
         },
         {
             "id": "garbon-albercas",
@@ -488,7 +544,12 @@
             "image": "/garbonweb.png",
             "url": "https://garbon.com.mx",
             "priority": 90,
-            "tags": ["web", "client", "recent", "home"]
+            "tags": [
+                "web",
+                "client",
+                "recent",
+                "home"
+            ]
         },
         {
             "id": "collectors-vault-store",
@@ -510,7 +571,12 @@
             "image": "/collectorsweb.png",
             "url": "https://thecollectorsvault.com.mx",
             "priority": 85,
-            "tags": ["web", "client", "recent", "home"]
+            "tags": [
+                "web",
+                "client",
+                "recent",
+                "home"
+            ]
         },
         {
             "id": "up-ticketing-system",
@@ -531,7 +597,162 @@
             ],
             "github": "https://github.com/Kurisari/generador-boletos",
             "priority": 80,
-            "tags": ["web", "university", "recent", "home"]
+            "tags": [
+                "web",
+                "university",
+                "recent",
+                "home"
+            ]
+        },
+        {
+            "id": "tosignal",
+            "icon": "activity",
+            "title": "ToSignal",
+            "subtitle": "LinkedIn Automation & Lead Intelligence Web Platform",
+            "category": "web",
+            "description": "Designed and built a full-stack web platform to extract, process, and analyze LinkedIn data for lead generation and decision-making. Implemented end-to-end automation workflows using n8n, integrating Apify for data extraction, Supabase for storage, and custom APIs. Developed real-time dashboards with maps and analytics, automated PDF report generation, and orchestrated event-driven processes via webhooks and edge functions.",
+            "technologies": [
+                {
+                    "name": "React"
+                },
+                {
+                    "name": "Supabase"
+                },
+                {
+                    "name": "n8n"
+                },
+                {
+                    "name": "Apify"
+                },
+                {
+                    "name": "APIs"
+                },
+                {
+                    "name": "Webhooks"
+                },
+                {
+                    "name": "Edge Functions"
+                }
+            ],
+            "priority": 100,
+            "tags": [
+                "web",
+                "automation",
+                "crm",
+                "data",
+                "ai",
+                "featured",
+                "top",
+                "recent"
+            ]
+        },
+        {
+            "id": "deepreading",
+            "icon": "brain",
+            "title": "DeepReading",
+            "subtitle": "AI-Powered Reading & Knowledge Management Platform",
+            "category": "web",
+            "description": "Developed a full-stack platform for managing and interacting with reading content. Users can assign readings, highlight text, create bookmarks, generate flashcards, build presentations, and obtain AI-generated summaries. Integrated LLM-based features for content understanding and automation, combined with a scalable backend using Supabase and a modern frontend with React and Vite.",
+            "technologies": [
+                {
+                    "name": "React"
+                },
+                {
+                    "name": "Vite"
+                },
+                {
+                    "name": "Supabase"
+                },
+                {
+                    "name": "LLMs"
+                },
+                {
+                    "name": "Automation"
+                }
+            ],
+            "priority": 96,
+            "tags": [
+                "ai",
+                "llm",
+                "automation",
+                "product",
+                "featured",
+                "recent"
+            ]
+        },
+        {
+            "id": "jewelry-invoicing-system",
+            "icon": "receipt",
+            "title": "Invoicing & Payment Automation Web Platform",
+            "subtitle": "Custom CRM & Billing System for Jewelry Business",
+            "category": "web",
+            "description": "Built a full-stack web platform for invoicing, client management, and payment processing. Automated invoice generation, Stripe payments, and email notifications. Integrated Supabase backend and edge functions to handle business logic and workflows, significantly reducing manual administrative tasks.",
+            "technologies": [
+                {
+                    "name": "React"
+                },
+                {
+                    "name": "Supabase"
+                },
+                {
+                    "name": "Stripe"
+                },
+                {
+                    "name": "Edge Functions"
+                },
+                {
+                    "name": "Automation"
+                },
+                {
+                    "name": "Emailing"
+                }
+            ],
+            "priority": 98,
+            "tags": [
+                "web",
+                "automation",
+                "crm",
+                "payments",
+                "business",
+                "featured",
+                "client",
+                "recent"
+            ]
+        },
+        {
+            "id": "influencer-analytics-platform",
+            "icon": "trending-up",
+            "title": "Influencer Data & Automation Web Platform",
+            "subtitle": "Data Extraction, Processing & Workflow Automation",
+            "category": "web",
+            "description": "Developing a web platform to extract, process, and analyze influencer data at scale. Built automated workflows using n8n and Apify for data extraction, combined with Supabase and SQL pipelines for data transformation and filtering. Designed systems to handle large datasets and enable automated decision-making processes.",
+            "technologies": [
+                {
+                    "name": "n8n"
+                },
+                {
+                    "name": "Apify"
+                },
+                {
+                    "name": "Supabase"
+                },
+                {
+                    "name": "SQL"
+                },
+                {
+                    "name": "Automation"
+                }
+            ],
+            "priority": 99,
+            "tags": [
+                "web",
+                "automation",
+                "data",
+                "ai",
+                "featured",
+                "recent",
+                "top"
+            ]
         }
     ],
     "training": [
