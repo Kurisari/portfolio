@@ -4,7 +4,7 @@
   "skill": "Ingeniero en Inteligencia Artificial",
   "location": "Aguascalientes, México",
   "isAvailable": true,
-  "about": "Soy un Ingeniero en Inteligencia Artificial con experiencia en desarrollo de software y aplicaciones web. Apasionado por la tecnología y la programación, comprometido con el aprendizaje continuo y los nuevos retos. Soy proactivo, responsable y dedicado a mi trabajo.",
+  "about": "Construyo plataformas web full-stack enfocadas en automatización, procesamiento de datos y flujos impulsados por IA. Desarrollo sistemas que integran APIs, automatizan procesos de negocio y aprovechan tecnologías como n8n, Supabase y LLMs para generar impacto real.",
   "experience": [
     {
       "icon": "user",
