@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PDFDocument, StandardFonts, rgb, type PDFFont } from "pdf-lib";
+import { PDFDocument, PDFName, PDFString, StandardFonts, rgb, type PDFFont } from "pdf-lib";
 import { loadPortfolio, sortProjectsByPriority } from "@/lib/portfolio";
 
 type CvLang = "en" | "es";
@@ -44,6 +44,7 @@ const labels: Record<CvLang, Record<string, string>> = {
 const A4_WIDTH = 595;
 const A4_HEIGHT = 842;
 const MARGIN = 44;
+const PORTFOLIO_URL = "https://www.kurisari.dev";
 
 function cleanText(text: string): string {
   return text.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
@@ -96,6 +97,47 @@ export async function GET(request: NextRequest) {
     page.drawText(text, { x, y, size, font: isBold ? bold : font, color });
   };
 
+  const linkLine = (
+    text: string,
+    url: string,
+    x: number,
+    size = 9,
+    isBold = false,
+    color = rgb(0.1, 0.3, 0.65)
+  ) => {
+    const selectedFont = isBold ? bold : font;
+    page.drawText(text, {
+      x,
+      y,
+      size,
+      font: selectedFont,
+      color,
+    });
+
+    const width = selectedFont.widthOfTextAtSize(text, size);
+    const height = size + 2;
+    const linkRect = [x, y - 1, x + width, y + height] as [number, number, number, number];
+
+    const annotation = pdfDoc.context.obj({
+      Type: "Annot",
+      Subtype: "Link",
+      Rect: linkRect,
+      Border: [0, 0, 0],
+      A: {
+        Type: "Action",
+        S: "URI",
+        URI: PDFString.of(url),
+      },
+    });
+
+    const annots = page.node.lookup(PDFName.of("Annots"));
+    if (annots) {
+      (annots as any).push(annotation);
+    } else {
+      page.node.set(PDFName.of("Annots"), pdfDoc.context.obj([annotation]));
+    }
+  };
+
   const ensureSpace = (requiredHeight: number) => {
     if (y < MARGIN + requiredHeight) {
       page = pdfDoc.addPage([A4_WIDTH, A4_HEIGHT]);
@@ -110,6 +152,16 @@ export async function GET(request: NextRequest) {
     for (const l of lines) {
       ensureSpace(30);
       line(l, x, size);
+      y -= leading;
+    }
+  };
+
+  const linkParagraph = (text: string, url: string, x: number, size = 9, leading = 12) => {
+    const maxWidth = A4_WIDTH - MARGIN * 2;
+    const lines = wrapText(text, font, size, maxWidth);
+    for (const l of lines) {
+      ensureSpace(30);
+      linkLine(l, url, x, size, false);
       y -= leading;
     }
   };
@@ -185,8 +237,11 @@ export async function GET(request: NextRequest) {
 
     const links = [item.url, item.github].filter(Boolean) as string[];
     if (links.length > 0) {
-      line(`${t.links}: ${links.join(" | ")}`, MARGIN, 8, false, rgb(0.32, 0.32, 0.37));
+      line(`${t.links}:`, MARGIN, 8, true, rgb(0.32, 0.32, 0.37));
       y -= 10;
+      for (const link of links) {
+        linkParagraph(`- ${link}`, link, MARGIN + 10, 8, 10);
+      }
     }
 
     y -= 4;
@@ -212,7 +267,11 @@ export async function GET(request: NextRequest) {
     }
     if (item.url || item.github) {
       const links = [item.url, item.github].filter(Boolean) as string[];
-      paragraph(`${t.links}: ${links.join(" | ")}`, MARGIN, 7.8, 10);
+      line(`${t.links}:`, MARGIN, 7.8, true, rgb(0.32, 0.32, 0.37));
+      y -= 9;
+      for (const link of links) {
+        linkParagraph(`- ${link}`, link, MARGIN + 10, 7.8, 10);
+      }
     }
     y -= 2;
   };
@@ -221,14 +280,16 @@ export async function GET(request: NextRequest) {
   y -= 24;
   line(portfolio.skill, MARGIN, 11, false, rgb(0.28, 0.28, 0.33));
   y -= 16;
-  line(
-    `${portfolio.location} | ${portfolio.media.email} | ${portfolio.media.likedin} | ${portfolio.media.github}`,
-    MARGIN,
-    9,
-    false,
-    rgb(0.35, 0.35, 0.4)
-  );
-  y -= 18;
+  line(portfolio.location, MARGIN, 9, false, rgb(0.35, 0.35, 0.4));
+  y -= 12;
+  linkLine(portfolio.media.email, `mailto:${portfolio.media.email}`, MARGIN, 9);
+  y -= 11;
+  linkLine(portfolio.media.likedin, portfolio.media.likedin, MARGIN, 9);
+  y -= 11;
+  linkLine(portfolio.media.github, portfolio.media.github, MARGIN, 9);
+  y -= 11;
+  linkLine(PORTFOLIO_URL, PORTFOLIO_URL, MARGIN, 9);
+  y -= 14;
   line(t.title, MARGIN, 8, true, rgb(0.42, 0.42, 0.48));
   y -= 8;
 
@@ -248,10 +309,11 @@ export async function GET(request: NextRequest) {
     portfolio.isAvailable
       ? (lang === "es" ? "Disponible para nuevas oportunidades" : "Open to new opportunities")
       : (lang === "es" ? "No disponible actualmente" : "Not currently available"),
-    portfolio.media.email,
-    portfolio.media.likedin,
-    portfolio.media.github,
   ]);
+  linkParagraph(portfolio.media.email, `mailto:${portfolio.media.email}`, MARGIN, 9, 11);
+  linkParagraph(portfolio.media.likedin, portfolio.media.likedin, MARGIN, 9, 11);
+  linkParagraph(portfolio.media.github, portfolio.media.github, MARGIN, 9, 11);
+  linkParagraph(PORTFOLIO_URL, PORTFOLIO_URL, MARGIN, 9, 11);
 
   sectionTitle(t.experience);
   for (const item of portfolio.experience) {
@@ -291,6 +353,9 @@ export async function GET(request: NextRequest) {
   sectionTitle(t.achievements);
   for (const item of portfolio.extras.slice(0, 6)) {
     paragraph(`- ${item.title}. ${item.description}`, MARGIN, 10, 13);
+    if (item.url) {
+      linkParagraph(item.url, item.url, MARGIN + 10, 8.2, 10.5);
+    }
   }
 
   pages.forEach((p, idx) => {
