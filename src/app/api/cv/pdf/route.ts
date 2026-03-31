@@ -3,6 +3,15 @@ import { PDFArray, PDFDocument, PDFName, PDFString, StandardFonts, rgb, type PDF
 import { loadPortfolio, sortProjectsByPriority } from "@/lib/portfolio";
 
 type CvLang = "en" | "es";
+type PortfolioData = Awaited<ReturnType<typeof loadPortfolio>>;
+
+type CvOverrides = {
+  about?: string;
+  skills?: string[];
+  projectDescriptionPrefix?: string;
+  projectDescriptionSuffix?: string;
+  projectDescriptions?: Record<string, string>;
+};
 
 const labels: Record<CvLang, Record<string, string>> = {
   en: {
@@ -71,17 +80,62 @@ function wrapText(text: string, font: PDFFont, size: number, maxWidth: number): 
   return lines.length > 0 ? lines : [""];
 }
 
-export async function GET(request: NextRequest) {
-  const langParam = request.nextUrl.searchParams.get("lang");
-  const lang: CvLang = langParam === "es" ? "es" : "en";
+function normalizeLang(value: string | null | undefined): CvLang {
+  return value === "es" ? "es" : "en";
+}
+
+function sanitizeText(text: string | undefined): string | undefined {
+  if (typeof text !== "string") return undefined;
+  const trimmed = text.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
+}
+
+function mergeDescription(base: string, prefix?: string, suffix?: string): string {
+  const left = prefix?.trim();
+  const right = suffix?.trim();
+  const middle = base.trim();
+  return [left, middle, right].filter(Boolean).join(" ").replace(/\s+/g, " ").trim();
+}
+
+function applyOverrides(portfolio: PortfolioData, overrides?: CvOverrides): PortfolioData {
+  if (!overrides) return portfolio;
+
+  const about = sanitizeText(overrides.about);
+  const prefix = sanitizeText(overrides.projectDescriptionPrefix);
+  const suffix = sanitizeText(overrides.projectDescriptionSuffix);
+  const descriptionsById = overrides.projectDescriptions ?? {};
+
+  const iconByName = new Map(portfolio.technologies.map((tech) => [tech.name, tech.icon]));
+  const normalizedSkills = Array.isArray(overrides.skills)
+    ? Array.from(new Set(overrides.skills.map((skill) => skill.trim()).filter(Boolean)))
+    : null;
+
+  return {
+    ...portfolio,
+    about: about ?? portfolio.about,
+    technologies: normalizedSkills
+      ? normalizedSkills.map((name) => ({ name, icon: iconByName.get(name) ?? "devicon-plain" }))
+      : portfolio.technologies,
+    projects: portfolio.projects.map((project) => {
+      const overrideDescription = sanitizeText(descriptionsById[project.id]);
+      return {
+        ...project,
+        description: mergeDescription(overrideDescription ?? project.description, prefix, suffix),
+      };
+    }),
+  };
+}
+
+async function renderPdf(lang: CvLang, portfolio: PortfolioData): Promise<Uint8Array> {
   const t = labels[lang];
-
-  const portfolio = await loadPortfolio(lang);
-
   const allProjects = sortProjectsByPriority(portfolio.projects);
-  const featuredProjects = allProjects.filter(
-    (project) => Array.isArray(project.tags) && (project.tags.includes("top") || project.tags.includes("featured") || project.tags.includes("recent"))
-  ).slice(0, 6);
+  const featuredProjects = allProjects
+    .filter(
+      (project) =>
+        Array.isArray(project.tags) &&
+        (project.tags.includes("top") || project.tags.includes("featured") || project.tags.includes("recent"))
+    )
+    .slice(0, 6);
   const featuredIds = new Set(featuredProjects.map((project) => project.id));
   const otherProjects = allProjects.filter((project) => !featuredIds.has(project.id));
 
@@ -106,18 +160,11 @@ export async function GET(request: NextRequest) {
     color = rgb(0.1, 0.3, 0.65)
   ) => {
     const selectedFont = isBold ? bold : font;
-    page.drawText(text, {
-      x,
-      y,
-      size,
-      font: selectedFont,
-      color,
-    });
+    page.drawText(text, { x, y, size, font: selectedFont, color });
 
     const width = selectedFont.widthOfTextAtSize(text, size);
     const height = size + 2;
     const linkRect = [x, y - 1, x + width, y + height] as [number, number, number, number];
-
     const annotation = pdfDoc.context.obj({
       Type: "Annot",
       Subtype: "Link",
@@ -196,39 +243,30 @@ export async function GET(request: NextRequest) {
       )
     );
 
-    const fixedKeywords = lang === "es"
-      ? ["automatizacion", "integraciones", "apis", "webhooks", "analitica", "ia", "llm", "escalabilidad"]
-      : ["automation", "integrations", "apis", "webhooks", "analytics", "ai", "llm", "scalability"];
+    const fixedKeywords =
+      lang === "es"
+        ? ["automatizacion", "integraciones", "apis", "webhooks", "analitica", "ia", "llm", "escalabilidad"]
+        : ["automation", "integrations", "apis", "webhooks", "analytics", "ai", "llm", "scalability"];
 
     return Array.from(new Set([...techKeywords, ...tagKeywords, ...fixedKeywords])).slice(0, 20);
   };
 
   const drawProject = (index: number, item: (typeof allProjects)[number]) => {
     ensureSpace(70);
-
-    const title = `${index + 1}. ${item.title}`;
-    line(title, MARGIN, 10.5, true, rgb(0.08, 0.08, 0.1));
+    line(`${index + 1}. ${item.title}`, MARGIN, 10.5, true, rgb(0.08, 0.08, 0.1));
 
     const category = (item.category || "").toUpperCase();
     if (category) {
-      line(
-        category,
-        A4_WIDTH - MARGIN - bold.widthOfTextAtSize(category, 8),
-        8,
-        true,
-        rgb(0.35, 0.35, 0.4)
-      );
+      line(category, A4_WIDTH - MARGIN - bold.widthOfTextAtSize(category, 8), 8, true, rgb(0.35, 0.35, 0.4));
     }
 
     y -= 12;
-
     if (item.subtitle) {
       line(item.subtitle, MARGIN, 9, false, rgb(0.32, 0.32, 0.37));
       y -= 11;
     }
 
     paragraph(item.description, MARGIN, 9.5, 12.5);
-
     const stack = item.technologies?.map((tech) => tech.name).filter(Boolean) ?? [];
     if (stack.length > 0) {
       line(`${t.stack}: ${stack.join(", ")}`, MARGIN, 8.5, false, rgb(0.28, 0.28, 0.34));
@@ -239,9 +277,7 @@ export async function GET(request: NextRequest) {
     if (links.length > 0) {
       line(`${t.links}:`, MARGIN, 8, true, rgb(0.32, 0.32, 0.37));
       y -= 10;
-      for (const link of links) {
-        linkParagraph(`- ${link}`, link, MARGIN + 10, 8, 10);
-      }
+      for (const link of links) linkParagraph(`- ${link}`, link, MARGIN + 10, 8, 10);
     }
 
     y -= 4;
@@ -252,26 +288,18 @@ export async function GET(request: NextRequest) {
     line(`${index + 1}. ${item.title}`, MARGIN, 9.5, true, rgb(0.12, 0.12, 0.16));
     const category = (item.category || "").toUpperCase();
     if (category) {
-      line(
-        category,
-        A4_WIDTH - MARGIN - bold.widthOfTextAtSize(category, 7.5),
-        7.5,
-        true,
-        rgb(0.38, 0.38, 0.42)
-      );
+      line(category, A4_WIDTH - MARGIN - bold.widthOfTextAtSize(category, 7.5), 7.5, true, rgb(0.38, 0.38, 0.42));
     }
+
     y -= 11;
     const stack = item.technologies?.map((tech) => tech.name).filter(Boolean).slice(0, 5) ?? [];
-    if (stack.length > 0) {
-      paragraph(`${t.stack}: ${stack.join(", ")}`, MARGIN, 8.2, 10.5);
-    }
+    if (stack.length > 0) paragraph(`${t.stack}: ${stack.join(", ")}`, MARGIN, 8.2, 10.5);
+
     if (item.url || item.github) {
       const links = [item.url, item.github].filter(Boolean) as string[];
       line(`${t.links}:`, MARGIN, 7.8, true, rgb(0.32, 0.32, 0.37));
       y -= 9;
-      for (const link of links) {
-        linkParagraph(`- ${link}`, link, MARGIN + 10, 7.8, 10);
-      }
+      for (const link of links) linkParagraph(`- ${link}`, link, MARGIN + 10, 7.8, 10);
     }
     y -= 2;
   };
@@ -305,10 +333,14 @@ export async function GET(request: NextRequest) {
 
   sectionTitle(t.profile);
   chipsLine([
-    `${portfolio.location}`,
+    portfolio.location,
     portfolio.isAvailable
-      ? (lang === "es" ? "Disponible para nuevas oportunidades" : "Open to new opportunities")
-      : (lang === "es" ? "No disponible actualmente" : "Not currently available"),
+      ? lang === "es"
+        ? "Disponible para nuevas oportunidades"
+        : "Open to new opportunities"
+      : lang === "es"
+        ? "No disponible actualmente"
+        : "Not currently available",
   ]);
   linkParagraph(portfolio.media.email, `mailto:${portfolio.media.email}`, MARGIN, 9, 11);
   linkParagraph(portfolio.media.likedin, portfolio.media.likedin, MARGIN, 9, 11);
@@ -339,21 +371,15 @@ export async function GET(request: NextRequest) {
 
   sectionTitle(t.projects);
   sectionTitle(t.featuredProjects);
-  for (let i = 0; i < featuredProjects.length; i += 1) {
-    drawProject(i, featuredProjects[i]);
-  }
+  for (let i = 0; i < featuredProjects.length; i += 1) drawProject(i, featuredProjects[i]);
 
   if (otherProjects.length > 0) {
     sectionTitle(t.otherProjects);
-    for (let i = 0; i < otherProjects.length; i += 1) {
-      drawCompactProject(i + featuredProjects.length, otherProjects[i]);
-    }
+    for (let i = 0; i < otherProjects.length; i += 1) drawCompactProject(i + featuredProjects.length, otherProjects[i]);
   }
 
   sectionTitle(t.achievements);
-  for (const item of portfolio.extras.slice(0, 6)) {
-    paragraph(`- ${item.title}. ${item.description}`, MARGIN, 10, 13);
-  }
+  for (const item of portfolio.extras.slice(0, 6)) paragraph(`- ${item.title}. ${item.description}`, MARGIN, 10, 13);
 
   pages.forEach((p, idx) => {
     const pageNumber = `${idx + 1}/${pages.length}`;
@@ -366,11 +392,12 @@ export async function GET(request: NextRequest) {
     });
   });
 
-  const pdfBytes = await pdfDoc.save();
-  // Normalize to an ArrayBuffer-backed view to satisfy strict BodyInit typings on Node 24.
-  const normalizedBytes = Uint8Array.from(pdfBytes);
-  const filename = `cv-${portfolio.name.toLowerCase().replace(/\s+/g, "-")}-${lang}.pdf`;
+  return Uint8Array.from(await pdfDoc.save());
+}
 
+function createPdfResponse(bytes: Uint8Array, portfolio: PortfolioData, lang: CvLang): NextResponse {
+  const filename = `cv-${portfolio.name.toLowerCase().replace(/\s+/g, "-")}-${lang}.pdf`;
+  const normalizedBytes = Uint8Array.from(bytes);
   return new NextResponse(normalizedBytes, {
     headers: {
       "Content-Type": "application/pdf",
@@ -378,4 +405,26 @@ export async function GET(request: NextRequest) {
       "Cache-Control": "no-store",
     },
   });
+}
+
+export async function GET(request: NextRequest) {
+  const lang = normalizeLang(request.nextUrl.searchParams.get("lang"));
+  const portfolio = await loadPortfolio(lang);
+  const bytes = await renderPdf(lang, portfolio);
+  return createPdfResponse(bytes, portfolio, lang);
+}
+
+export async function POST(request: NextRequest) {
+  let payload: { lang?: string; overrides?: CvOverrides } = {};
+  try {
+    payload = (await request.json()) as { lang?: string; overrides?: CvOverrides };
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+  }
+
+  const lang = normalizeLang(payload.lang);
+  const portfolio = await loadPortfolio(lang);
+  const customizedPortfolio = applyOverrides(portfolio, payload.overrides);
+  const bytes = await renderPdf(lang, customizedPortfolio);
+  return createPdfResponse(bytes, customizedPortfolio, lang);
 }
