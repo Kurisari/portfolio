@@ -613,24 +613,31 @@
             "description": "Architected a full-stack lead intelligence platform that automates LinkedIn data extraction, processing, and analysis using n8n, Apify, and Supabase. Delivered near real-time dashboards and automated PDF reporting, reducing manual research time by hours per workflow and accelerating decision-making.",
             "technologies": [
                 {
+                    "icon": "devicon-react-original",
                     "name": "React"
                 },
                 {
+                    "icon": "devicon-supabase-plain",
                     "name": "Supabase"
                 },
                 {
+                    "icon": "devicon-n8n-plain",
                     "name": "n8n"
                 },
                 {
+                    "icon": "devicon-javascript-plain",
                     "name": "Apify"
                 },
                 {
+                    "icon": "devicon-nodejs-plain",
                     "name": "APIs"
                 },
                 {
+                    "icon": "devicon-nodejs-plain",
                     "name": "Webhooks"
                 },
                 {
+                    "icon": "devicon-supabase-plain",
                     "name": "Edge Functions"
                 }
             ],
@@ -655,18 +662,23 @@
             "description": "Developed an AI-powered knowledge platform with LLM-driven features for summaries, flashcards, and content generation. Automated study workflows using React, Vite, and Supabase, significantly reducing time to transform content into structured insights.",
             "technologies": [
                 {
+                    "icon": "devicon-react-original",
                     "name": "React"
                 },
                 {
+                    "icon": "devicon-vitejs-plain",
                     "name": "Vite"
                 },
                 {
+                    "icon": "devicon-supabase-plain",
                     "name": "Supabase"
                 },
                 {
+                    "icon": "devicon-python-plain",
                     "name": "LLMs"
                 },
                 {
+                    "icon": "devicon-n8n-plain",
                     "name": "Automation"
                 }
             ],
@@ -689,21 +701,27 @@
             "description": "Engineered a custom CRM and billing platform integrating Stripe for payments and Supabase edge functions for automation. Streamlined invoice generation and client communication, reducing manual administrative work and improving payment processing reliability.",
             "technologies": [
                 {
+                    "icon": "devicon-react-original",
                     "name": "React"
                 },
                 {
+                    "icon": "devicon-supabase-plain",
                     "name": "Supabase"
                 },
                 {
+                    "icon": "devicon-stripe-plain",
                     "name": "Stripe"
                 },
                 {
+                    "icon": "devicon-supabase-plain",
                     "name": "Edge Functions"
                 },
                 {
+                    "icon": "devicon-n8n-plain",
                     "name": "Automation"
                 },
                 {
+                    "icon": "devicon-google-plain",
                     "name": "Emailing"
                 }
             ],
@@ -728,18 +746,23 @@
             "description": "Building a large-scale influencer analytics platform with automated data pipelines using n8n and Apify. Processes high-volume datasets through SQL workflows in Supabase, enabling faster, automated decision-making and eliminating manual data aggregation.",
             "technologies": [
                 {
+                    "icon": "devicon-n8n-plain",
                     "name": "n8n"
                 },
                 {
+                    "icon": "devicon-javascript-plain",
                     "name": "Apify"
                 },
                 {
+                    "icon": "devicon-supabase-plain",
                     "name": "Supabase"
                 },
                 {
+                    "icon": "devicon-mysql-plain",
                     "name": "SQL"
                 },
                 {
+                    "icon": "devicon-n8n-plain",
                     "name": "Automation"
                 }
             ],
