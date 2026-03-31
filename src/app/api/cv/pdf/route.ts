@@ -353,9 +353,6 @@ export async function GET(request: NextRequest) {
   sectionTitle(t.achievements);
   for (const item of portfolio.extras.slice(0, 6)) {
     paragraph(`- ${item.title}. ${item.description}`, MARGIN, 10, 13);
-    if (item.url) {
-      linkParagraph(item.url, item.url, MARGIN + 10, 8.2, 10.5);
-    }
   }
 
   pages.forEach((p, idx) => {
